@@ -1,3 +1,7 @@
 module.exports = {
-  Book: require("./book")
+  User: require("./Users"),
+  Room: require("./Rooms"),
+  Todo: require("./Todos"),
+  Messages: require("./Messages"),
+  Bills: require("./Bills"),
 };
