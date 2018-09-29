@@ -7,10 +7,28 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var BillsSchema = new Schema({
   // `title` is of type String
-  title: String,
+  title: {type:String},
+  category: {type:String},
   // `body` is of type String
-  body: String,
-
+  body: {type:String},
+  amount: {
+    type:Number,
+  },
+  dueDate: {
+    type: Date, 
+    validate: [
+        function(dueDate) {
+            return dueDate>Date.now
+        },
+        "Due Date Must be a future date"
+    ]},
+  paid: {
+    type:Boolean,
+    default: false,
+  },
+  assignee: {
+    type:String
+  },
   dateAdded: { type: Date, default: Date.now }
 });
 

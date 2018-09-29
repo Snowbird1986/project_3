@@ -11,7 +11,16 @@ var TodosSchema = new Schema({
   // `body` is of type String
   body: String,
 
-  dateAdded: { type: Date, default: Date.now }
+  dateAdded: { type: Date, default: Date.now },
+  completed: {
+    type: Boolean,
+  },
+  recurring: {
+    type: Boolean,
+  },
+  frequency: {
+    type:Number
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method
