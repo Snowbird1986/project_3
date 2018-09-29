@@ -10,7 +10,9 @@ var ContractsSchema = new Schema({
   title: String,
   // `body` is of type String
   body: String,
-
+  dateSigned: { 
+    type: Date
+  },
   dateAdded: { type: Date, default: Date.now }
 });
 

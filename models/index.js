@@ -4,4 +4,5 @@ module.exports = {
   Todo: require("./Todos"),
   Messages: require("./Messages"),
   Bills: require("./Bills"),
+  Contracts: require("./Contracts"),
 };
