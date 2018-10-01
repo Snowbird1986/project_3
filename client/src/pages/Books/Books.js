@@ -6,13 +6,18 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import Login from "../../components/Facebook/Login";
+//import FacebookLoginButton from './FacebookLoginButton';
+import "./style.css";
 
 class Books extends Component {
   state = {
     books: [],
     title: "",
     author: "",
-    synopsis: ""
+    synopsis: "",
+    username: null
+
   };
 
   componentDidMount() {
@@ -53,6 +58,17 @@ class Books extends Component {
     }
   };
 
+  onFacebookLogin = (loginStatus, resultObject) => {
+    if (loginStatus === true) {
+      this.setState({
+        username: resultObject.user.name
+      });
+    } else {
+      alert('Facebook login error');
+    }
+  }
+
+
   render() {
     return (
       <Container fluid>
@@ -81,11 +97,32 @@ class Books extends Component {
                 placeholder="Synopsis (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
+                // disabled={!(this.state.author && this.state.title)}
+                onClick={
+                  this.fbLogin
+                }
               >
-                Submit Book
+                Poop
               </FormBtn>
+              <div className="App">
+                <header className="App-header">
+                  <h1 className="App-title"> Media Login</h1>
+                </header>
+
+                <div className="App-intro">
+                  {!this.state.username &&
+                    <div>
+                      <p>Click on one of any button below to login</p>
+                      <Login onLogin={this.onFacebookLogin}>
+                        <button>Facebook</button>
+                      </Login>
+                    </div>
+                  }
+                  {this.state.username &&
+                    <p>Welcome back, {this.state.username}</p>
+                  }
+                </div>
+              </div>
             </form>
           </Col>
           <Col size="md-6 sm-12">
@@ -106,8 +143,8 @@ class Books extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
