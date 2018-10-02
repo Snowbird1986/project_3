@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import Login from "../../components/Facebook/Login";
+import { TweenLite, Elastic } from 'gsap';
 //import FacebookLoginButton from './FacebookLoginButton';
 import "./style.css";
 
