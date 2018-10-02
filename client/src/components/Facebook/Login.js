@@ -44,12 +44,22 @@ export default class FacebookLogin extends Component {
      * Handle login response
      */
     facebookLoginHandler = response => {
+        this.FB.logout(function (response) {
+            // user is now logged out
+        });
         if (response.status === 'connected') {
             this.FB.api('/me', userData => {
                 let result = {
                     ...response,
                     user: userData
                 };
+                // this.FB.ui({
+                //     method: 'share',
+                //     href: 'https://developers.facebook.com/docs/'
+                // }, function (response) {
+                //     console.log(response);
+                // });
+
                 console.log(result);
                 this.props.onLogin(true, result);
             });
