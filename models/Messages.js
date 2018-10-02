@@ -10,6 +10,10 @@ var MessagesSchema = new Schema({
   title: String,
   // `body` is of type String
   body: String,
+  read: {
+    type:Boolean,
+    default: false
+  }
 
   dateAdded: { type: Date, default: Date.now }
 });
