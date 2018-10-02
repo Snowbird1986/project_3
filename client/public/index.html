@@ -12,6 +12,39 @@
 </head>
 
 <body>
+  `
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '308610899694941',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v3.1'
+      });
+      // Broadcast an event when FB object is ready
+      var fbInitEvent = new Event('FBObjectReady');
+      document.dispatchEvent(fbInitEvent);
+
+      // FB.login(function (response) {
+      //   if (response.authResponse) {
+      //     console.log('Welcome!  Fetching your information.... ');
+      //     FB.api('/me', function (response) {
+      //       console.log('Good to see you, ' + response.name + '.');
+      //     });
+      //   } else {
+      //     console.log('User cancelled login or did not fully authorize.');
+      //   }
+      // });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>`
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
