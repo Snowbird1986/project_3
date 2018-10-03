@@ -40,7 +40,7 @@ export default class FacebookLogin extends Component {
         });
     }
 
-    
+
 
     /**
      * Handle login response
