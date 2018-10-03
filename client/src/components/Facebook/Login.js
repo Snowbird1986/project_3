@@ -52,7 +52,10 @@ export default class FacebookLogin extends Component {
     // }
     facebookLoginHandler = response => {
         if (response.status === 'connected') {
-            this.FB.api('/me?fields=email,birthday,gender,location,id,name,first_name,last_name', userData => {
+            var accessToken = response.authResponse.accessToken;
+            console.log(accessToken);
+            this.FB.api('/me?fields=email,birthday,gender,location,id,name,first_name,last_name,picture', userData => {
+                console.log(userData)
                 let result = {
                     ...response,
                     user: userData

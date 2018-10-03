@@ -36,8 +36,8 @@ render() {
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <Container fluid>
-          <Row className="col-md-12">
-            <Col size="md-3" className="offset-md-9">
+          <Row>
+            <Col size="md-3">
               <a className="navbar-brand" href="/">
                 <div className="App">
                   <div className="App-intro">
