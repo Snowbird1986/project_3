@@ -19,22 +19,22 @@
         appId: '308610899694941',
         autoLogAppEvents: true,
         xfbml: true,
-        version: 'v3.1'
+        version: 'v3.1',
       });
       // Broadcast an event when FB object is ready
       var fbInitEvent = new Event('FBObjectReady');
       document.dispatchEvent(fbInitEvent);
 
-      // FB.login(function (response) {
-      //   if (response.authResponse) {
-      //     console.log('Welcome!  Fetching your information.... ');
-      //     FB.api('/me', function (response) {
-      //       console.log('Good to see you, ' + response.name + '.');
-      //     });
-      //   } else {
-      //     console.log('User cancelled login or did not fully authorize.');
-      //   }
-      // });
+      FB.login(function (response) {
+        if (response.authResponse) {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function (response) {
+            console.log('Good to see you, ' + response.name + '.');
+          });
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      });
     };
 
     (function (d, s, id) {
