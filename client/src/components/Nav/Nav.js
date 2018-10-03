@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Login from "../Facebook/Login";
 import { Col, Row, Container } from "../../components/Grid";
+import "./Nav.css";
 
 class Nav extends Component {
   state = {
@@ -24,37 +25,45 @@ class Nav extends Component {
       alert('Facebook login error');
     }
   }
+  // onFacebookLogout= response =>{
+  //   this.FB.logout(function (response) {
+  //       // user is now logged out
+  //   });
 
 
 
 render() {
   return (
-    <Container fluid>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <Row>
-          <a className="navbar-brand" href="/">
-            <div className="App">
-              <header className="App-header">
-                <h1 className="App-title"> Media Login</h1>
-              </header>
-              <div className="App-intro">
-                {!this.state.username &&
-                  <div>
-                    <p>Click on one of any button below to login</p>
-                    <Login onLogin={this.onFacebookLogin}>
-                      <button>Facebook</button>
-                    </Login>
+        <Container fluid>
+          <Row className="col-md-12">
+            <Col size="md-3" className="offset-md-9">
+              <a className="navbar-brand" href="/">
+                <div className="App">
+                  <div className="App-intro">
+                    {!this.state.username &&
+                      <div>
+                        <header className="App-header">
+                          <h1 className="App-title"> Media Login</h1>
+                        </header>
+                        <p>Click on one of any button below to login</p>
+                        <Login onLogin={this.onFacebookLogin}>
+                          <button>Facebook</button>
+                        </Login>
+                      </div>
+                    }
+                    {this.state.username &&
+                      <p>Welcome back, {this.state.username}</p>
+
+                    }
                   </div>
-                }
-                {this.state.username &&
-                  <p>Welcome back, {this.state.username}</p>
-                }
-              </div>
-            </div>
-          </a>
-        </Row>
+                </div>
+              </a>
+            </Col>
+          </Row>
+        </Container>
       </nav>
-    </Container>
+    
   );
 }
 }

@@ -64,6 +64,7 @@ var UsersSchema = new Schema({
     ]
   },
   facebookId: String,
+  facebookToken: String,
 
   dateAdded: { type: Date, default: Date.now }
 });

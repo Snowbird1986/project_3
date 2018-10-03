@@ -13,7 +13,7 @@ var MessagesSchema = new Schema({
   read: {
     type:Boolean,
     default: false
-  }
+  },
 
   dateAdded: { type: Date, default: Date.now }
 });
