@@ -21,22 +21,22 @@ export default {
     return axios.get("/api/users");
   },
   // Gets the book with the given id
-  getBills: function(id) {
+  getBill: function(id) {
     return axios.get("/api/bills/" + id);
   },
-  getContracts: function(id) {
+  getContract: function(id) {
     return axios.get("/api/contracts/" + id);
   },
-  getMessages: function(id) {
+  getMessage: function(id) {
     return axios.get("/api/messages/" + id);
   },
-  getRooms: function(id) {
+  getRoom: function(id) {
     return axios.get("/api/rooms/" + id);
   },
-  getTodos: function(id) {
+  getTodo: function(id) {
     return axios.get("/api/todos/" + id);
   },
-  getUsers: function(id) {
+  getUser: function(id) {
     return axios.get("/api/users/" + id);
   },
   // Deletes the book with the given id
