@@ -4,7 +4,16 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
+class User extends Component {
+    state={}
 
+    render() {
+        return (
+    <Container fluid>
+            User
+    </Container>
+        )}
+}
 
 
 export default User;
