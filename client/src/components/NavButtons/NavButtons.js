@@ -5,23 +5,48 @@ import React from "react";
 
 
 
-const NavButton = ({ children }) => (
+// const NavButton = ({ children }) => (
+//     <button
+
+//         style={{
+//             clear: "both",
+//             margin: "10px",
+//             padding: 20,
+//             textAlign: "center",
+//             color: "black",
+//             fontFamily: '"News Cycle", "Arial Narrow Bold", sans-serif',
+
+//         }}
+//         className={children}
+//     >
+//         {children}
+//     </button>
+
+// );
+
+const NavButton = props => (
+
     <button
-        //style={{ height: 100, clear: "both", paddingTop: 20, textAlign: "center" }}
+        onClick={props.handleBtnClick}
         style={{
             clear: "both",
             margin: "10px",
-            padding: 20,
+            padding: 5,
+            width: "100px",
+            height: "240px",
             textAlign: "center",
             color: "black",
-            fontFamily: '"News Cycle", "Arial Narrow Bold", sans-serif',
+            fontFamily: '"News Cycle", sans-serif',
+            fontSize: "10px",
+
+
 
         }}
-        className={children}
+        className={props.children}
     >
-        {children}
+        {props.children}
     </button>
-    //<button>{btnName}</button>
+
 );
 
 

@@ -70,12 +70,11 @@ class Nav extends Component {
 
   handleBtnClick = event => {
     event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-    alert("shit");
-    console.log(this.state.name)
+    // const { name, value } = event.target;
+    // <Route
+    //   {...history.push('/Books')}
+    // ></Route>
+    console.log(event)
   };
 
   render() {
@@ -87,17 +86,17 @@ class Nav extends Component {
           <Row >
             <NavButton handleBtnClick={this.handleBtnClick} >
               {"BILLS"}
-            </NavButton>
-            <NavButton >
+            </NavButton >
+            <NavButton handleBtnClick={this.handleBtnClick}>
               {"CONTRACTS"}
-            </NavButton>
-            <NavButton >
+            </NavButton >
+            <NavButton handleBtnClick={this.handleBtnClick}>
               {"MESSAGES"}
             </NavButton>
-            <NavButton >
+            <NavButton handleBtnClick={this.handleBtnClick} >
               {"ROOMS"}
             </NavButton>
-            <NavButton >
+            <NavButton handleBtnClick={this.handleBtnClick} >
               {"SCHEDULE"}
             </NavButton>
 
