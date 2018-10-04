@@ -118,42 +118,42 @@ render() {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/about"
+                  to="/user"
                   className={
-                    window.location.pathname === "/about" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/user" ? "nav-link active" : "nav-link"
                   }
                 >
-                  About
+                  User
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="/blog"
+                  to="/room"
                   className={
-                    window.location.pathname === "/blog" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/room" ? "nav-link active" : "nav-link"
                   }
                 >
-                  Blog
+                  Room
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="/contact"
+                  to="/roomSearch"
                   className={
-                    window.location.pathname === "/contact" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/roomSearch" ? "nav-link active" : "nav-link"
                   }
                 >
-                  Contact
+                  Search Rooms
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="/contact/learn"
+                  to="/userSearch"
                   className={
-                    window.location.pathname === "/contact/learn" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/userSearch" ? "nav-link active" : "nav-link"
                   }
                 >
-                  Learn
+                  Search Users
                 </Link>
               </li>
             </ul>
