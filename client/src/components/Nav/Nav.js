@@ -12,15 +12,19 @@ class Nav extends Component {
     this.myElement = null;
     // reference to the animation
     this.myTween = null;
+
   }
   state = {
     username: null,
+    selectSection: 0
   }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
+    console.log({ name, value })
   };
   handleFormSubmit = event => {
     event.preventDefault();
@@ -64,13 +68,24 @@ class Nav extends Component {
 
   }
 
+  handleBtnClick = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    alert("shit");
+    console.log(this.state.name)
+  };
+
   render() {
+    console.log(this.handleBtnClick)
     return (
 
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <Container style={{ alignItems: 'flex-end' }}>
           <Row >
-            <NavButton >
+            <NavButton handleBtnClick={this.handleBtnClick} >
               {"BILLS"}
             </NavButton>
             <NavButton >
