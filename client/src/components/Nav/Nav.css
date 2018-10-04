@@ -1,3 +1,11 @@
 .navbar {
     justify-content:right;
 }
+#toBeRevealed{
+    width: 200px;
+    /* float:right; */
+  }
+  .col-md-12{
+      margin-left:15%;
+      /* color:rgb(194, 53, 53) */
+  }
