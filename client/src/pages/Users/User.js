@@ -26,7 +26,7 @@ class User extends Component {
                 />
                 <Input
                     //value={this.Users.lastName}
-                    //onChange={this.handleInputChange}
+                    onChange={this.handleInputChange}
                     name="last-name"
                     placeholder="Name"
                 />
