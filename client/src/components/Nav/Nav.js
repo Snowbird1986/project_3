@@ -120,7 +120,8 @@ render() {
                 <Link
                   to="/user"
                   className={
-                    window.location.pathname === "/user" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/user"||window.location.pathname === "/roomCreate"
+                     ? "nav-link active" : "nav-link"
                   }
                 >
                   User
@@ -130,7 +131,8 @@ render() {
                 <Link
                   to="/room"
                   className={
-                    window.location.pathname === "/room" ? "nav-link active" : "nav-link"
+                    window.location.pathname === "/room"||window.location.pathname === "/todoCreate"||window.location.pathname === "/billCreate"
+                     ? "nav-link active" : "nav-link"
                   }
                 >
                   Room
