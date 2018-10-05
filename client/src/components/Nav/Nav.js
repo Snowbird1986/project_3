@@ -66,7 +66,7 @@ class Nav extends Component {
 
 render() {
   return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark">
         <Container fluid>
           <Row>
             <Col size="md-4">
