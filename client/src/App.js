@@ -8,6 +8,7 @@ import RoomSearch from "./pages/RoomSearch";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 const App = () => (
 
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path="/roomSearch" component={RoomSearch} />
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
     </div>
   </Router>
 
