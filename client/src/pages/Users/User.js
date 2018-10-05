@@ -154,55 +154,6 @@ class User extends Component {
                             </FormBtn>
                         </form>
                     </div>
-=======
-            <form>
-                <Input
-                    //value={this.Login.firstName}
-                    //onChange={this.handleInputChange}
-                    name="first-name"
-                    placeholder="First Name"
-                />
-                <Input
-                    //value={this.Users.lastName}
-                    onChange={this.handleInputChange}
-                    name="last-name"
-                    placeholder="Name"
-                />
-                <Input
-                    //value={this.fbLogin.email}
-                    //onChange={this.handleInputChange}
-                    name="email"
-                    placeholder="Email"
-                />
-                <Input
-                    //value={this.fbLogin.id}
-                    //onChange={this.handleInputChange}
-                    name="id"
-                    placeholder="Username"
-                />
-                <Input
-                    //value={this.fbLogin.birthday}
-                    //onChange={this.handleInputChange}
-                    name="birthday"
-                    placeholder="Birthday"
-                />
-                <Input
-                    ////value={this.fbLogin.gender}
-                    onChange={this.handleInputChange}
-                    name="gender"
-                    placeholder="Gender"
-                />
-                <Input
-                    //value={this.fbLogin.location}
-                    //onChange={this.handleInputChange}
-                    name="location"
-                    placeholder="Location"
-                />
-                
-                <FormBtn onClick={this.fbLogin}>
-                    Poop
-                </FormBtn>
-            </form>
             </Col>
         </Row>
     </Container>
