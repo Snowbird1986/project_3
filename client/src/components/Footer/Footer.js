@@ -2,7 +2,7 @@ import React from "react";
 import "./footer.css";
 
 const Footer = ({ children }) => (
-  <footer className="col-md-12 fixed-bottom">
+  <footer className="col-md-12 navbar-fixed-bottom">
     <div className="container">
       <div className="row">
         <div className="col-md-12 justify-content-center"><a href="/">Home Page</a> ||| <a href="/user">User</a> ||| <a href="/room">Room</a> ||| <a href="/roomSearch">Room Search</a> ||| <a href="/userSearch">User Search</a></div>
