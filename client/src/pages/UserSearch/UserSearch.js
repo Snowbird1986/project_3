@@ -152,7 +152,7 @@ class UserSearch extends Component {
                                 </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
+                                        Find User
                                     </FormBtn>
                                 </div>
                             </form>
