@@ -40,6 +40,7 @@ var UsersSchema = new Schema({
   },
   // `body` is of type String
   introduction: {type:String},
+  imgUrl: {type:String},
   city:{
       type:String,
       required: [true, "City required"]

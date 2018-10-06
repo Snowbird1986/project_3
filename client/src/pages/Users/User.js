@@ -13,6 +13,7 @@ class User extends Component {
         firstName: "",
         lastName: "",
         email: "",
+        introduction:"",
         phoneNumber:"",
         birthday: "",
         gender: "",
@@ -150,9 +151,22 @@ class User extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <FormBtn onClick={this.handleFormSubmit}>
-                                Poop
-                            </FormBtn>
+                            <Row>
+                                <Col size="md-12">
+                                    <TextArea
+                                        value={this.state.introduction}
+                                        onChange={this.handleInputChange}
+                                        name="introduction"
+                                        placeholder="Introduction"
+                                        id="description"
+                                    />
+                                </Col>
+                            </Row>
+                            <div className="buttons">
+                                <FormBtn onClick={this.handleFormSubmit}>
+                                    Poop
+                                </FormBtn>
+                            </div>
                         </form>
                     </div>
             </Col>
