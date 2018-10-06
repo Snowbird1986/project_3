@@ -25,3 +25,6 @@ form {
 .react-calendarHide{
     display:none;
 }
+.react-calendar__tile--active{
+    background:#20b2aa;
+}
