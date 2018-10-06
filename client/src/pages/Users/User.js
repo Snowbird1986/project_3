@@ -24,6 +24,7 @@ class User extends Component {
         budget: "",
         moveInDate: "Move In Date",
         date: new Date(),
+        hideCalender: true
 
     }
 
@@ -45,19 +46,30 @@ class User extends Component {
         //     .catch(err => console.log(err));
         // }
     };
+    changeMoveInDate(event) {
+        this.setState({ hideCalender: !this.state.hideCalender });
+        //console.log(document.getElementById('react-calendar').style);
+        //console.log(event.target.style)
+        // if(this.state.hideCalender==false){
+
+        // }
+    }
     onChange = date => {
-        this.setState({ date: date })
-        this.moveInDate(date)
+        this.setState({ date: date });
+        this.moveInDate(date);
+        this.setState({ hideCalender: !this.state.hideCalender });
+
     };
     moveInDate = (value) => {
         value = value.toString().slice(0, -41)
         this.setState({
             moveInDate: value
         });
-        //console.log('Clicked day: ', value);
     }
 
+
     render() {
+        let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
                 <Row>
@@ -131,26 +143,19 @@ class User extends Component {
                                         />
                                     </Col>
                                     <Col size="md-4">
-                                        <select>
-                                            <option value={this.state.moveInDate}>
-
-                                                <Calendar
-                                                    name="moveInDate"
-                                                    onChange={this.onChange}
-                                                    value={this.state.date}
-
-                                                />
-                                            </option>
-                                        </select>
                                         <Input
                                             value={this.state.moveInDate}
                                             onChange={this.handleInputChange}
                                             name="moveInDate"
                                             placeholder={this.state.moveInDate}
-                                        ></Input><Calendar onChange={this.onChange}
-                                            value={this.state.date}
+                                            onClick={this.changeMoveInDate.bind(this)}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar}
+                                            onChange={this.onChange}
+                                            value={this.state.date}>
+                                        </Calendar>
 
-                                        />
 
                                     </Col>
                                 </Row>
@@ -200,7 +205,7 @@ class User extends Component {
                         </div>
                     </Col>
                 </Row>
-            </Container >
+            </Container>
 
 
         )

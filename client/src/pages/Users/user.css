@@ -15,3 +15,13 @@ form {
     overflow: auto;
     /* vertical-align:top */
 }
+.react-calendarShow{
+    display:block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+}
+.react-calendarHide{
+    display:none;
+}
