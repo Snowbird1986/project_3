@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Login from "../Facebook/Login";
+// import Login from "../Facebook/Login";
 import { Col, Row, Container } from "../../components/Grid";
 import { TweenLite, Elastic } from 'gsap';
 import "./Nav.css";
@@ -73,7 +73,7 @@ class Nav extends Component {
               <a className="navbar-brand" href="/">
                 <div className="App">
                   <div className="App-intro">
-                    {!this.state.username &&
+                    {/* {!this.state.username &&
                       <div>
                         <header className="App-header">
                           <h1 className="App-title"> Media Login</h1>
@@ -83,7 +83,7 @@ class Nav extends Component {
                           <button>Facebook</button>
                         </Login>
                       </div>
-                    }
+                    } */}
                     {this.state.username &&
                       <p>Welcome back, {this.state.username}</p>
 
