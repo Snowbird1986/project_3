@@ -111,9 +111,11 @@ class TodoCreate extends Component {
                                         />
                                     </Col>
                                 </Row>
-                                <FormBtn onClick={this.handleFormSubmit}>
-                                    Poop
-                                </FormBtn>
+                                <div className="buttons">
+                                    <FormBtn onClick={this.handleFormSubmit}>
+                                        Poop
+                                    </FormBtn>
+                                </div>
                             </form>
                         </div>
                 </Col>

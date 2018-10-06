@@ -1,24 +1,10 @@
 .navbar {
-<<<<<<< HEAD
-    justify-content:right;
-=======
     background-color:lightseagreen;
->>>>>>> c449b351b0f6b9772151d30bfc22eeb07f5cd939
 }
 #toBeRevealed{
     width: 200px;
     /* float:right; */
   }
-<<<<<<< HEAD
-  .col-md-12{
-      margin-left:15%;
-      /* color:black;
-      font-family:  'Arial Narrow Bold' */
-  }
-  .bg-primary{
-      background-color: #ecc457;
-  }
-=======
 #demo {
     width: 100%;
     height:100%
@@ -37,4 +23,3 @@ a:hover {
     background-color:black;
     
 }
->>>>>>> c449b351b0f6b9772151d30bfc22eeb07f5cd939

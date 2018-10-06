@@ -1,8 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
-import Books from "./pages/Books";
-=======
 import User from "./pages/Users";
 import UserHome from "./pages/UserHome";
 import UserSearch from "./pages/UserSearch";
@@ -12,7 +9,6 @@ import RoomSearch from "./pages/RoomSearch";
 import RoomCreate from "./pages/RoomCreate";
 import TodoCreate from "./pages/TodoCreate";
 import BillCreate from "./pages/BillCreate";
->>>>>>> c449b351b0f6b9772151d30bfc22eeb07f5cd939
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -24,13 +20,6 @@ const App = () => (
     <div>
       <Nav />
       <Switch>
-<<<<<<< HEAD
-        {/* <Route exact path="/" component={Books} />
-        <Route exact path="/books" component={Books} />
-        <Route exact path="/books/:id" component={Detail} />
-        <Route component={NoMatch} />
-        <Books /> */}
-=======
         <Route exact path="/" component={Landing} />
         <Route exact path="/user" component={User} />
         <Route exact path="/userHome" component={UserHome} />
@@ -41,7 +30,6 @@ const App = () => (
         <Route exact path="/todoCreate" component={TodoCreate} />
         <Route exact path="/billCreate" component={BillCreate} />
         <Route component={NoMatch} />
->>>>>>> c449b351b0f6b9772151d30bfc22eeb07f5cd939
       </Switch>
       <Footer />
     </div>

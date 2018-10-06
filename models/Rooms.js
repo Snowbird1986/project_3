@@ -22,6 +22,18 @@ var RoomsSchema = new Schema({
         "Available Date Must be a future date"
     ]
   },
+  city:{
+    type:String,
+    required: [true, "City required"]
+  },
+  state:{
+      type:String,
+      required: [true, "State required"]
+    },
+  zip:{
+      type:String,
+      required: [true, "Zip required"]
+    },
   message: [{
     type: Schema.Types.ObjectId,
     ref: "Message"

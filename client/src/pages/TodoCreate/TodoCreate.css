@@ -12,3 +12,6 @@ form {
     overflow: auto;
     /* vertical-align:top */
 }
+.buttons {
+    text-align:center;
+}

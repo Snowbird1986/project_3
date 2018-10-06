@@ -16,6 +16,9 @@ class RoomCreate extends Component {
         openSpots:"",
         availableDate:"",
         dateAdded:"",
+        city: "",
+        state: "",
+        zip: "",
     }
 
     handleInputChange = event => {
@@ -74,7 +77,7 @@ class RoomCreate extends Component {
                                             placeholder="Rent"
                                         />
                                     </Col>
-                                    <Col size="md-3">
+                                    <Col size="md-4">
                                         <Input
                                         value={this.state.openSpots}
                                         onChange={this.handleInputChange}
@@ -82,7 +85,7 @@ class RoomCreate extends Component {
                                         placeholder="Roommate spots Remaining"
                                     />
                                     </Col>
-                                    <Col size="md-6">
+                                    <Col size="md-5">
                                         <Input
                                             value={this.state.availableDate}
                                             onChange={this.handleInputChange}
@@ -92,19 +95,47 @@ class RoomCreate extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col size="md-12">
-                                        <TextArea
-                                            value={this.state.description}
-                                            onChange={this.handleInputChange}
-                                            name="description"
-                                            placeholder="Description"
-                                            id="description"
-                                        />
-                                    </Col>
-                                </Row>
-                                <FormBtn onClick={this.handleFormSubmit}>
-                                    Poop
-                                </FormBtn>
+                                <Col size="md-5">
+                                    <Input
+                                        value={this.state.city}
+                                        onChange={this.handleInputChange}
+                                        name="city"
+                                        placeholder="City"
+                                    />
+                                </Col>
+                                <Col size="md-3">
+                                    <Input
+                                        value={this.state.state}
+                                        onChange={this.handleInputChange}
+                                        name="state"
+                                        placeholder="State"
+                                    />
+                                </Col>
+                                <Col size="md-4">
+                                    <Input
+                                        value={this.state.zip}
+                                        onChange={this.handleInputChange}
+                                        name="zip"
+                                        placeholder="Zip"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col size="md-12">
+                                    <TextArea
+                                        value={this.state.description}
+                                        onChange={this.handleInputChange}
+                                        name="description"
+                                        placeholder="Description"
+                                        id="description"
+                                    />
+                                </Col>
+                            </Row>
+                                <div className="buttons">
+                                    <FormBtn onClick={this.handleFormSubmit}>
+                                        Poop
+                                    </FormBtn>
+                                </div>
                             </form>
                         </div>
                 </Col>

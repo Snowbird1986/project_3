@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import "./UserHome.css";
 
 class UserHome extends Component {
     state={}
@@ -10,7 +11,16 @@ class UserHome extends Component {
     render() {
         return (
     <Container fluid>
-            User Home
+        <Row>
+                <Col size="md-12">
+                <Jumbotron>
+                  <h1>User Details:</h1>
+                </Jumbotron>
+                    <div className="col-md-8 offset-md-2" id="formdiv"> 
+                        
+                    </div>
+                </Col>
+            </Row>
     </Container>
         )}
 }
