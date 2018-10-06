@@ -6,22 +6,11 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import "./Landing.css";
 
-class Landing extends Component {
-    state = {
-        username: null,
-    }
+const Landing = props => {
+    // console.log(props)
+    
 
-    onFacebookLogin = (loginStatus, resultObject) => {
-        if (loginStatus === true) {
-          this.setState({
-            username: resultObject.user.name
-          });
-        } else {
-          alert('Facebook login error');
-        }
-      }
-
-    render() {
+    // render() {
         return (
             <Container fluid>
                 <Row>
@@ -33,20 +22,19 @@ class Landing extends Component {
                         <div className="navbar-brand col-md-12" href="/">
                         <div className="App col-md-6 offset-md-3" id="formdiv">
                             <div className="App-intro">
-                                {!this.state.username &&
+                                {!props.username &&
                                 <div>
                                     <header className="App-header">
                                     <h1 className="App-title"> Media Login</h1>
                                     </header>
                                     <p>Click on one of any button below to login</p>
-                                    <Login onLogin={this.onFacebookLogin}>
+                                    <Login onLogin={props.onFacebookLogin}>
                                     <button className="btn btn-default btn-lg btn-facebook btn-block" id="fbbutton">Facebook</button>
                                     </Login>
                                 </div>
                                 }
-                                {this.state.username &&
-                                <p>Welcome back, {this.state.username}</p>
-
+                                {props.username &&
+                                <p>Welcome back, {props.username}</p>
                                 }
                             </div>
                         </div>
@@ -56,7 +44,7 @@ class Landing extends Component {
             </Container>
         )
     }
-}
+// }
 
 
 export default Landing;

@@ -16,9 +16,6 @@ class Nav extends Component {
 
   }
 
-  state = {
-    username: null,
-  }
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -28,15 +25,15 @@ class Nav extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
   }
-  onFacebookLogin = (loginStatus, resultObject) => {
-    if (loginStatus === true) {
-      this.setState({
-        username: resultObject.user.name
-      });
-    } else {
-      alert('Facebook login error');
-    }
-  }
+  // onFacebookLogin = (loginStatus, resultObject) => {
+  //   if (loginStatus === true) {
+  //     this.setState({
+  //       username: resultObject.user.name
+  //     });
+  //   } else {
+  //     alert('Facebook login error');
+  //   }
+  // }
   componentDidMount() {
     this.myTween = TweenLite.to("#theSquare", 11, {
       ease: Elastic.easeOut.config(11, 7),
@@ -84,8 +81,8 @@ class Nav extends Component {
                         </Login>
                       </div>
                     } */}
-                    {this.state.username &&
-                      <p>Welcome back, {this.state.username}</p>
+                    {this.props.username &&
+                      <p>Welcome back, {this.props.username}</p>
 
                     }
                   </div>

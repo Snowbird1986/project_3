@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 export default class FacebookLogin extends Component {
 
     componentDidMount() {
-        document.addEventListener('FBObjectReady', this.initializeFacebookLogin);
+        if(!window.FB){
+        document.addEventListener('FBObjectReady', (this.initializeFacebookLogin));
+        }else{
+            this.initializeFacebookLogin()
+        }
     }
 
     componentWillUnmount() {
@@ -29,9 +33,11 @@ export default class FacebookLogin extends Component {
      * Check login status and call login api is user is not logged in
      */
     facebookLogin = () => {
+        console.log(this.FB)
         if (!this.FB) return;
 
         this.FB.getLoginStatus(response => {
+            console.log(response)
             if (response.status === 'connected') {
                 this.facebookLoginHandler(response);
             } else {
