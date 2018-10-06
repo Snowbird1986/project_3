@@ -16,6 +16,9 @@ class RoomSearch extends Component {
         openSpots:"",
         availableDate:"",
         dateAdded:"",
+        city: "",
+        state: "",
+        zip: "",
     }
 
     handleInputChange = event => {
@@ -48,7 +51,7 @@ class RoomSearch extends Component {
                         <div className="col-md-8 offset-md-2" id="formdiv"> 
                             <form>
                                 <Row>
-                                    <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-8 offset-md-2">
                                         <Input
                                             value={this.state.name}
                                             onChange={this.handleInputChange}
@@ -58,7 +61,7 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <Row>
-                                    <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-8 offset-md-2">
                                         <Input
                                             value={this.state.category}
                                             onChange={this.handleInputChange}
@@ -68,7 +71,7 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <Row>
-                                    <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-8 offset-md-2">
                                         <Input
                                             value={this.state.rent}
                                             onChange={this.handleInputChange}
@@ -78,7 +81,7 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <Row>
-                                    <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-8 offset-md-2">
                                         <Input
                                             value={this.state.openSpots}
                                             onChange={this.handleInputChange}
@@ -88,13 +91,43 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <Row>
-                                    <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-8 offset-md-2">
                                         <Input
                                             value={this.state.availableDate}
                                             onChange={this.handleInputChange}
                                             name="availableDate"
                                             placeholder="Available Date"
                                         />
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Row>
+                                            <div className="col-md-5">
+                                                <Input
+                                                    value={this.state.city}
+                                                    onChange={this.handleInputChange}
+                                                    name="city"
+                                                    placeholder="City"
+                                                />
+                                            </div>
+                                            <div className="col-md-3">
+                                                <Input
+                                                    value={this.state.state}
+                                                    onChange={this.handleInputChange}
+                                                    name="state"
+                                                    placeholder="State"
+                                                />
+                                            </div>
+                                            <div className="col-md-4">
+                                                <Input
+                                                    value={this.state.zip}
+                                                    onChange={this.handleInputChange}
+                                                    name="zip"
+                                                    placeholder="Zip"
+                                                />
+                                            </div>
+                                        </Row>
                                     </div>
                                 </Row>
                                 <div className="buttons">

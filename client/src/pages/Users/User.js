@@ -13,6 +13,7 @@ class User extends Component {
         firstName: "",
         lastName: "",
         email: "",
+        introduction:"",
         phoneNumber:"",
         birthday: "",
         gender: "",
@@ -147,6 +148,17 @@ class User extends Component {
                                         onChange={this.handleInputChange}
                                         name="zip"
                                         placeholder="Zip"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col size="md-12">
+                                    <TextArea
+                                        value={this.state.introduction}
+                                        onChange={this.handleInputChange}
+                                        name="introduction"
+                                        placeholder="Introduction"
+                                        id="description"
                                     />
                                 </Col>
                             </Row>

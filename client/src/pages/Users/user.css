@@ -10,3 +10,8 @@ form {
 .buttons {
     text-align:center;
 }
+#description {
+    height:150px;
+    overflow: auto;
+    /* vertical-align:top */
+}
