@@ -21,6 +21,10 @@ form {
     left: 0px;
     top: 0px;
     z-index: 9999;
+    -webkit-transform: scale(1.5); 
+    margin-top:-100px;
+    margin-left:22px;
+    box-shadow: 5px 10px 6px;
 }
 .react-calendarHide{
     display:none;
