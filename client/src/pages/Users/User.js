@@ -8,6 +8,7 @@ import API from "../../utils/API";
 import "./user.css";
 
 class User extends Component {
+    
     state={
         user: [],
         firstName: "",
@@ -30,7 +31,7 @@ class User extends Component {
           [name]: value
         });
       };
-      handleFormSubmit = event => {
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -42,6 +43,9 @@ class User extends Component {
         //     .catch(err => console.log(err));
         // }
       };
+    componentDidMount(){
+        console.log(this.props)
+    }
 
     render() {
         return (
@@ -59,7 +63,7 @@ class User extends Component {
                                         value={this.state.firstName}
                                         onChange={this.handleInputChange}
                                         name="firstName"
-                                        placeholder="First Name"
+                                        placeholder={this.props.firstName ? this.props.firstName : "First Name"}
                                     />
                                 </Col>
                                 <Col size="md-6">
@@ -67,7 +71,7 @@ class User extends Component {
                                         value={this.state.lastName}
                                         onChange={this.handleInputChange}
                                         name="lastName"
-                                        placeholder="Last Name"
+                                        placeholder={this.props.lastName ? this.props.lastName : "Last Name"}
                                     />
                                 </Col>
                             </Row>
@@ -77,7 +81,7 @@ class User extends Component {
                                         value={this.state.email}
                                         onChange={this.handleInputChange}
                                         name="email"
-                                        placeholder="Email"
+                                        placeholder={this.props.email ? this.props.email : "Email"}
                                     />
                                 </Col>
                             </Row>
