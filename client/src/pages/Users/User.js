@@ -164,7 +164,7 @@ class User extends Component {
                             </Row>
                             <div className="buttons">
                                 <FormBtn onClick={this.handleFormSubmit}>
-                                    Poop
+                                    Submit
                                 </FormBtn>
                             </div>
                         </form>
