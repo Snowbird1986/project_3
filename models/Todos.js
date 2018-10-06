@@ -20,6 +20,9 @@ var TodosSchema = new Schema({
   },
   frequency: {
     type:Number
+  },
+  assignee: {
+    type:String
   }
 });
 

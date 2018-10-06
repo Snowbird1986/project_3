@@ -1,0 +1,9 @@
+footer {
+    background: lightseagreen;
+    padding: 15px 0px 5px;
+    text-align: center;
+  }
+a:hover {
+    background-color:black;
+    color:lightseagreen
+}

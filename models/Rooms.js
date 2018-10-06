@@ -10,6 +10,18 @@ var RoomsSchema = new Schema({
   name: String,
   // `body` is of type String
   description: String,
+  rent: {type:Number},
+  category: {type:String},
+  openSpots: {type:Number},
+  availableDate: { 
+    type: Date, 
+    validate: [
+        function(availableDate) {
+            return availableDate>Date.now
+        },
+        "Available Date Must be a future date"
+    ]
+  },
   message: [{
     type: Schema.Types.ObjectId,
     ref: "Message"
@@ -23,6 +35,11 @@ var RoomsSchema = new Schema({
   todo: [{
     type: Schema.Types.ObjectId,
     ref: "Todo"
+    }
+  ],
+  owner: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
     }
   ],
   user: [{

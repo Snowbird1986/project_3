@@ -21,6 +21,7 @@ export default {
     return axios.get("/api/users");
   },
   // Gets the book with the given id
+<<<<<<< HEAD
   getBills: function (id) {
     return axios.get("/api/bills/" + id);
   },
@@ -37,6 +38,24 @@ export default {
     return axios.get("/api/todos/" + id);
   },
   getUsers: function (id) {
+=======
+  getBill: function(id) {
+    return axios.get("/api/bills/" + id);
+  },
+  getContract: function(id) {
+    return axios.get("/api/contracts/" + id);
+  },
+  getMessage: function(id) {
+    return axios.get("/api/messages/" + id);
+  },
+  getRoom: function(id) {
+    return axios.get("/api/rooms/" + id);
+  },
+  getTodo: function(id) {
+    return axios.get("/api/todos/" + id);
+  },
+  getUser: function(id) {
+>>>>>>> c449b351b0f6b9772151d30bfc22eeb07f5cd939
     return axios.get("/api/users/" + id);
   },
   // Deletes the book with the given id
