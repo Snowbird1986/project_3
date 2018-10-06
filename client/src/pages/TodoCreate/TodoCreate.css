@@ -9,5 +9,6 @@ form {
 }
 #description {
     height:150px;
+    overflow: auto;
     /* vertical-align:top */
 }

@@ -149,7 +149,7 @@ class User extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <FormBtn onClick={this.fbLogin}>
+                            <FormBtn onClick={this.handleFormSubmit}>
                                 Poop
                             </FormBtn>
                         </form>
