@@ -101,6 +101,7 @@ class User extends Component {
                             <Row>
                                 <Col size="md-4">
                                     <select>
+                                        <option value="">Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Not Disclosed">Not Disclosed</option>
@@ -149,7 +150,7 @@ class User extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <FormBtn onClick={this.fbLogin}>
+                            <FormBtn onClick={this.handleFormSubmit}>
                                 Poop
                             </FormBtn>
                         </form>
