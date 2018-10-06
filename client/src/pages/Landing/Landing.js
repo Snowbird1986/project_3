@@ -5,14 +5,22 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 
 class Landing extends Component {
-    state={}
+    state = {}
 
     render() {
         return (
-    <Container fluid>
-            Landing
-    </Container>
-        )}
+            <Container fluid>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron >
+                            Login to facebook to get started.
+    
+                    </Jumbotron>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 
