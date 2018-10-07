@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import Login from "../Facebook/Login";
 import NavButton from "../NavButtons/NavButtons";
+
+// import Login from "../Facebook/Login";
+
 import { Col, Row, Container } from "../../components/Grid";
 import { TweenLite, Elastic } from 'gsap';
 import "./Nav.css";
@@ -15,10 +19,12 @@ class Nav extends Component {
     this.myTween = null;
 
   }
+
   state = {
     username: null,
     selectSection: 0
   }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -30,15 +36,15 @@ class Nav extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
   }
-  onFacebookLogin = (loginStatus, resultObject) => {
-    if (loginStatus === true) {
-      this.setState({
-        username: resultObject.user.name
-      });
-    } else {
-      alert('Facebook login error');
-    }
-  }
+  // onFacebookLogin = (loginStatus, resultObject) => {
+  //   if (loginStatus === true) {
+  //     this.setState({
+  //       username: resultObject.user.name
+  //     });
+  //   } else {
+  //     alert('Facebook login error');
+  //   }
+  // }
   componentDidMount() {
     this.myTween = TweenLite.to("#theSquare", 11, {
       ease: Elastic.easeOut.config(11, 7),
@@ -120,7 +126,7 @@ class Nav extends Component {
                 </svg>
                 <div className="App">
                   <div className="App-intro">
-                    {!this.state.username &&
+                    {/* {!this.state.username &&
                       <div>
                         <header className="App-header">
                           <h1 className="App-title"> Media Login</h1>
@@ -130,10 +136,16 @@ class Nav extends Component {
                           <button>Facebook</button>
                         </Login>
                       </div>
+
                     }
                     <div ref={div => this.myElement = div} />
                     {this.state.username &&
                       <p>Welcome back, {this.state.username}</p>
+
+                    } */}
+                    {this.props.username &&
+                      <p>Welcome back, {this.props.username}</p>
+
 
                     }
                   </div>
