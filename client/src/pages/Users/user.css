@@ -15,3 +15,20 @@ form {
     overflow: auto;
     /* vertical-align:top */
 }
+.react-calendarShow{
+    display:block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    -webkit-transform: scale(1.5); 
+    margin-top:-100px;
+    margin-left:22px;
+    box-shadow: 5px 10px 6px;
+}
+.react-calendarHide{
+    display:none;
+}
+.react-calendar__tile--active{
+    background:#20b2aa;
+}
