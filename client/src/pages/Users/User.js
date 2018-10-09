@@ -18,7 +18,7 @@ class User extends Component {
         email: "",
         introduction: "",
         phoneNumber: "",
-        birthday: "",
+        birthday: "Birthday",
         gender: "",
         city: "",
         state: "",
@@ -26,7 +26,9 @@ class User extends Component {
         budget: "",
         moveInDate: "Move In Date",
         date: new Date(),
-        hideCalender: true
+        date2: new Date(),
+        hideCalender: true,
+        hideCalender2: true
 
     }
 
@@ -60,6 +62,7 @@ class User extends Component {
         // }
     }
     onChange = date => {
+        // console.log("clicked1")
         this.setState({ date: date });
         this.moveInDate(date);
         this.setState({ hideCalender: !this.state.hideCalender });
@@ -71,6 +74,27 @@ class User extends Component {
             moveInDate: value
         });
     }
+    changeBirthday = event =>{
+        this.setState({ hideCalender2: !this.state.hideCalender2 });
+        //console.log(document.getElementById('react-calendar').style);
+        //console.log(event.target.style)
+        // if(this.state.hideCalender==false){
+
+        // }
+    }
+    onChange2 = date2 => {
+        // console.log("clicked2")
+        this.setState({ date2: date2 });
+        this.Birthday(date2);
+        this.setState({ hideCalender2: !this.state.hideCalender2 });
+
+    };
+    Birthday = (value) => {
+        value = value.toString().slice(0, -41)
+        this.setState({
+            birthday: value
+        });
+    }
 
     componentDidMount=()=>{
         console.log(this.props)
@@ -79,6 +103,7 @@ class User extends Component {
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
+        let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
         return (
 
             <Container fluid>
@@ -127,12 +152,24 @@ class User extends Component {
                                         />
                                     </Col>
                                     <Col size="md-6">
-                                        <Input
+                                        {/* <Input
                                             value={this.state.birthday}
                                             onChange={this.handleInputChange}
                                             name="birthday"
                                             placeholder="Birthday"
-                                        />
+                                        /> */}
+                                        <Input
+                                            value={this.state.birthday}
+                                            onChange={this.handleInputChange}
+                                            name="birthday"
+                                            placeholder={this.state.birthday}
+                                            onClick={this.changeBirthday.bind(this)}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar2}
+                                            onChange={this.onChange2}
+                                            value={this.state.date2}>
+                                        </Calendar>
                                     </Col>
                                 </Row>
                                 <Row>
