@@ -70,7 +70,17 @@ class App extends Component {
                   birthday={this.state.birthday}
                 />
               } />
-            <Route exact path="/userPortal" component={UserPortal} />
+            <Route exact path="/userPortal" render={(props) =><User {...props} 
+                  username={this.state.username}
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  gender={this.state.gender}
+                  email={this.state.email}
+                  // location={this.state.location}
+                  facebookId={this.state.facebookId}
+                  birthday={this.state.birthday}
+                />
+              } />
             <Route exact path="/userHome" component={UserHome} />
             <Route exact path="/room" component={Room} />
             <Route exact path="/userSearch" component={UserSearch} />
