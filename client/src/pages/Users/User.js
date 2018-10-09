@@ -38,8 +38,6 @@ class User extends Component {
 
     };
 
-      };
-
     handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
@@ -53,7 +51,7 @@ class User extends Component {
         // }
 
     };
-    changeMoveInDate(event) {
+    changeMoveInDate = event =>{
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -74,9 +72,7 @@ class User extends Component {
         });
     }
 
-
-      };
-    componentDidMount(){
+    componentDidMount=()=>{
         console.log(this.props)
     }
 
@@ -96,28 +92,28 @@ class User extends Component {
                                 <Row>
                                     <Col size="md-6">
                                         <Input
-                                            value={this.state.firstName}
+                                            value={this.state.firstName==="" ? this.props.firstName : this.state.firstName}
                                             onChange={this.handleInputChange}
                                             name="firstName"
-                                            placeholder="First Name"
+                                            placeholder={this.props.firstName ? this.props.firstName : "First Name"}
                                         />
                                     </Col>
                                     <Col size="md-6">
                                         <Input
-                                            value={this.state.lastName}
+                                            value={this.state.lastName==="" ? this.props.lastName : this.state.lastName}
                                             onChange={this.handleInputChange}
                                             name="lastName"
-                                            placeholder="Last Name"
+                                            placeholder={this.props.lastName ? this.props.lastName : "Last Name"}
                                         />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col size="md-12">
                                         <Input
-                                            value={this.state.email}
+                                            value={this.state.email==="" ? this.props.email : this.state.email}
                                             onChange={this.handleInputChange}
                                             name="email"
-                                            placeholder="Email"
+                                            placeholder={this.props.email ? this.props.email : "Email"}
                                         />
                                     </Col>
                                 </Row>
@@ -213,128 +209,7 @@ class User extends Component {
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
                                         Poop
-
-    <Container fluid>
-        <Row>
-            <Col size="md-12">
-            <Jumbotron>
-              <h1>Enter User Info</h1>
-            </Jumbotron>
-                    <div className="col-md-8 offset-md-2" id="formdiv"> 
-                        <form>
-                            <Row>
-                                <Col size="md-6">
-                                    <Input
-                                        value={this.state.firstName}
-                                        onChange={this.handleInputChange}
-                                        name="firstName"
-                                        placeholder={this.props.firstName ? this.props.firstName : "First Name"}
-                                    />
-                                </Col>
-                                <Col size="md-6">
-                                    <Input
-                                        value={this.state.lastName}
-                                        onChange={this.handleInputChange}
-                                        name="lastName"
-                                        placeholder={this.props.lastName ? this.props.lastName : "Last Name"}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-12">
-                                    <Input
-                                        value={this.state.email}
-                                        onChange={this.handleInputChange}
-                                        name="email"
-                                        placeholder={this.props.email ? this.props.email : "Email"}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-6">
-                                    <Input
-                                        value={this.state.phoneNumber}
-                                        onChange={this.handleInputChange}
-                                        name="phoneNumber"
-                                        placeholder="Phone Number"
-                                    />
-                                </Col>
-                                <Col size="md-6">
-                                    <Input
-                                    value={this.state.birthday}
-                                    onChange={this.handleInputChange}
-                                    name="birthday"
-                                    placeholder="Birthday"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-4">
-                                    <select>
-                                        <option value="">Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Not Disclosed">Not Disclosed</option>
-                                    </select>
-                                </Col>
-                                <Col size="md-4">
-                                    <Input
-                                        value={this.state.budget}
-                                        onChange={this.handleInputChange}
-                                        name="budget"
-                                        placeholder="Budget ($/Month)"
-                                    />
-                                </Col>
-                                <Col size="md-4">
-                                    <Input
-                                    value={this.state.moveInDate}
-                                    onChange={this.handleInputChange}
-                                    name="moveInDate"
-                                    placeholder="Move In Date"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-5">
-                                    <Input
-                                        value={this.state.city}
-                                        onChange={this.handleInputChange}
-                                        name="city"
-                                        placeholder="City"
-                                    />
-                                </Col>
-                                <Col size="md-3">
-                                    <Input
-                                        value={this.state.state}
-                                        onChange={this.handleInputChange}
-                                        name="state"
-                                        placeholder="State"
-                                    />
-                                </Col>
-                                <Col size="md-4">
-                                    <Input
-                                        value={this.state.zip}
-                                        onChange={this.handleInputChange}
-                                        name="zip"
-                                        placeholder="Zip"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-12">
-                                    <TextArea
-                                        value={this.state.introduction}
-                                        onChange={this.handleInputChange}
-                                        name="introduction"
-                                        placeholder="Introduction"
-                                        id="description"
-                                    />
-                                </Col>
-                            </Row>
-                            <div className="buttons">
-                                <FormBtn onClick={this.handleFormSubmit}>
-                                    Poop
-
+                                    
                                 </FormBtn>
                                 </div>
                             </form>
@@ -342,8 +217,6 @@ class User extends Component {
                     </Col>
                 </Row>
             </Container>
-
-
         )
     }
 }

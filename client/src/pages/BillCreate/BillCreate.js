@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
+import Calendar from 'react-calendar';
 import API from "../../utils/API";
 import "./BillCreate.css";
 
@@ -13,10 +14,33 @@ class BillCreate extends Component {
         category:"",
         body:"",
         amount:"",
-        dueDate:"",
+        dueDate:"Due Date",
         paid:"",
         assignee:"",
         dateAdded:"",
+        date: new Date(),
+        hideCalender: true
+    }
+
+    changeDueDate = event =>{
+        this.setState({ hideCalender: !this.state.hideCalender });
+        //console.log(document.getElementById('react-calendar').style);
+        //console.log(event.target.style)
+        // if(this.state.hideCalender==false){
+
+        // }
+    }
+    onChange = date => {
+        this.setState({ date: date });
+        this.dueDate(date);
+        this.setState({ hideCalender: !this.state.hideCalender });
+
+    };
+    dueDate = (value) => {
+        value = value.toString().slice(0, -41)
+        this.setState({
+            dueDate: value
+        });
     }
 
     handleInputChange = event => {
@@ -39,6 +63,7 @@ class BillCreate extends Component {
       };
 
     render() {
+        let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
             <Row>
@@ -84,12 +109,18 @@ class BillCreate extends Component {
                                         />
                                     </Col>
                                     <Col size="md-6">
-                                        <Input
-                                        value={this.state.dueDate}
-                                        onChange={this.handleInputChange}
-                                        name="dueDate"
-                                        placeholder="Due Date"
-                                    />
+                                    <Input
+                                            value={this.state.dueDate}
+                                            onChange={this.handleInputChange}
+                                            name="dueDate"
+                                            placeholder={this.state.dueDate}
+                                            onClick={this.changeDueDate.bind(this)}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar}
+                                            onChange={this.onChange}
+                                            value={this.state.date}>
+                                        </Calendar>
                                     </Col>
                                 </Row>
                                 <Row>

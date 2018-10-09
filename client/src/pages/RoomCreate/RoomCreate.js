@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
+import Calendar from 'react-calendar';
 import API from "../../utils/API";
 import "./RoomCreate.css";
 
@@ -14,11 +15,34 @@ class RoomCreate extends Component {
         rent:"",
         category:"",
         openSpots:"",
-        availableDate:"",
+        availableDate:"Available Date",
         dateAdded:"",
         city: "",
         state: "",
         zip: "",
+        date: new Date(),
+        hideCalender: true
+    }
+
+    changeAvailableDate = event =>{
+        this.setState({ hideCalender: !this.state.hideCalender });
+        //console.log(document.getElementById('react-calendar').style);
+        //console.log(event.target.style)
+        // if(this.state.hideCalender==false){
+
+        // }
+    }
+    onChange = date => {
+        this.setState({ date: date });
+        this.availableDate(date);
+        this.setState({ hideCalender: !this.state.hideCalender });
+
+    };
+    availableDate = (value) => {
+        value = value.toString().slice(0, -41)
+        this.setState({
+            availableDate: value
+        });
     }
 
     handleInputChange = event => {
@@ -41,6 +65,7 @@ class RoomCreate extends Component {
       };
 
     render() {
+        let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
             <Row>
@@ -90,8 +115,14 @@ class RoomCreate extends Component {
                                             value={this.state.availableDate}
                                             onChange={this.handleInputChange}
                                             name="availableDate"
-                                            placeholder="Available Date"
-                                        />
+                                            placeholder={this.state.availableDate}
+                                            onClick={this.changeAvailableDate.bind(this)}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar}
+                                            onChange={this.onChange}
+                                            value={this.state.date}>
+                                        </Calendar>
                                     </Col>
                                 </Row>
                                 <Row>
