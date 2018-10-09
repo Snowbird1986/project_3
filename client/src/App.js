@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import User from "./pages/Users";
 import UserHome from "./pages/UserHome";
+import UserPortal from "./pages/UserPortal";
 import UserSearch from "./pages/UserSearch";
 import Landing from "./pages/Landing";
 import Room from "./pages/Rooms";
@@ -69,6 +70,7 @@ class App extends Component {
                   birthday={this.state.birthday}
                 />
               } />
+            <Route exact path="/userPortal" component={UserPortal} />
             <Route exact path="/userHome" component={UserHome} />
             <Route exact path="/room" component={Room} />
             <Route exact path="/userSearch" component={UserSearch} />
