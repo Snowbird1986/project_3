@@ -35,6 +35,7 @@ class UserPortal extends Component {
                                 <Row>
                                     <div className="col-md-7 offset-md-1">
                                         Display user data here, rooms, assigned todos, assigned bills, perhaps sort those or limit those by date.
+                                        perhaps roommates for each room and or pending roommates needing approval.
                                         shows nothing if they do now have a room.
                                     </div>
                                     <div className="col-md-3">
