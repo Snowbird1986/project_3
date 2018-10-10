@@ -39,6 +39,9 @@ export default {
   getUser: function (id) {
     return axios.get("/api/users/" + id);
   },
+  getFBUser: function (id) {
+    return axios.get("/api/users/FB/" + id);
+  },
   // Deletes the book with the given id
   deleteBills: function (id) {
     return axios.delete("/api/bills/" + id);

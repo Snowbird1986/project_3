@@ -21,21 +21,23 @@ var UsersSchema = new Schema({
     maxlength: 10,
     required: [true, 'Phone Number required']
   },
-  password: {
-    type: String,
-    trim: true,
-    required: [true, "Password Required"],
-    validate: [
-      function(input) {
-        return input.length >= 6;
-      },
-      "Password should be longer."
-    ]
-  },
+  // password: {
+  //   type: String,
+  //   trim: true,
+  //   required: [true, "Password Required"],
+  //   validate: [
+  //     function(input) {
+  //       return input.length >= 6;
+  //     },
+  //     "Password should be longer."
+  //   ]
+  // },
+  birthday:{ 
+    type: Date},
   email: {
     type: String,
     unique: [true, "This email has already been used."],
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+    // match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
     required: [true, 'Email required']
   },
   // `body` is of type String
@@ -53,19 +55,19 @@ var UsersSchema = new Schema({
       type:String,
       required: [true, "Zip required"]
     },
-  budget:{type:Number},
+  budget:{type:String},
   gender:{type:String},
   moveInDate:{ 
     type: Date, 
-    validate: [
-        function(moveInDate) {
-            return moveInDate>Date.now
-        },
-        "Move In Date Must be a future date"
-    ]
+    // validate: [
+    //     function(moveInDate) {
+    //         return moveInDate>Date.now
+    //     },
+    //     "Move In Date Must be a future date"
+    // ]
   },
   facebookId: String,
-  facebookToken: String,
+  // facebookToken: String,
 
   dateAdded: { type: Date, default: Date.now }
 });
