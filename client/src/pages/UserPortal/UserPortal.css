@@ -1,0 +1,20 @@
+#formdiv {
+    background-color:lightslategray;
+    
+}
+form {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin-bottom:20px
+}
+.buttons {
+    text-align:center;
+}
+#description {
+    height:150px;
+    overflow: auto;
+    /* vertical-align:top */
+}
+img {
+    width:100%
+}

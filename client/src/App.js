@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import User from "./pages/Users";
 import UserHome from "./pages/UserHome";
+import UserPortal from "./pages/UserPortal";
 import UserSearch from "./pages/UserSearch";
 import Landing from "./pages/Landing";
 import Room from "./pages/Rooms";
@@ -67,6 +68,18 @@ class App extends Component {
                   // location={this.state.location}
                   facebookId={this.state.facebookId}
                   birthday={this.state.birthday}
+                />
+              } />
+            <Route exact path="/userPortal" render={(props) =><UserPortal {...props} 
+                  username={this.state.username}
+                  firstName={this.state.firstName}
+                  lastName={this.state.lastName}
+                  gender={this.state.gender}
+                  email={this.state.email}
+                  // location={this.state.location}
+                  facebookId={this.state.facebookId}
+                  birthday={this.state.birthday}
+                  img={this.state.img}
                 />
               } />
             <Route exact path="/userHome" component={UserHome} />
