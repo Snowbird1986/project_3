@@ -70,7 +70,7 @@ class App extends Component {
                   birthday={this.state.birthday}
                 />
               } />
-            <Route exact path="/userPortal" render={(props) =><User {...props} 
+            <Route exact path="/userPortal" render={(props) =><UserPortal {...props} 
                   username={this.state.username}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
@@ -79,6 +79,7 @@ class App extends Component {
                   // location={this.state.location}
                   facebookId={this.state.facebookId}
                   birthday={this.state.birthday}
+                  img={this.state.img}
                 />
               } />
             <Route exact path="/userHome" component={UserHome} />

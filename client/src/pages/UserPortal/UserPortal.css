@@ -15,3 +15,6 @@ form {
     overflow: auto;
     /* vertical-align:top */
 }
+img {
+    width:100%
+}
