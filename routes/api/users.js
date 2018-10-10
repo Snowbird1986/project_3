@@ -13,4 +13,8 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
+router
+  .route("/FB/:id")
+  .get(usersController.findByFBId)
+
 module.exports = router;

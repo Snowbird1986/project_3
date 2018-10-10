@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch , Redirect } from "react-router-dom";
 import User from "./pages/Users";
 import UserHome from "./pages/UserHome";
 import UserPortal from "./pages/UserPortal";
@@ -14,6 +14,7 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import API from "./utils/API";
 
 class App extends Component {
   constructor(props){
@@ -45,6 +46,17 @@ class App extends Component {
         // location: resultObject.user.location.name,
         facebookId: resultObject.user.id,
       });
+      // setTimeout(window.location="/userPortal",3000)
+      // window.location="/userPortal"
+      API.getFBUser(this.state.facebookId).then(res =>
+        // console.log(res))
+        this.setState({ 
+          gender: res.data[0].gender, 
+          // email: res.email,
+          birthday: res.data[0].birthday, 
+          location: res.data[0].location})
+      )
+      .catch(err => console.log(err));
     } else {
       alert('Facebook login error');
     }
@@ -58,8 +70,14 @@ class App extends Component {
         <div>
           <Nav username={this.state.username}/>
           <Switch>
-            <Route exact path="/" render={(props) =><Landing {...props} onFacebookLogin={this.onFacebookLogin} username={this.state.username}/>} />
-            <Route exact path="/user" render={(props) =><User {...props} 
+            <Route exact path="/" render={(props) =>(this.state.username ? (<Redirect to="/user"/>) : (<Landing {...props} 
+                  onFacebookLogin={this.onFacebookLogin} 
+                  username={this.state.username}
+                  facebookId={this.state.facebookId}
+                  // facebookToken={this.state.facebookToken}
+                  img={this.state.img}
+                  />))} />
+            <Route exact path="/user" render={(props) =>(this.state.birthday ? (<Redirect to="/userPortal"/>) : (<User {...props} 
                   username={this.state.username}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
@@ -67,9 +85,11 @@ class App extends Component {
                   email={this.state.email}
                   // location={this.state.location}
                   facebookId={this.state.facebookId}
+                  // facebookToken={this.state.facebookToken}
                   birthday={this.state.birthday}
+                  img={this.state.img}
                 />
-              } />
+            ))} />
             <Route exact path="/userPortal" render={(props) =><UserPortal {...props} 
                   username={this.state.username}
                   firstName={this.state.firstName}
@@ -77,6 +97,7 @@ class App extends Component {
                   gender={this.state.gender}
                   email={this.state.email}
                   // location={this.state.location}
+                  // facebookToken={this.state.facebookToken}
                   facebookId={this.state.facebookId}
                   birthday={this.state.birthday}
                   img={this.state.img}

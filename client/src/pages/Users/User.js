@@ -39,18 +39,77 @@ class User extends Component {
         });
 
     };
+    handleOnChange = (e) => {
+        this.setState({
+            gender: e.target.value
+        })
+      }
 
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
+        // this.setState({
+        //     firstName: this.state.firstName,
+        //     lastName: this.state.lastName,
+        //     email: this.state.email,
+        //     gender: this.state.gender,
+        //     facebookId:this.props.facebookId,
+        //     img:this.props.img
+        // })
+        // console.log(this.state)
+        console.log(this.props)
+        let userData={
+            firstName: this.state.firstName?this.state.firstName:this.props.firstName,
+            lastName: this.state.lastName?this.state.lastName:this.props.lastName,
+            email: this.state.email? this.state.email:this.props.lastName,
+            introduction: this.state.introduction,
+            phoneNumber: this.state.phoneNumber,
+            birthday: this.state.birthday,
+            gender: this.state.gender,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            budget: this.state.budget,
+            moveInDate: this.state.moveInDate,
+            facebookId: this.props.facebookId,
+            // facebookToken:this.props.facebookToken,
+            imgUrl: this.props.img
+        }
+        console.log(userData)
+        if ((this.state.firstName || this.props.firstName)&& 
+            (this.state.lastName || this.props.lastName)&& 
+            (this.state.email || this.props.email)&& 
+            this.state.introduction &&
+            this.state.phoneNumber &&
+            this.state.birthday &&
+            this.state.gender &&
+            this.state.city &&
+            this.state.state &&
+            this.state.zip &&
+            this.state.budget &&
+            this.state.moveInDate &&
+            this.props.facebookId&&
+            this.props.img
+        ) {
+          API.saveUsers({
+            firstName: this.state.firstName?this.state.firstName:this.props.firstName,
+            lastName: this.state.lastName?this.state.lastName:this.props.lastName,
+            email: this.state.email? this.state.email:this.props.lastName,
+            introduction: this.state.introduction,
+            phoneNumber: this.state.phoneNumber,
+            birthday: this.state.birthday,
+            gender: this.state.gender,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            budget: this.state.budget,
+            moveInDate: this.state.moveInDate,
+            facebookId: this.props.facebookId,
+            // facebookToken:this.props.facebookToken,
+            imgUrl: this.props.img,
+          })
+            .then(res => this.props.history.push(`/userPortal`))
+            .catch(err => console.log(err));
+        }else{"did not post"}
 
     };
     changeMoveInDate = event =>{
@@ -174,7 +233,7 @@ class User extends Component {
                                 </Row>
                                 <Row>
                                     <Col size="md-4">
-                                        <select>
+                                        <select defaultValue = "" onChange={this.handleOnChange}>
                                             <option value="">Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
