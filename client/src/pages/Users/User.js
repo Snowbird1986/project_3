@@ -10,7 +10,7 @@ import "./user.css";
 
 class User extends Component {
 
-    state={
+    state = {
 
         user: [],
         firstName: "",
@@ -28,7 +28,7 @@ class User extends Component {
         date: new Date(),
         date2: new Date(),
         hideCalender: true,
-        hideCalender2: true
+        hideCalender2: true,
 
     }
 
@@ -43,7 +43,7 @@ class User extends Component {
         this.setState({
             gender: e.target.value
         })
-      }
+    }
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -57,10 +57,10 @@ class User extends Component {
         // })
         // console.log(this.state)
         console.log(this.props)
-        let userData={
-            firstName: this.state.firstName?this.state.firstName:this.props.firstName,
-            lastName: this.state.lastName?this.state.lastName:this.props.lastName,
-            email: this.state.email? this.state.email:this.props.lastName,
+        let userData = {
+            firstName: this.state.firstName ? this.state.firstName : this.props.firstName,
+            lastName: this.state.lastName ? this.state.lastName : this.props.lastName,
+            email: this.state.email ? this.state.email : this.props.lastName,
             introduction: this.state.introduction,
             phoneNumber: this.state.phoneNumber,
             birthday: this.state.birthday,
@@ -75,9 +75,9 @@ class User extends Component {
             imgUrl: this.props.img
         }
         console.log(userData)
-        if ((this.state.firstName || this.props.firstName)&& 
-            (this.state.lastName || this.props.lastName)&& 
-            (this.state.email || this.props.email)&& 
+        if ((this.state.firstName || this.props.firstName) &&
+            (this.state.lastName || this.props.lastName) &&
+            (this.state.email || this.props.email) &&
             this.state.introduction &&
             this.state.phoneNumber &&
             this.state.birthday &&
@@ -87,32 +87,32 @@ class User extends Component {
             this.state.zip &&
             this.state.budget &&
             this.state.moveInDate &&
-            this.props.facebookId&&
+            this.props.facebookId &&
             this.props.img
         ) {
-          API.saveUsers({
-            firstName: this.state.firstName?this.state.firstName:this.props.firstName,
-            lastName: this.state.lastName?this.state.lastName:this.props.lastName,
-            email: this.state.email? this.state.email:this.props.lastName,
-            introduction: this.state.introduction,
-            phoneNumber: this.state.phoneNumber,
-            birthday: this.state.birthday,
-            gender: this.state.gender,
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip,
-            budget: this.state.budget,
-            moveInDate: this.state.moveInDate,
-            facebookId: this.props.facebookId,
-            // facebookToken:this.props.facebookToken,
-            imgUrl: this.props.img,
-          })
-            .then(res => this.props.history.push(`/userPortal`))
-            .catch(err => console.log(err));
-        }else{"did not post"}
+            API.saveUsers({
+                firstName: this.state.firstName ? this.state.firstName : this.props.firstName,
+                lastName: this.state.lastName ? this.state.lastName : this.props.lastName,
+                email: this.state.email ? this.state.email : this.props.lastName,
+                introduction: this.state.introduction,
+                phoneNumber: this.state.phoneNumber,
+                birthday: this.state.birthday,
+                gender: this.state.gender,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                budget: this.state.budget,
+                moveInDate: this.state.moveInDate,
+                facebookId: this.props.facebookId,
+                // facebookToken:this.props.facebookToken,
+                imgUrl: this.props.img,
+            })
+                .then(res => this.props.history.push(`/userPortal`))
+                .catch(err => console.log(err));
+        } else { "did not post" }
 
     };
-    changeMoveInDate = event =>{
+    changeMoveInDate = event => {
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -133,7 +133,7 @@ class User extends Component {
             moveInDate: value
         });
     }
-    changeBirthday = event =>{
+    changeBirthday = event => {
         this.setState({ hideCalender2: !this.state.hideCalender2 });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -155,7 +155,7 @@ class User extends Component {
         });
     }
 
-    componentDidMount=()=>{
+    componentDidMount = () => {
         console.log(this.props)
     }
 
@@ -169,14 +169,14 @@ class User extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1>Enter User Info</h1>
+                            Enter User Info
                         </Jumbotron>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <Col size="md-6">
                                         <Input
-                                            value={this.state.firstName==="" ? this.props.firstName : this.state.firstName}
+                                            value={this.state.firstName === "" ? this.props.firstName : this.state.firstName}
                                             onChange={this.handleInputChange}
                                             name="firstName"
                                             placeholder={this.props.firstName ? this.props.firstName : "First Name"}
@@ -184,7 +184,7 @@ class User extends Component {
                                     </Col>
                                     <Col size="md-6">
                                         <Input
-                                            value={this.state.lastName==="" ? this.props.lastName : this.state.lastName}
+                                            value={this.state.lastName === "" ? this.props.lastName : this.state.lastName}
                                             onChange={this.handleInputChange}
                                             name="lastName"
                                             placeholder={this.props.lastName ? this.props.lastName : "Last Name"}
@@ -194,7 +194,7 @@ class User extends Component {
                                 <Row>
                                     <Col size="md-12">
                                         <Input
-                                            value={this.state.email==="" ? this.props.email : this.state.email}
+                                            value={this.state.email === "" ? this.props.email : this.state.email}
                                             onChange={this.handleInputChange}
                                             name="email"
                                             placeholder={this.props.email ? this.props.email : "Email"}
@@ -233,7 +233,7 @@ class User extends Component {
                                 </Row>
                                 <Row>
                                     <Col size="md-4">
-                                        <select defaultValue = "" onChange={this.handleOnChange}>
+                                        <select defaultValue="" onChange={this.handleOnChange}>
                                             <option value="">Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -304,8 +304,8 @@ class User extends Component {
                                 </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
-                                    
+                                        Become a Room-e
+
                                 </FormBtn>
                                 </div>
                             </form>

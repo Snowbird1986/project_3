@@ -7,15 +7,20 @@ import API from "../../utils/API";
 import Table from "../../components/Table";
 
 class Room extends Component {
-    state={}
+    componentDidMount = () => {
+        console.log(this.props)
+
+    }
+    state = {}
 
     render() {
         return (
+
     <Container fluid>    
         <Col size="md-12">
             <Row>
                 <Jumbotron>
-                    <h1>Welcome to Your Room</h1>
+                    Welcome to Your Room
                 </Jumbotron>
             </Row>
                 
@@ -121,6 +126,7 @@ class Room extends Component {
                                             <td>11/1/2018</td>
                                             <td>Utilities</td>
                                             <td>Mail check by Friday</td>
+
                                     </tr>
                                 </tbody>
                             </Table>
@@ -142,19 +148,23 @@ class Room extends Component {
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                                <td>Hello</td>
-                                                <td>10/07/2018</td>
-                                                <td>Have a great day!!!</td>
+                                            <td>Hello</td>
+                                            <td>10/07/2018</td>
+                                            <td>Have a great day!!!</td>
                                         </tr>
                                     </tbody>
                                 </Table>
 
+                            </div>
+
                         </div>
+
                 </Row>
             </Col>
             
     </Container>
         )}
+
 }
 
 

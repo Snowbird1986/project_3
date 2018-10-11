@@ -3,19 +3,23 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
+import RoomCard from "../../components/roomCard";
 import API from "../../utils/API";
 import "./RoomSearch.css";
 
 class RoomSearch extends Component {
-    state={
-        room:[],
-        name:"",
-        description:"",
-        rent:"",
-        category:"",
-        openSpots:"",
-        availableDate:"",
-        dateAdded:"",
+    componentDidMount = () => {
+        console.log(this.props)
+    }
+    state = {
+        room: [],
+        name: "",
+        description: "",
+        rent: "",
+        category: "",
+        openSpots: "",
+        availableDate: "",
+        dateAdded: "",
         city: "",
         state: "",
         zip: "",
@@ -24,10 +28,10 @@ class RoomSearch extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-      handleFormSubmit = event => {
+    };
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -38,17 +42,18 @@ class RoomSearch extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
-      };
+    };
 
     render() {
         return (
             <Container fluid>
-            <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>Search Rooms:</h1>
-                </Jumbotron>
-                        <div className="col-md-8 offset-md-2" id="formdiv"> 
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            Search Rooms:
+                        </Jumbotron>
+                        <RoomCard>{this.props.img} </RoomCard>
+                        <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <div className="col-md-8 offset-md-2">
@@ -137,10 +142,11 @@ class RoomSearch extends Component {
                                 </div>
                             </form>
                         </div>
-                </Col>
-            </Row>
-        </Container>
-        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 

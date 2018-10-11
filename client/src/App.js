@@ -29,6 +29,7 @@ class App extends Component {
       birthday:null,
       location:null,
       img:null,
+      id:null,
     }
   }
   onFacebookLogin = (loginStatus, resultObject) => {
@@ -54,7 +55,9 @@ class App extends Component {
           gender: res.data[0].gender, 
           // email: res.email,
           birthday: res.data[0].birthday, 
-          location: res.data[0].location})
+          location: res.data[0].location,
+          id: res.data[0]._id
+        })
       )
       .catch(err => console.log(err));
     } else {
@@ -68,7 +71,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav username={this.state.username}/>
+          <Nav username={this.state.username} id={this.state.id}/>
           <Switch>
             <Route exact path="/" render={(props) =>(this.state.username ? (<Redirect to="/user"/>) : (<Landing {...props} 
                   onFacebookLogin={this.onFacebookLogin} 
@@ -76,8 +79,9 @@ class App extends Component {
                   facebookId={this.state.facebookId}
                   // facebookToken={this.state.facebookToken}
                   img={this.state.img}
+                  id={this.state.id}
                   />))} />
-            <Route exact path="/user" render={(props) =>(this.state.birthday ? (<Redirect to="/userPortal"/>) : (<User {...props} 
+            <Route exact path="/user" render={(props) =>(this.state.id ? (<Redirect to="/userPortal"/>) : (<User {...props} 
                   username={this.state.username}
                   firstName={this.state.firstName}
                   lastName={this.state.lastName}
@@ -88,6 +92,7 @@ class App extends Component {
                   // facebookToken={this.state.facebookToken}
                   birthday={this.state.birthday}
                   img={this.state.img}
+                  id={this.state.id}
                 />
             ))} />
             <Route exact path="/userPortal" render={(props) =><UserPortal {...props} 
@@ -101,6 +106,7 @@ class App extends Component {
                   facebookId={this.state.facebookId}
                   birthday={this.state.birthday}
                   img={this.state.img}
+                  id={this.state.id}
                 />
               } />
             <Route exact path="/userHome" component={UserHome} />

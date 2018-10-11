@@ -7,13 +7,13 @@ import API from "../../utils/API";
 import "./UserSearch.css";
 
 class UserSearch extends Component {
-    state={
+    state = {
         user: [],
         firstName: "",
         lastName: "",
         email: "",
-        introduction:"",
-        phoneNumber:"",
+        introduction: "",
+        phoneNumber: "",
         birthday: "",
         gender: "",
         city: "",
@@ -26,10 +26,10 @@ class UserSearch extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-      handleFormSubmit = event => {
+    };
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -40,17 +40,17 @@ class UserSearch extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
-      };
+    };
 
     render() {
         return (
             <Container fluid>
-            <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>Search Users:</h1>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            Search Users:
                 </Jumbotron>
-                        <div className="col-md-8 offset-md-2" id="formdiv"> 
+                        <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <Col size="md-6">
@@ -91,11 +91,11 @@ class UserSearch extends Component {
                                     </Col>
                                     <Col size="md-6">
                                         <Input
-                                        value={this.state.birthday}
-                                        onChange={this.handleInputChange}
-                                        name="birthday"
-                                        placeholder="Birthday"
-                                    />
+                                            value={this.state.birthday}
+                                            onChange={this.handleInputChange}
+                                            name="birthday"
+                                            placeholder="Birthday"
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -117,10 +117,10 @@ class UserSearch extends Component {
                                     </Col>
                                     <Col size="md-4">
                                         <Input
-                                        value={this.state.moveInDate}
-                                        onChange={this.handleInputChange}
-                                        name="moveInDate"
-                                        placeholder="Move In Date"
+                                            value={this.state.moveInDate}
+                                            onChange={this.handleInputChange}
+                                            name="moveInDate"
+                                            placeholder="Move In Date"
                                         />
                                     </Col>
                                 </Row>
@@ -157,10 +157,11 @@ class UserSearch extends Component {
                                 </div>
                             </form>
                         </div>
-                </Col>
-            </Row>
-        </Container>
-        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 

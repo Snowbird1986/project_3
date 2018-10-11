@@ -8,8 +8,8 @@ import "./UserPortal.css";
 import Table from "../../components/Table";
 
 class UserPortal extends Component {
-    state={}
-    componentDidMount=()=>{
+    state = {}
+    componentDidMount = () => {
         console.log(this.props)
     }
 
@@ -19,15 +19,17 @@ class UserPortal extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                        <h1>User Portal:</h1>
+                            User Portal:
                         </Jumbotron>
+
                             <div className="col-md-10 offset-md-1" id="formdiv"> 
                                 <Row>
                                     <div className="col-md-1 offset-md-1">
                                         <img src={this.props.img} />
+
                                     </div>
-                                    <div className="col-md-6">
-                                        {this.props.username}
+                                <div className="col-md-3">
+                                    buttons here for create a new room.
                                     </div>
                                 </Row>
                                 <br />
