@@ -9,10 +9,12 @@ var UsersSchema = new Schema({
   // `title` is of type String
   firstName: {
     type: String,
-    required: [true, "First Name Required"]
+    required: [true, "First Name Required"],
+    default: 'Mike'
   },
   lastName: {
     type: String,
+    default: 'Wazowski'
   },
   phoneNumber: {
     type: String,
@@ -32,8 +34,9 @@ var UsersSchema = new Schema({
   //     "Password should be longer."
   //   ]
   // },
-  birthday:{ 
-    type: Date},
+  birthday: {
+    type: Date
+  },
   email: {
     type: String,
     unique: [true, "This email has already been used."],
@@ -41,24 +44,24 @@ var UsersSchema = new Schema({
     required: [true, 'Email required']
   },
   // `body` is of type String
-  introduction: {type:String},
-  imgUrl: {type:String},
-  city:{
-      type:String,
-      required: [true, "City required"]
-    },
-  state:{
-      type:String,
-      required: [true, "State required"]
-    },
-  zip:{
-      type:String,
-      required: [true, "Zip required"]
-    },
-  budget:{type:String},
-  gender:{type:String},
-  moveInDate:{ 
-    type: Date, 
+  introduction: { type: String },
+  imgUrl: { type: String },
+  city: {
+    type: String,
+    required: [true, "City required"]
+  },
+  state: {
+    type: String,
+    required: [true, "State required"]
+  },
+  zip: {
+    type: String,
+    required: [true, "Zip required"]
+  },
+  budget: { type: String },
+  gender: { type: String },
+  moveInDate: {
+    type: Date,
     // validate: [
     //     function(moveInDate) {
     //         return moveInDate>Date.now
@@ -68,6 +71,7 @@ var UsersSchema = new Schema({
   },
   facebookId: String,
   // facebookToken: String,
+
 
   dateAdded: { type: Date, default: Date.now }
 });
