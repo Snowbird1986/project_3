@@ -17,8 +17,8 @@ var UsersSchema = new Schema({
   phoneNumber: {
     type: String,
     // isNumeric: true,
-    minlength: 7,
-    maxlength: 10,
+    minlength: [7,'Min Length 7 digits.'],
+    maxlength: [12, 'Max Length 12 digits'],
     required: [true, 'Phone Number required']
   },
   // password: {

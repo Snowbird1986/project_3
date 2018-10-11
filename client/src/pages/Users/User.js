@@ -28,7 +28,7 @@ class User extends Component {
         date: new Date(),
         date2: new Date(),
         hideCalender: true,
-        hideCalender2: true
+        hideCalender2: true,
 
     }
 
