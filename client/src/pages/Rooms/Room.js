@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
+import Table from "../../components/Table";
 
 class Room extends Component {
     state={}
@@ -14,21 +15,22 @@ class Room extends Component {
         <Col size="md-12">
             <Row>
                 <Jumbotron>
-                    <h1>Wlcome to Your Room</h1>
+                    <h1>Welcome to Your Room</h1>
                 </Jumbotron>
             </Row>
                 
             <Row>
-                <div className="col-md-8 offset-md-2" id="formdiv">
                     <div id="roomies">
                         <h2>Current Roomies</h2>
-                        <table class="table table-borderless">
+                        <Table>
                             <thead>
                                 <tr>
                                     <th scope="col">Roomies</th>
                                     <th scope="col">First</th>
                                     <th scope="col">Last</th>
                                     <th scope="col">Contract Ends</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,21 +39,27 @@ class Room extends Component {
                                     <td>Bob</td>
                                     <td>Boberson</td>
                                     <td>11/01/2019</td>
+                                    <td>111-111-1111</td>
+                                    <td>bob@bob.com</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Frank</td>
                                     <td>Frankfurt</td>
                                     <td>01/01/2019</td>
+                                    <td>999-999-9999</td>
+                                    <td>frank@frank.gov</td>
                                 </tr>
                             </tbody>
-                            </table>
+                            </Table>
                         </div> 
-    
+                    </Row>
+
+                    <Row>
                         <div id="tasks">
                             
                             <h2>Tasks</h2>
-                        <table class="table table-borderless">
+                        <Table>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -86,12 +94,12 @@ class Room extends Component {
                                 
                                 </tr>
                             </tbody>
-                            </table>
+                            </Table>
                         </div>
 
                         <div id="bills">
                             <h2>Current Bills</h2>
-                            <table class="table table-borderless">
+                            <Table>
                                 <thead>
                                     <tr>
                                     <th scope="col">#</th>
@@ -115,12 +123,14 @@ class Room extends Component {
                                             <td>Mail check by Friday</td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </Table>
                         </div>
+                    </Row>
 
+                    <Row>
                         <div id="messages">
                             <h2>Messages</h2>
-                                <table class="table table-borderless">
+                                <Table>
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -137,11 +147,9 @@ class Room extends Component {
                                                 <td>Have a great day!!!</td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </Table>
 
                         </div>
-                
-                </div>
                 </Row>
             </Col>
             

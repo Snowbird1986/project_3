@@ -5,6 +5,7 @@ import Jumbotron from "../../components/Jumbotron";
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
 import "./UserPortal.css";
+import Table from "../../components/Table";
 
 class UserPortal extends Component {
     state={}
@@ -22,9 +23,6 @@ class UserPortal extends Component {
                         </Jumbotron>
                             <div className="col-md-10 offset-md-1" id="formdiv"> 
                                 <Row>
-                                    Portal needs built.
-                                </Row>
-                                <Row>
                                     <div className="col-md-1 offset-md-1">
                                         <img src={this.props.img} />
                                     </div>
@@ -32,16 +30,64 @@ class UserPortal extends Component {
                                         {this.props.username}
                                     </div>
                                 </Row>
+                                <br />
                                 <Row>
                                     <div className="col-md-7 offset-md-1">
-                                        Display user data here, rooms, assigned todos, assigned bills, perhaps sort those or limit those by date.
-                                        perhaps roommates for each room and or pending roommates needing approval.
-                                        shows nothing if they do now have a room.
+                                    <h2>Your Bills</h2>
+                                        <Table>            
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Bill</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Due Date</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                        <td>Electric</td>
+                                                        <td>$95</td>
+                                                        <td>11/1/2018</td>
+                                                        <td>Utilities</td>
+                                                        <td>Mail check by Friday</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
                                     </div>
-                                    <div className="col-md-3">
-                                        buttons here for create a new room.
-                                    </div>
+                                    <div>
+                                    <h2>Your Tasks</h2>
+                                        <Table>                                            
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Task</th>
+                                                    <th scope="col">Recurring</th>
+                                                    <th scope="col">Due Date</th>
+                                                    <th scope="col">Category</th>
+                                                    <th scope="col">Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                        <td>Mow yard</td>
+                                                        <td>false</td>
+                                                        <td>11/1/2018</td>
+                                                        <td>Yardwork</td>
+                                                        <td>Weedwhack and mow lawn</td>
+                                                    </tr>
+                                            </tbody>
+                                        </Table>
+                                    </div>                          
                                 </Row>
+                                <Row>
+                                        <div className="col-md-3">
+                                            <button>Create New Room</button>
+                                        </div>
+                                    </Row>
                             </div>
                         </Col>
                     </Row>
