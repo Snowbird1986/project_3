@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./RoomCard.css";
 class RoomCard extends Component {
   state = {
-    userArray: ["user1", "user2", "user3", "user4"]
+    userArray: ["user1", "user2", "user3", "user4", "user5"]
 
 
   };
   picSize = (userArray) => {
-    const boxWidth = 300 / userArray.length;
+    const boxWidth = 230 / userArray.length;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
