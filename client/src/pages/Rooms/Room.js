@@ -25,40 +25,40 @@ class Room extends Component {
             </Row>
                 
             <Row>
-                    <div id="roomies">
-                        <h2>Current Roomies</h2>
-                        <Table>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Roomies</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Contract Ends</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Bob</td>
-                                    <td>Boberson</td>
-                                    <td>11/01/2019</td>
-                                    <td>111-111-1111</td>
-                                    <td>bob@bob.com</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Frank</td>
-                                    <td>Frankfurt</td>
-                                    <td>01/01/2019</td>
-                                    <td>999-999-9999</td>
-                                    <td>frank@frank.gov</td>
-                                </tr>
-                            </tbody>
-                            </Table>
-                        </div> 
-                    </Row>
+                <div id="roomies">
+                    <h2>Current Roomies</h2>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Roomies</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Contract Ends</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Bob</td>
+                                <td>Boberson</td>
+                                <td>11/01/2019</td>
+                                <td>111-111-1111</td>
+                                <td>bob@bob.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Frank</td>
+                                <td>Frankfurt</td>
+                                <td>01/01/2019</td>
+                                <td>999-999-9999</td>
+                                <td>frank@frank.gov</td>
+                            </tr>
+                        </tbody>
+                        </Table>
+                    </div> 
+                </Row>
 
                     <Row>
                         <div id="tasks">
@@ -154,12 +154,8 @@ class Room extends Component {
                                         </tr>
                                     </tbody>
                                 </Table>
-
-                            </div>
-
                         </div>
-
-                </Row>
+                    </Row>
             </Col>
             
     </Container>

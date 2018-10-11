@@ -23,18 +23,20 @@ class UserPortal extends Component {
                         </Jumbotron>
 
                             <div className="col-md-10 offset-md-1" id="formdiv"> 
-                                <Row>
+                                <div className="col-md-12" id="userinfo">
+                                    <Row>
                                     <div className="col-md-1 offset-md-1">
                                         <img src={this.props.img} />
 
                                     </div>
-                                <div className="col-md-3">
-                                    buttons here for create a new room.
-                                    </div>
-                                </Row>
+                                    <div className="col-md-3">
+                                        {this.props.username}
+                                        </div>
+                                    </Row>
+                                </div>
                                 <br />
                                 <Row>
-                                    <div className="col-md-7 offset-md-1">
+                                    <div className="col-md-10 offset-md-1">
                                     <h2>Your Bills</h2>
                                         <Table>            
                                             <thead>
@@ -59,7 +61,7 @@ class UserPortal extends Component {
                                             </tbody>
                                         </Table>
                                     </div>
-                                    <div>
+                                    <div className="col-md-10 offset-md-1">
                                     <h2>Your Tasks</h2>
                                         <Table>                                            
                                             <thead>
@@ -85,11 +87,11 @@ class UserPortal extends Component {
                                         </Table>
                                     </div>                          
                                 </Row>
-                                <Row>
-                                        <div className="col-md-3">
+                                <div className="col-md-12" id="createroomButton">
+                                        <div className="col-md-3 offset-md-1" >
                                             <button>Create New Room</button>
                                         </div>
-                                    </Row>
+                                    </div>
                             </div>
                         </Col>
                     </Row>
