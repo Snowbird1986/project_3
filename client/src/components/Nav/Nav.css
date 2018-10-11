@@ -1,9 +1,12 @@
 .navbar {
     background-color:lightseagreen;
 }
+
+
+
 #toBeRevealed{
     width: 200px;
-    /* float:right; */
+   
   }
 #demo {
     width: 100%;

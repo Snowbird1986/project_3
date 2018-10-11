@@ -8,21 +8,21 @@ import API from "../../utils/API";
 import "./TodoCreate.css";
 
 class TodoCreate extends Component {
-    state={
-        todo:[],
-        title:"",
-        body:"",
-        completed:"",
-        recurring:"",
-        frequency:"",
-        assignee:"",
-        dateAdded:"",
+    state = {
+        todo: [],
+        title: "",
+        body: "",
+        completed: "",
+        recurring: "",
+        frequency: "",
+        assignee: "",
+        dateAdded: "",
         dueDate: "Due Date",
         date: new Date(),
         hideCalender: true
     }
 
-    changeDueDate = event =>{
+    changeDueDate = event => {
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -46,10 +46,10 @@ class TodoCreate extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-      handleFormSubmit = event => {
+    };
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -60,18 +60,18 @@ class TodoCreate extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
-      };
+    };
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
-            <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>Enter Chore Info</h1>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            Enter Chore Info
                 </Jumbotron>
-                        <div className="col-md-8 offset-md-2" id="formdiv"> 
+                        <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <Col size="md-6">
@@ -101,11 +101,11 @@ class TodoCreate extends Component {
                                     </Col>
                                     <Col size="md-4">
                                         <Input
-                                        value={this.state.frequency}
-                                        onChange={this.handleInputChange}
-                                        name="frequency"
-                                        placeholder="Frequency"
-                                    />
+                                            value={this.state.frequency}
+                                            onChange={this.handleInputChange}
+                                            name="frequency"
+                                            placeholder="Frequency"
+                                        />
                                     </Col>
                                     <Col size="md-4">
                                         <Input
@@ -150,10 +150,11 @@ class TodoCreate extends Component {
                                 </div>
                             </form>
                         </div>
-                </Col>
-            </Row>
-        </Container>
-        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 

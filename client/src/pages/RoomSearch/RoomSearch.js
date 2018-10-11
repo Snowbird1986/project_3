@@ -50,9 +50,9 @@ class RoomSearch extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1>Search Rooms:</h1>
+                            Search Rooms:
                         </Jumbotron>
-                        <RoomCard>{this.props.children} </RoomCard>
+                        <RoomCard>{this.props.img} </RoomCard>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>

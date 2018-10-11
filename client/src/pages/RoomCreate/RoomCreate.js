@@ -8,15 +8,15 @@ import API from "../../utils/API";
 import "./RoomCreate.css";
 
 class RoomCreate extends Component {
-    state={
-        room:[],
-        name:"",
-        description:"",
-        rent:"",
-        category:"",
-        openSpots:"",
-        availableDate:"Available Date",
-        dateAdded:"",
+    state = {
+        room: [],
+        name: "",
+        description: "",
+        rent: "",
+        category: "",
+        openSpots: "",
+        availableDate: "Available Date",
+        dateAdded: "",
         city: "",
         state: "",
         zip: "",
@@ -24,7 +24,7 @@ class RoomCreate extends Component {
         hideCalender: true
     }
 
-    changeAvailableDate = event =>{
+    changeAvailableDate = event => {
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -48,10 +48,10 @@ class RoomCreate extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-      handleFormSubmit = event => {
+    };
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -62,18 +62,18 @@ class RoomCreate extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
-      };
+    };
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
-            <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>Enter Room Info</h1>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            Enter Room Info
                 </Jumbotron>
-                        <div className="col-md-8 offset-md-2" id="formdiv"> 
+                        <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <Col size="md-6">
@@ -104,11 +104,11 @@ class RoomCreate extends Component {
                                     </Col>
                                     <Col size="md-4">
                                         <Input
-                                        value={this.state.openSpots}
-                                        onChange={this.handleInputChange}
-                                        name="openSpots"
-                                        placeholder="Roommate spots Remaining"
-                                    />
+                                            value={this.state.openSpots}
+                                            onChange={this.handleInputChange}
+                                            name="openSpots"
+                                            placeholder="Roommate spots Remaining"
+                                        />
                                     </Col>
                                     <Col size="md-5">
                                         <Input
@@ -126,42 +126,42 @@ class RoomCreate extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
-                                <Col size="md-5">
-                                    <Input
-                                        value={this.state.city}
-                                        onChange={this.handleInputChange}
-                                        name="city"
-                                        placeholder="City"
-                                    />
-                                </Col>
-                                <Col size="md-3">
-                                    <Input
-                                        value={this.state.state}
-                                        onChange={this.handleInputChange}
-                                        name="state"
-                                        placeholder="State"
-                                    />
-                                </Col>
-                                <Col size="md-4">
-                                    <Input
-                                        value={this.state.zip}
-                                        onChange={this.handleInputChange}
-                                        name="zip"
-                                        placeholder="Zip"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-12">
-                                    <TextArea
-                                        value={this.state.description}
-                                        onChange={this.handleInputChange}
-                                        name="description"
-                                        placeholder="Description"
-                                        id="description"
-                                    />
-                                </Col>
-                            </Row>
+                                    <Col size="md-5">
+                                        <Input
+                                            value={this.state.city}
+                                            onChange={this.handleInputChange}
+                                            name="city"
+                                            placeholder="City"
+                                        />
+                                    </Col>
+                                    <Col size="md-3">
+                                        <Input
+                                            value={this.state.state}
+                                            onChange={this.handleInputChange}
+                                            name="state"
+                                            placeholder="State"
+                                        />
+                                    </Col>
+                                    <Col size="md-4">
+                                        <Input
+                                            value={this.state.zip}
+                                            onChange={this.handleInputChange}
+                                            name="zip"
+                                            placeholder="Zip"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col size="md-12">
+                                        <TextArea
+                                            value={this.state.description}
+                                            onChange={this.handleInputChange}
+                                            name="description"
+                                            placeholder="Description"
+                                            id="description"
+                                        />
+                                    </Col>
+                                </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
                                         Poop
@@ -169,10 +169,11 @@ class RoomCreate extends Component {
                                 </div>
                             </form>
                         </div>
-                </Col>
-            </Row>
-        </Container>
-        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 

@@ -8,21 +8,21 @@ import API from "../../utils/API";
 import "./BillCreate.css";
 
 class BillCreate extends Component {
-    state={
-        bill:[],
-        title:"",
-        category:"",
-        body:"",
-        amount:"",
-        dueDate:"Due Date",
-        paid:"",
-        assignee:"",
-        dateAdded:"",
+    state = {
+        bill: [],
+        title: "",
+        category: "",
+        body: "",
+        amount: "",
+        dueDate: "Due Date",
+        paid: "",
+        assignee: "",
+        dateAdded: "",
         date: new Date(),
         hideCalender: true
     }
 
-    changeDueDate = event =>{
+    changeDueDate = event => {
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
         //console.log(event.target.style)
@@ -46,10 +46,10 @@ class BillCreate extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
-      handleFormSubmit = event => {
+    };
+    handleFormSubmit = event => {
         event.preventDefault();
         // if (this.state.title && this.state.author) {
         //   API.saveBook({
@@ -60,18 +60,18 @@ class BillCreate extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
-      };
+    };
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
-            <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>Enter Bill Info</h1>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            Enter Bill Info
                 </Jumbotron>
-                        <div className="col-md-8 offset-md-2" id="formdiv"> 
+                        <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
                                     <Col size="md-6">
@@ -109,7 +109,7 @@ class BillCreate extends Component {
                                         />
                                     </Col>
                                     <Col size="md-6">
-                                    <Input
+                                        <Input
                                             value={this.state.dueDate}
                                             onChange={this.handleInputChange}
                                             name="dueDate"
@@ -151,10 +151,11 @@ class BillCreate extends Component {
                                 </div>
                             </form>
                         </div>
-                </Col>
-            </Row>
-        </Container>
-        )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 
