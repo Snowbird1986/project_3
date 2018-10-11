@@ -7,25 +7,26 @@ import API from "../../utils/API";
 import "./UserHome.css";
 
 class UserHome extends Component {
-    state={}
+    state = {}
 
     render() {
         return (
-    <Container fluid>
-        <Row>
-                <Col size="md-12">
-                <Jumbotron>
-                  <h1>User Details:</h1>
+            <Container fluid>
+                <Row>
+                    <Col size="md-12">
+                        <Jumbotron>
+                            User Details:
                 </Jumbotron>
-                    <div className="col-md-8 offset-md-2" id="formdiv"> 
-                        <Row>
-                            <UserCard />
-                        </Row>
-                    </div>
-                </Col>
-            </Row>
-    </Container>
-        )}
+                        <div className="col-md-8 offset-md-2" id="formdiv">
+                            <Row>
+                                <UserCard />
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 
