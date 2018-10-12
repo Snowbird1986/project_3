@@ -52,7 +52,7 @@ class RoomSearch extends Component {
                         <Jumbotron>
                             Search Rooms:
                         </Jumbotron>
-                        <RoomCard>{this.props.img} </RoomCard>
+                        <RoomCard>{this.props} </RoomCard>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>

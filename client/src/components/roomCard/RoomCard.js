@@ -1,8 +1,22 @@
 import React, { Component } from "react";
 import "./RoomCard.css";
 class RoomCard extends Component {
+  // componentDidMount = () => {
+  //   console.log(this.props)
+  // }
+
   state = {
-    userArray: ["user1", "user2", "user3", "user4", "user5"]
+    userArray: [{
+
+      pic: this.props.children[0].img,
+      birthday: this.props.children[0].birthday,
+      email: this.props.children[0].email,
+      first_Name: this.props.children[0].firstName,
+      gender: this.props.children[0].gender,
+      last_Name: this.props.children[0].lastName,
+      location: this.props.children[0].location
+
+    }, "user2", "user3", "user4", "user5"]
 
 
   };
@@ -16,8 +30,15 @@ class RoomCard extends Component {
   render() {
 
     const dims = this.picSize(this.state.userArray);
+    // const pic = this.props.children[0].img;
+    // const birthday = this.props.children[0].birthday;
+    // const email = this.props.children[0].email;
+    // const first_Name = this.props.children[0].firstName;
+    // const gender = this.props.children[0].gender;
+    // const last_Name = this.props.children[0].lastName;
+    // const location = this.props.children[0].location;
     return (
-      <div onClick={() => console.log(this.props)} className="card">
+      <div onClick={() => console.log("user.pic")} className="card">
 
         <div className="img-container">
           <div style={{
@@ -39,7 +60,9 @@ class RoomCard extends Component {
             height: `${dims[1]}px`,
             float: "left",
             backgroundColor: "white"
-          }} key={`img-${idx}`} />)}
+          }} key={`img-${idx}`} >
+            <img src={user.pic} /></div>
+          )}
           {/* <div style={{
             margin: "10px",
             width: "40px",
