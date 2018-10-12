@@ -33,6 +33,9 @@ export default {
   getRoom: function (id) {
     return axios.get("/api/rooms/" + id);
   },
+  getUserRoom: function (id) {
+    return axios.get("/api/rooms/user/" + id);
+  },
   getTodo: function (id) {
     return axios.get("/api/todos/" + id);
   },

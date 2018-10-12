@@ -110,7 +110,10 @@ class App extends Component {
                 />
               } />
             <Route exact path="/userHome" component={UserHome} />
-            <Route exact path="/room" component={Room} />
+            <Route exact path="/room" render={(props) =><Room {...props} 
+                  id={this.state.id}
+                />
+              } />
             <Route exact path="/userSearch" component={UserSearch} />
             <Route exact path="/roomSearch" component={RoomSearch} />
             <Route exact path="/roomCreate" render={(props) =><RoomCreate {...props} 
