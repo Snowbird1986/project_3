@@ -55,7 +55,7 @@ class User extends Component {
         //     facebookId:this.props.facebookId,
         //     img:this.props.img
         // })
-        // console.log(this.state)
+        console.log(this.state)
         console.log(this.props)
         let userData = {
             firstName: this.state.firstName ? this.state.firstName : this.props.firstName,

@@ -6,6 +6,8 @@ import Jumbotron from "../../components/Jumbotron";
 import Calendar from 'react-calendar';
 import API from "../../utils/API";
 import "./RoomCreate.css";
+// var ObjectId = require('mongoose').Types.ObjectId
+
 
 class RoomCreate extends Component {
     state = {
@@ -16,12 +18,17 @@ class RoomCreate extends Component {
         category: "",
         openSpots: "",
         availableDate: "Available Date",
-        dateAdded: "",
         city: "",
         state: "",
         zip: "",
         date: new Date(),
         hideCalender: true
+    }
+
+    handleOnChange = (e) => {
+        this.setState({
+            category: e.target.value
+        })
     }
 
     changeAvailableDate = event => {
@@ -53,15 +60,56 @@ class RoomCreate extends Component {
     };
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
+        console.log(this.state)
+        console.log(this.props)
+        let roomData = {
+            name: this.state.name,
+            description: this.state.description,
+            rent: this.state.rent,
+            category: this.state.category,
+            openSpots: this.state.openSpots,
+            availableDate: this.state.availableDate,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            
+        }
+        console.log(roomData)
+        if (this.state.name &&
+            this.state.description &&
+            this.state.rent &&
+            this.state.category &&
+            this.state.openSpots &&
+            this.state.availableDate &&
+            this.state.city &&
+            this.state.state &&
+            this.state.zip 
+        ) {
+            API.saveRooms({
+                name: this.state.name,
+                description: this.state.description,
+                rent: this.state.rent,
+                category: this.state.category,
+                openSpots: this.state.openSpots,
+                availableDate: this.state.availableDate,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+            })
+                .then(result => {
+                    // function(err,docsInserted){
+                    // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
+                    // // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+                    // // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+                    // return 
+                    // console.log(result.data._id)
+                    // console.log(this.props.id)
+                    API.updateRooms(result.data._id,{"$push":{ user: this.props.id }}).then(console.log)
+                    .then(res => this.props.history.push(`/room`));
+                  }
+                )
+                .catch(err => console.log(err));
+            } else { "did not post" }
     };
 
     render() {
@@ -85,12 +133,13 @@ class RoomCreate extends Component {
                                         />
                                     </Col>
                                     <Col size="md-6">
-                                        <Input
-                                            value={this.state.category}
-                                            onChange={this.handleInputChange}
-                                            name="category"
-                                            placeholder="Category"
-                                        />
+                                        <select defaultValue="" onChange={this.handleOnChange}>
+                                            <option value="">Category</option>
+                                            <option value="Dormroom">Dorm Room</option>
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Duplex">Duplex</option>
+                                            <option value="House">House</option>
+                                        </select>
                                     </Col>
                                 </Row>
                                 <Row>

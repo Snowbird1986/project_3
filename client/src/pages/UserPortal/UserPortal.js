@@ -12,6 +12,9 @@ class UserPortal extends Component {
     componentDidMount = () => {
         console.log(this.props)
     }
+    createRoom =()=>{
+        this.props.history.push(`/roomCreate`)
+    }
 
     render() {
         return (
@@ -89,7 +92,7 @@ class UserPortal extends Component {
                                 </Row>
                                 <div className="col-md-12" id="createroomButton">
                                         <div className="col-md-3 offset-md-1" >
-                                            <button>Create New Room</button>
+                                            <button onClick={this.createRoom}>Create New Room</button>
                                         </div>
                                     </div>
                             </div>
