@@ -13,4 +13,8 @@ router
   .put(roomsController.update)
   .delete(roomsController.remove);
 
+router
+  .route("/user/:id")
+  .get(roomsController.findByUserId)
+
 module.exports = router;
