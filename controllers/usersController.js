@@ -16,7 +16,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByFBId: function(req, res) {
-    console.log(db)
     db.User
       .find({facebookId:req.params.id})
       .then(dbModel => res.json(dbModel))

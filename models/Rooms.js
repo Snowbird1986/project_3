@@ -15,12 +15,12 @@ var RoomsSchema = new Schema({
   openSpots: {type:Number},
   availableDate: { 
     type: Date, 
-    validate: [
-        function(availableDate) {
-            return availableDate>Date.now
-        },
-        "Available Date Must be a future date"
-    ]
+    // validate: [
+    //     function(availableDate) {
+    //         return availableDate>Date.now
+    //     },
+    //     "Available Date Must be a future date"
+    // ]
   },
   city:{
     type:String,

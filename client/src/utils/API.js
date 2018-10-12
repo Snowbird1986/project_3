@@ -80,4 +80,7 @@ export default {
   saveUsers: function (userData) {
     return axios.post("/api/users", userData);
   },
+  updateRooms: function (id, data) {
+    return axios.put("/api/rooms/"+id, data);
+  },
 };
