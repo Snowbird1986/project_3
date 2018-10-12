@@ -7,11 +7,39 @@ import API from "../../utils/API";
 import Table from "../../components/Table";
 
 class Room extends Component {
+    state = {
+        name: "",
+        description: "",
+        rent: "",
+        category: "",
+        openSpots: "",
+        availableDate: "",
+        city: "",
+        state: "",
+        zip: "",
+        bills: [],
+        todos: [],
+        messages: [],
+    }
     componentDidMount = () => {
         console.log(this.props)
-
+        API.getUserRoom(this.props.id).then(res =>
+            this.setState({ 
+                name: res.data[0].name,
+                description: res.data[0].description,
+                rent: res.data[0].rent,
+                category: res.data[0].category,
+                openSpots: res.data[0].openSpots,
+                availableDate: res.data[0].availableDate,
+                city: res.data[0].city,
+                state: res.data[0].state,
+                zip: res.data[0].zip,
+                bills: res.data[0].bills,
+                todos: res.data[0].todos,
+                todos: res.data[0].todos,
+              })
+        )
     }
-    state = {}
 
     render() {
         return (
@@ -20,7 +48,7 @@ class Room extends Component {
         <Col size="md-12">
             <Row>
                 <Jumbotron>
-                    Welcome to Your Room
+                    Welcome to Your Room : {this.state.name}
                 </Jumbotron>
             </Row>
                 
