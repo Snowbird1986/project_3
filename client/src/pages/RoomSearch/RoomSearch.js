@@ -5,25 +5,72 @@ import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import RoomCard from "../../components/roomCard";
 import API from "../../utils/API";
+
 import "./RoomSearch.css";
 
 class RoomSearch extends Component {
     componentDidMount = () => {
-        console.log(this.props)
+        //console.log(this.props)
+        if ("farts" == "farts") {
+            API.getUsers({
+
+            })
+                .then(res => {
+                    this.setState({
+                        img: res.data[0].imgUrl,
+                        name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
+                        phone: res.data[0].phoneNumber,
+                        gender: res.data[0].gender,
+                        city: res.data[0].city,
+                        state: res.data[0].state,
+                        zip: res.data[0].zip,
+                        budget: res.data[0].budget
+                    });
+                    console.log(this.state.img)
+                    console.log(this.state.name)
+                    // console.log(res.data[0].imgUrl)
+                })
+                .catch(err => console.log(err));
+        } else { "did not post" }
     }
     state = {
         room: [],
         name: "",
         description: "",
         rent: "",
+        budget: "",
         category: "",
         openSpots: "",
         availableDate: "",
         dateAdded: "",
+        phone: "",
+        gender: "",
         city: "",
         state: "",
         zip: "",
+        img: ""
     }
+    viewRoom = event => {
+        event.preventDefault();
+
+        if ("farts" == "farts") {
+            API.getUsers({
+
+            })
+                .then(res => {
+                    this.setState({
+                        img: res.data[0].imgUrl
+                    });
+                    console.log(this.state.img)
+                    // console.log(res.data[0].imgUrl)
+                })
+                .catch(err => console.log(err));
+        } else { "did not post" }
+
+
+
+    };
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -52,7 +99,8 @@ class RoomSearch extends Component {
                         <Jumbotron>
                             Search Rooms:
                         </Jumbotron>
-                        <RoomCard>{this.props.img} </RoomCard>
+                        <RoomCard >{this.state} </RoomCard>
+                        <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
