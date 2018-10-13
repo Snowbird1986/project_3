@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import "./RoomCard.css";
 class RoomCard extends Component {
-  // componentDidMount = () => {
-  //   console.log(this.props)
-  // }
+  componentDidMount = () => {
+    //console.log(this.props)
+  }
 
   state = {
-    userArray: [{
+    userArray: this.props.children
+    // userArray: [
+    //   //   {
 
-      pic: this.props.children[0].img,
-      birthday: this.props.children[0].birthday,
-      email: this.props.children[0].email,
-      first_Name: this.props.children[0].firstName,
-      gender: this.props.children[0].gender,
-      last_Name: this.props.children[0].lastName,
-      location: this.props.children[0].location
+    //   //   pic: this.props.children[0].img,
+    //   //   birthday: this.props.children[0].birthday,
+    //   //   email: this.props.children[0].email,
+    //   //   first_Name: this.props.children[0].firstName,
+    //   //   gender: this.props.children[0].gender,
+    //   //   last_Name: this.props.children[0].lastName,
+    //   //   location: this.props.children[0].location
 
-    }, "user2", "user3", "user4", "user5"]
+    //   // }
+    //   //, 
+    //   "user2", "user3", "user4", "user5"]
 
 
   };
@@ -28,6 +32,7 @@ class RoomCard extends Component {
   };
 
   render() {
+    console.log(this.props.children)
 
     const dims = this.picSize(this.state.userArray);
     // const pic = this.props.children[0].img;
@@ -38,7 +43,7 @@ class RoomCard extends Component {
     // const last_Name = this.props.children[0].lastName;
     // const location = this.props.children[0].location;
     return (
-      <div onClick={() => console.log("user.pic")} className="card">
+      <div onClick={() => console.log("")} className="card">
 
         <div className="img-container">
           <div style={{
@@ -54,14 +59,14 @@ class RoomCard extends Component {
               4 person occupancy : 1 vacancy
             </h1>
           </div>
-          {this.state.userArray.map((user, idx) => <div style={{
+          {this.props.children.map((user, idx) => <div style={{
             margin: "10px",
             width: `${dims[0]}px`,
             height: `${dims[1]}px`,
             float: "left",
             backgroundColor: "white"
           }} key={`img-${idx}`} >
-            <img src={user.pic} /></div>
+            <img src={user.img} /></div>
           )}
           {/* <div style={{
             margin: "10px",
