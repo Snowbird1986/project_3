@@ -93,7 +93,7 @@ class User extends Component {
             API.saveUsers({
                 firstName: this.state.firstName ? this.state.firstName : this.props.firstName,
                 lastName: this.state.lastName ? this.state.lastName : this.props.lastName,
-                email: this.state.email ? this.state.email : this.props.lastName,
+                email: this.state.email ? this.state.email : this.props.email,
                 introduction: this.state.introduction,
                 phoneNumber: this.state.phoneNumber,
                 birthday: this.state.birthday,
