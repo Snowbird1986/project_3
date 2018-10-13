@@ -24,9 +24,45 @@ class Room extends Component {
         bills: [],
         todos: [],
         messages: [],
+        subject: "",
+        to: "",
+        message: "",
     }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        // if (this.state.title && this.state.author) {
+        //   API.saveBook({
+        //     title: this.state.title,
+        //     author: this.state.author,
+        //     synopsis: this.state.synopsis
+        //   })
+        //     .then(res => this.loadBooks())
+        //     .catch(err => console.log(err));
+        // }
+    };
     viewUser =()=>{
         this.props.history.push(`/userHome`)
+    }
+    createTask =()=>{
+        this.props.history.push(`/todoCreate`)
+    }
+    completeTask =()=>{
+        
+    }
+    createBill =()=>{
+        this.props.history.push(`/billCreate`)
+    }
+    payBill=()=>{
+
+    }
+    trashMessage=()=>{
+
     }
     componentDidMount = () => {
         console.log(this.props)
@@ -100,18 +136,20 @@ class Room extends Component {
                             </Table>
                         </div> 
                         <div className="col-md-6" id="tasks">
-                            
-                            <h2>Tasks</h2>
+                            <div className="col-md-12">
+                                <h2>Tasks <button onClick={this.createTask}>Create Task</button></h2> 
+                            </div>
                         <Table>
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col">Task</th>
-                                    <th scope="col">Assigned To</th>
+                                    <th scope="col" width="20%">Task</th>
+                                    <th scope="col" width="25%">Assigned To</th>
                                     {/* <th scope="col">Recurring</th> */}
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col" width="20%">Due Date</th>
+                                    {/* <th scope="col">Category</th> */}
+                                    <th scope="col" width="30%">Description</th>
+                                    <th scope="col" width="5%">Fin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,19 +157,17 @@ class Room extends Component {
                                     <th scope="row">1</th>
                                         <td>Mow yard</td>
                                         <td>Bob Boberson</td>
-                                        <td>false</td>
                                         <td>11/1/2018</td>
-                                        <td>Yardwork</td>
                                         <td>Weedwhack and mow lawn</td>
+                                        <td><button onClick={this.completeTask}>X</button></td>
                                     </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                         <td>Dishes</td>
                                         <td>Frank Frankfurt</td>
-                                        <td>true</td>
                                         <td>10/15/2018</td>
-                                        <td>Daily</td>
                                         <td>Wash, dry, put away dishes</td>
+                                        <td><button onClick={this.completeTask}>X</button></td>
                                     </tr>
                                 <tr>
                                 
@@ -142,17 +178,17 @@ class Room extends Component {
                     </Row>
                     <Row>
                         <div className="col-md-6" id="bills">
-                            <h2>Current Bills</h2>
+                            <h2>Current Bills <button onClick={this.createBill}>Create Bill</button></h2>
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Bill</th>
-                                    <th scope="col">Assigned To</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Due Date</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col"></th>
+                                    <th scope="col" width="15%">Bill Name</th>
+                                    <th scope="col" width="20%">Assigned To</th>
+                                    <th scope="col" width="10%">Amount</th>
+                                    <th scope="col" width="20%">Due Date</th>
+                                    <th scope="col" width="30%">Description</th>
+                                    <th scope="col" width="5%">Fin</th>
                                     </tr>
                                 </thead>
 
@@ -163,9 +199,8 @@ class Room extends Component {
                                             <td>Frank</td>
                                             <td>$95</td>
                                             <td>11/1/2018</td>
-                                            <td>Utilities</td>
                                             <td>Mail check by Friday</td>
-
+                                            <td><button onClick={this.payBill}>X</button></td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -177,21 +212,61 @@ class Room extends Component {
                                 <Table>
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Subject</th>
-                                            <th scope="col">Date Posted</th>
-                                            <th scope="col">Description</th>
+                                            <th scope="col"></th>
+                                            <th scope="col" width="10%">Subject</th>
+                                            <th scope="col" width="10%">To:</th>
+                                            <th scope="col" width="15%">Date Posted</th>
+                                            <th scope="col" width="60%">Message</th>
+                                            <th scope="col" width="5%">Fin</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>Hello</td>
+                                            <td>Frank</td>
                                             <td>10/07/2018</td>
                                             <td>Have a great day!!!</td>
+                                            <td><button onClick={this.trashMessage}>X</button></td>
                                         </tr>
                                     </tbody>
                                 </Table>
+                            <h2>New Messages</h2>
+                                <form id="formdiv">
+                                    <Row>
+                                        <Col size="md-6">
+                                            <Input
+                                                value={this.state.subject}
+                                                onChange={this.handleInputChange}
+                                                name="subject"
+                                                placeholder="Subject"
+                                            />
+                                        </Col>
+                                        <Col size="md-6">
+                                            <Input
+                                                value={this.state.to}
+                                                onChange={this.handleInputChange}
+                                                name="to"
+                                                placeholder="To:"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col size="md-12">
+                                            <Input
+                                                value={this.state.message}
+                                                onChange={this.handleInputChange}
+                                                name="message"
+                                                placeholder="Message"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <div className="buttons">
+                                    <FormBtn onClick={this.handleFormSubmit}>
+                                        Post
+                                    </FormBtn>
+                                </div>
+                                </form>
                         </div>
                     </Row>
                 </div>
