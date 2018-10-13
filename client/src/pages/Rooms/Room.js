@@ -5,6 +5,8 @@ import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import Table from "../../components/Table";
+import TableRow from "../../components/TableRow";
+import "./Room.css";
 
 class Room extends Component {
     state = {
@@ -17,13 +19,19 @@ class Room extends Component {
         city: "",
         state: "",
         zip: "",
+        users:[],
+        owner: "",
         bills: [],
         todos: [],
         messages: [],
     }
+    viewUser =()=>{
+        this.props.history.push(`/userHome`)
+    }
     componentDidMount = () => {
         console.log(this.props)
         API.getUserRoom(this.props.id).then(res =>
+            console.log(res)&
             this.setState({ 
                 name: res.data[0].name,
                 description: res.data[0].description,
@@ -34,9 +42,11 @@ class Room extends Component {
                 city: res.data[0].city,
                 state: res.data[0].state,
                 zip: res.data[0].zip,
-                bills: res.data[0].bills,
-                todos: res.data[0].todos,
-                todos: res.data[0].todos,
+                users: res.data[0].user,
+                owner: res.data[0].user[0],
+                bills: res.data[0].bill,
+                todos: res.data[0].todo,
+                messages: res.data[0].message,
               })
         )
     }
@@ -46,50 +56,50 @@ class Room extends Component {
 
     <Container fluid>    
         <Col size="md-12">
-            <Row>
                 <Jumbotron>
                     Welcome to Your Room : {this.state.name}
+                    <br />
+                    Owner: {this.state.owner.firstName} {this.state.owner.lastName}
                 </Jumbotron>
-            </Row>
                 
-            <Row>
-                <div id="roomies">
-                    <h2>Current Roomies</h2>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th scope="col">Roomies</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Contract Ends</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Bob</td>
-                                <td>Boberson</td>
-                                <td>11/01/2019</td>
-                                <td>111-111-1111</td>
-                                <td>bob@bob.com</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Frank</td>
-                                <td>Frankfurt</td>
-                                <td>01/01/2019</td>
-                                <td>999-999-9999</td>
-                                <td>frank@frank.gov</td>
-                            </tr>
-                        </tbody>
-                        </Table>
-                    </div> 
-                </Row>
-
-                    <Row>
-                        <div id="tasks">
+            <div className="col-md-12" id="formdiv">
+                <Row>
+                    <div className="col-md-6" id="roomies">
+                        <h2>Current Roomies</h2>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                this.state.users.map((user, i) =>{
+                                    return <TableRow 
+                                    firstName={user.firstName}
+                                    lastName={user.lastName}
+                                    email={user.email}
+                                    introduction={user.introduction}
+                                    phoneNumber={user.phoneNumber}
+                                    birthday={user.birthday}
+                                    gender={user.gender}
+                                    budget={user.budget}
+                                    moveInDate={user.moveInDate}
+                                    facebookId={user.facebookId}
+                                    id={user._id}
+                                    key={user._id}
+                                    imgUrl={user.imgUrl}
+                                    />
+                                    })
+                                }
+                            </tbody>
+                            </Table>
+                        </div> 
+                        <div className="col-md-6" id="tasks">
                             
                             <h2>Tasks</h2>
                         <Table>
@@ -129,8 +139,9 @@ class Room extends Component {
                             </tbody>
                             </Table>
                         </div>
-
-                        <div id="bills">
+                    </Row>
+                    <Row>
+                        <div className="col-md-6" id="bills">
                             <h2>Current Bills</h2>
                             <Table>
                                 <thead>
@@ -159,10 +170,9 @@ class Room extends Component {
                                 </tbody>
                             </Table>
                         </div>
-                    </Row>
 
-                    <Row>
-                        <div id="messages">
+
+                        <div className="col-md-6" id="messages">
                             <h2>Messages</h2>
                                 <Table>
                                     <thead>
@@ -184,6 +194,7 @@ class Room extends Component {
                                 </Table>
                         </div>
                     </Row>
+                </div>
             </Col>
             
     </Container>

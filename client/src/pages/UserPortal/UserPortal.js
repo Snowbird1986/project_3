@@ -8,9 +8,45 @@ import "./UserPortal.css";
 import Table from "../../components/Table";
 
 class UserPortal extends Component {
-    state = {}
+    state = {
+        roomId:"",
+        name: "",
+        description: "",
+        rent: "",
+        category: "",
+        openSpots: "",
+        availableDate: "",
+        city: "",
+        state: "",
+        zip: "",
+        users:[],
+        owner: "",
+        bills: [],
+        todos: [],
+        messages: [],
+    }
     componentDidMount = () => {
-        console.log(this.props)
+        console.log(this.props)&
+        API.getUserRoom(this.props.id).then(res =>
+            console.log(res)&
+            this.setState({ 
+                roomId: res.data[0]._id,
+                name: res.data[0].name,
+                description: res.data[0].description,
+                rent: res.data[0].rent,
+                category: res.data[0].category,
+                openSpots: res.data[0].openSpots,
+                availableDate: res.data[0].availableDate,
+                city: res.data[0].city,
+                state: res.data[0].state,
+                zip: res.data[0].zip,
+                users: res.data[0].user,
+                owner: res.data[0].user[0],
+                bills: res.data[0].bill,
+                todos: res.data[0].todo,
+                messages: res.data[0].message,
+              })
+        )
     }
     createRoom =()=>{
         this.props.history.push(`/roomCreate`)
@@ -94,12 +130,22 @@ class UserPortal extends Component {
                                     </div>                          
                                 </Row>
                                 <div className="col-md-12" id="createroomButton">
-                                        <div className="col-md-3 offset-md-1" >
+                                        {!this.state.roomId &&
+                                            <div className="col-md-3 offset-md-1" >
                                             <button onClick={this.createRoom}>Create New Room</button>
-                                        </div>
-                                        <div className="col-md-3 offset-md-1" >
+                                            </div>
+                                        }
+                                        {this.state.roomId &&
+                                            <div className="col-md-3 offset-md-1" >
                                             <button onClick={this.viewRoom}>View Room</button>
-                                        </div>
+                                            </div>
+                                        }
+                                        {/* <div className="col-md-3 offset-md-1" >
+                                            <button onClick={this.createRoom}>Create New Room</button>
+                                        </div> */}
+                                        {/* <div className="col-md-3 offset-md-1" >
+                                            <button onClick={this.viewRoom}>View Room</button>
+                                        </div> */}
                                     </div>
                             </div>
                         </Col>
