@@ -105,10 +105,10 @@ class Room extends Component {
                         <Table>
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Task</th>
                                     <th scope="col">Assigned To</th>
-                                    <th scope="col">Recurring</th>
+                                    {/* <th scope="col">Recurring</th> */}
                                     <th scope="col">Due Date</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Description</th>
