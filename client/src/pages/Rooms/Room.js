@@ -27,6 +27,7 @@ class Room extends Component {
         subject: "",
         to: "",
         message: "",
+        roomID:""
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -83,6 +84,7 @@ class Room extends Component {
                 bills: res.data[0].bill,
                 todos: res.data[0].todo,
                 messages: res.data[0].message,
+                roomID: res.data[0]._id
               })
         )
     }

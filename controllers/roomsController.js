@@ -20,6 +20,7 @@ module.exports = {
     db.Room
       .find({user:req.params.id})
       .populate("user")
+      .populate("bill")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

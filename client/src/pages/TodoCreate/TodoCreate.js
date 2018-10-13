@@ -22,6 +22,12 @@ class TodoCreate extends Component {
         hideCalender: true
     }
 
+    handleOnChange = (e) => {
+        this.setState({
+            category: e.target.value
+        })
+    }
+
     changeDueDate = event => {
         this.setState({ hideCalender: !this.state.hideCalender });
         //console.log(document.getElementById('react-calendar').style);
@@ -130,6 +136,13 @@ class TodoCreate extends Component {
                                             name="category"
                                             placeholder="Category"
                                         />
+                                        {/* <select defaultValue="" onChange={this.handleOnChange}>
+                                            <option value="">Category</option>
+                                            <option value="Dormroom">Dorm Room</option>
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Duplex">Duplex</option>
+                                            <option value="House">House</option>
+                                        </select> */}
                                     </Col>
                                 </Row>
                                 <Row>
