@@ -111,7 +111,10 @@ class App extends Component {
             />
             } />
             <Route exact path="/userHome" component={UserHome} />
-            <Route exact path="/room" component={Room} />
+            <Route exact path="/room" render={(props) =><Room {...props} 
+                  id={this.state.id}
+                />
+              } />
             <Route exact path="/userSearch" component={UserSearch}
             />
             <Route exact path="/roomSearch" render={(props) => <RoomSearch {...props}
@@ -120,7 +123,7 @@ class App extends Component {
               lastName={this.state.lastName}
               gender={this.state.gender}
               email={this.state.email}
-              location="Kansas City"
+              // location="Kansas City"
               // facebookToken={this.state.facebookToken}
               facebookId={this.state.facebookId}
               birthday={this.state.birthday}

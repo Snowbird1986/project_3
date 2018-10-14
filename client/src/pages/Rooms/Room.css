@@ -1,0 +1,42 @@
+#roomies {
+    overflow:auto;
+    background-color:whitesmoke;
+    padding-top:10px;
+    margin-top:15px;
+    border-right:7px solid lightslategray; 
+    text-align:center
+}
+#tasks {
+    overflow:auto;
+    background-color:whitesmoke;
+    padding-top:10px;
+    margin-top:15px;
+    border-left:7px solid lightslategray; 
+    text-align:center
+}
+#bills {
+    overflow:auto;
+    background-color:whitesmoke;
+    padding-top:10px;
+    margin-top:15px;
+    margin-bottom: 15px;
+    border-right:7px solid lightslategray; 
+    text-align:center
+}
+#messages {
+    overflow:auto;
+    background-color:whitesmoke;
+    padding-top:10px;
+    margin-top:15px;
+    margin-bottom: 15px;
+    border-left:7px solid lightslategray; 
+    text-align:center
+}
+#formdiv {
+    background-color:lightslategray;
+    
+}
+img {
+    width:50px;
+    height:auto;
+}

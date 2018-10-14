@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Room
       .find(req.query)
+      .populate("user")
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -18,6 +19,7 @@ module.exports = {
   findByUserId: function(req, res) {
     db.Room
       .find({user:req.params.id})
+      .populate("user")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
