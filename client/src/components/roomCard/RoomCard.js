@@ -2,26 +2,10 @@ import React, { Component } from "react";
 import "./RoomCard.css";
 class RoomCard extends Component {
   componentDidMount = () => {
-    //console.log(this.props)
   }
 
   state = {
     userArray: this.props.children
-    // userArray: [
-    //   //   {
-
-    //   //   pic: this.props.children[0].img,
-    //   //   birthday: this.props.children[0].birthday,
-    //   //   email: this.props.children[0].email,
-    //   //   first_Name: this.props.children[0].firstName,
-    //   //   gender: this.props.children[0].gender,
-    //   //   last_Name: this.props.children[0].lastName,
-    //   //   location: this.props.children[0].location
-
-    //   // }
-    //   //, 
-    //   "user2", "user3", "user4", "user5"]
-
 
   };
   picSize = (userArray) => {
@@ -31,17 +15,20 @@ class RoomCard extends Component {
 
   };
 
-  render() {
-    console.log(this.props.children)
 
-    const dims = this.picSize(this.state.userArray);
-    // const pic = this.props.children[0].img;
-    // const birthday = this.props.children[0].birthday;
-    // const email = this.props.children[0].email;
-    // const first_Name = this.props.children[0].firstName;
-    // const gender = this.props.children[0].gender;
-    // const last_Name = this.props.children[0].lastName;
-    // const location = this.props.children[0].location;
+  render() {
+    console.log(this.props.children[0].openSpots)
+    const spots = this.props.children[0].openSpots;
+    const myRooms = this.props.children[0].rooms;
+    const roomsWithAvailable = [];
+    const makeLoop = (myRooms) => {
+      roomsWithAvailable.push(Array.apply(null, Array(Number(spots))))
+      return roomsWithAvailable
+    }
+    makeLoop()
+
+    console.log(roomsWithAvailable[0])
+    const dims = this.picSize(roomsWithAvailable[0]);
     return (
       <div onClick={() => console.log("")} className="card">
 
@@ -56,29 +43,23 @@ class RoomCard extends Component {
               color: "white",
               fontSize: "21px"
             }}>
-              4 person occupancy : 1 vacancy
+              4 person occupancy : {this.props.children[0].openSpots} vacancy
             </h1>
           </div>
-          {this.props.children.map((user, idx) => <div style={{
-            margin: "10px",
-            width: `${dims[0]}px`,
-            height: `${dims[1]}px`,
-            float: "left",
-            backgroundColor: "white"
-          }} key={`img-${idx}`} >
-            <img src={user.img} /></div>
+          {roomsWithAvailable[0].map((room, idx) =>
+            <div style={{
+              margin: "10px",
+              width: `${dims[0]}px`,
+              height: `${dims[1]}px`,
+              float: "left",
+              backgroundColor: "white"
+            }} key={`img-${idx}`}>
+
+            </div>
           )}
-          {/* <div style={{
-            margin: "10px",
-            width: "40px",
-            height: "40px",
-            backgroundColor: "white"
-          }}>
 
-          </div> */}
 
-          {/* <img alt={props.name} src={props.image} /> */}
-          {/* <img src={this.props.img} /> */}
+
         </div>
       </div>
     )

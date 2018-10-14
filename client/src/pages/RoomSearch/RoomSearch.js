@@ -26,8 +26,8 @@ class RoomSearch extends Component {
                         zip: res.data[0].zip,
                         budget: res.data[0].budget
                     });
-                    console.log(this.state.img)
-                    console.log(this.state.name)
+                    //console.log(this.state.img)
+                    //console.log(this.state.name)
                     // console.log(res.data[0].imgUrl)
                 })
                 .catch(err => console.log(err));
@@ -48,20 +48,25 @@ class RoomSearch extends Component {
         city: "",
         state: "",
         zip: "",
-        img: ""
+        img: "",
+        rooms: [],
+        roomates: []
     }
     viewRoom = event => {
         event.preventDefault();
 
         if ("farts" == "farts") {
-            API.getUsers({
+            API.getRooms({
 
             })
                 .then(res => {
                     this.setState({
-                        img: res.data[0].imgUrl
+                        rooms: res.data,
+                        roomates: Array.apply(null, Array(Number(res.data[0].openSpots)))
+                        //roomates: new Array(Number(res.data[0].openSpots))
                     });
-                    console.log(this.state.img)
+                    console.log(res.data)
+                    //console.log(this.state.img)
                     // console.log(res.data[0].imgUrl)
                 })
                 .catch(err => console.log(err));
@@ -99,7 +104,10 @@ class RoomSearch extends Component {
                         <Jumbotron>
                             Search Rooms:
                         </Jumbotron>
-                        <RoomCard >{this.state} </RoomCard>
+                        {this.state.rooms.map((room, idx) =>
+                            <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
+                        )}
+
                         <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
