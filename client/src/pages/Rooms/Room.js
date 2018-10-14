@@ -185,13 +185,13 @@ class Room extends Component {
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col" width="15%">Bill Name</th>
-                                    <th scope="col" width="20%">Assigned To</th>
-                                    <th scope="col" width="10%">Amount</th>
-                                    <th scope="col" width="20%">Due Date</th>
-                                    <th scope="col" width="30%">Description</th>
-                                    <th scope="col" width="5%">Fin</th>
+                                        <th scope="col"></th>
+                                        <th scope="col" width="15%">Bill Name</th>
+                                        <th scope="col" width="20%">Assigned To</th>
+                                        <th scope="col" width="10%">Amount</th>
+                                        <th scope="col" width="20%">Due Date</th>
+                                        <th scope="col" width="30%">Description</th>
+                                        <th scope="col" width="5%">Fin</th>
                                     </tr>
                                 </thead>
                                     {

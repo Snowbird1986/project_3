@@ -25,6 +25,13 @@ class UserPortal extends Component {
         todos: [],
         messages: [],
     }
+
+    payBill=()=>{
+
+    }
+    completeTask =()=>{
+        
+    }
     componentDidMount = () => {
         console.log(this.props)&
         API.getUserRoom(this.props.id).then(res =>
@@ -83,22 +90,24 @@ class UserPortal extends Component {
                                         <Table>            
                                             <thead>
                                                 <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Bill</th>
-                                                <th scope="col">Amount</th>
-                                                <th scope="col">Due Date</th>
-                                                <th scope="col">Category</th>
-                                                <th scope="col">Description</th>
+                                                    <th scope="col"></th>
+                                                    <th scope="col" width="15%">Bill Name</th>
+                                                    <th scope="col" width="20%">Assigned To</th>
+                                                    <th scope="col" width="10%">Amount</th>
+                                                    <th scope="col" width="20%">Due Date</th>
+                                                    <th scope="col" width="30%">Description</th>
+                                                    <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">1</th>
+                                                    <th scope="row"></th>
                                                         <td>Electric</td>
+                                                        <td>Jeff Kounter</td>
                                                         <td>$95</td>
                                                         <td>11/1/2018</td>
                                                         <td>Utilities</td>
-                                                        <td>Mail check by Friday</td>
+                                                        <td><button onClick={this.payBill}>X</button></td>
                                                 </tr>
                                             </tbody>
                                         </Table>
@@ -108,22 +117,24 @@ class UserPortal extends Component {
                                         <Table>                                            
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Task</th>
-                                                    <th scope="col">Recurring</th>
-                                                    <th scope="col">Due Date</th>
-                                                    <th scope="col">Category</th>
-                                                    <th scope="col">Description</th>
+                                                    <th scope="col"></th>
+                                                    <th scope="col" width="20%">Task</th>
+                                                    <th scope="col" width="25%">Assigned To</th>
+                                                    {/* <th scope="col">Recurring</th> */}
+                                                    <th scope="col" width="20%">Due Date</th>
+                                                    {/* <th scope="col">Category</th> */}
+                                                    <th scope="col" width="30%">Description</th>
+                                                    <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
                                                         <td>Mow yard</td>
-                                                        <td>false</td>
+                                                        <td>Jeff Kounter</td>
                                                         <td>11/1/2018</td>
-                                                        <td>Yardwork</td>
                                                         <td>Weedwhack and mow lawn</td>
+                                                        <td><button onClick={this.completeTask}>X</button></td>
                                                     </tr>
                                             </tbody>
                                         </Table>
