@@ -1,28 +1,35 @@
-import React from "react";
+import React , { Component } from "react";
+import moment from 'moment';
 import "./TableRowBill.css";
 
-const TableRowBill = props => {
-  return (
-    // <tr>
-    //   <th scope="row"><img src={props.imgUrl} /></th>
-    //     <td>{props.firstName}</td>
-    //     <td>{props.lastName}</td>
-    //     <td><a href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a></td>
-    //     <td><a href={`mailto:${props.email}`}>{props.email}</a></td>
-    // </tr>
-    <tbody>
-      {!props.paid&&
-        <tr>
-            <th scope="row"></th>
-              <td>{props.category}</td>
-              <td>{props.assignee}</td>
-              <td>${props.amount}</td>
-              <td>{props.dueDate}</td>
-              <td>{props.description}</td>
-              <td><button value={props.id} onClick={this.payBill}>X</button></td>
-        </tr>
-      }
-    </tbody>
-  );
+class TableRowBill extends Component {
+  state={
+    dueDate:""
+  }
+// const TableRowBill = props => {
+  componentDidMount(){
+    this.setState({
+      dueDate:moment(this.props.dueDate).format("dddd, MMMM Do YYYY")
+    })
+  // var dueDate=moment(props.dueDate).format("dddd, MMMM Do YYYY")
+  }
+  // console.log(dueDate)
+  render(){
+    return (
+      <tbody>
+        {!this.props.paid&&
+          <tr>
+              <th scope="row"></th>
+                <td>{this.props.category}</td>
+                <td>{this.props.assignee}</td>
+                <td>${this.props.amount}</td>
+                <td>{this.state.dueDate}</td>
+                <td>{this.props.description}</td>
+                <td><button value={this.props.id} onClick={this.props.payBill}>X</button></td>
+          </tr>
+        }
+      </tbody>
+    );
+  };
 };
 export default TableRowBill;

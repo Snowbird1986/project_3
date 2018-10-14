@@ -206,6 +206,7 @@ class Room extends Component {
                                         paid={bill.paid}
                                         id={bill._id}
                                         key={bill._id}
+                                        payBill={this.payBill}
                                         />
                                         })
                                     }
