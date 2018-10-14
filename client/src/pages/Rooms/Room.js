@@ -6,6 +6,7 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import Table from "../../components/Table";
 import TableRow from "../../components/TableRow";
+import TableRowBill from "../../components/TableRowBill";
 import "./Room.css";
 
 class Room extends Component {
@@ -193,18 +194,21 @@ class Room extends Component {
                                     <th scope="col" width="5%">Fin</th>
                                     </tr>
                                 </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                            <td>Electric</td>
-                                            <td>Frank</td>
-                                            <td>$95</td>
-                                            <td>11/1/2018</td>
-                                            <td>Mail check by Friday</td>
-                                            <td><button onClick={this.payBill}>X</button></td>
-                                    </tr>
-                                </tbody>
+                                    {
+                                    this.state.bills.map((bill, i) =>{
+                                        return <TableRowBill 
+                                        amount={bill.amount}
+                                        assignee={bill.assignee}
+                                        category={bill.category}
+                                        description={bill.description}
+                                        dueDate={bill.dueDate}
+                                        title={bill.title}
+                                        paid={bill.paid}
+                                        id={bill._id}
+                                        key={bill._id}
+                                        />
+                                        })
+                                    }
                             </Table>
                         </div>
 
