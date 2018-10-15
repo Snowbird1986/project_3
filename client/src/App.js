@@ -158,7 +158,11 @@ class App extends Component {
             </RoomCard>
             } />
             <Route exact path="/roomCreate" component={RoomCreate} />
-            <Route exact path="/todoCreate" component={TodoCreate} />
+            <Route exact path="/todoCreate" render={(props) =><TodoCreate {...props} 
+                  id={this.state.id}
+                  roomID={this.state.roomID}
+                />
+              } />
             <Route exact path="/billCreate" render={(props) =><BillCreate {...props} 
                   id={this.state.id}
                   roomID={this.state.roomID}

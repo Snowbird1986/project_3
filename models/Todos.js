@@ -12,14 +12,16 @@ var TodosSchema = new Schema({
   body: String,
 
   dateAdded: { type: Date, default: Date.now },
+  category: {type:String},
   completed: {
     type: Boolean,
+    default: false
   },
   recurring: {
     type: Boolean,
   },
   frequency: {
-    type:Number
+    type:String
   },
   assignee: {
     type:String
