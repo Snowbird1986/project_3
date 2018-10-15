@@ -62,7 +62,8 @@ class App extends Component {
           id: res.data[0]._id
         })&
         API.getUserRoom(this.state.id).then(res =>
-          console.log(res)&
+          // console.log(res)&
+          {res.data[0]&&
           this.setState({ 
               // name: res.data[0].name,
               // description: res.data[0].description,
@@ -80,6 +81,7 @@ class App extends Component {
               // messages: res.data[0].message,
               roomID: res.data[0]._id
             })
+          }
       )
       )
         .catch(err => console.log(err));

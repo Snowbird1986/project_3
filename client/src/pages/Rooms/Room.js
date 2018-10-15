@@ -7,6 +7,7 @@ import API from "../../utils/API";
 import Table from "../../components/Table";
 import TableRow from "../../components/TableRow";
 import TableRowBill from "../../components/TableRowBill";
+import TableRowTodo from "../../components/TableRowTodo";
 import "./Room.css";
 
 class Room extends Component {
@@ -155,6 +156,21 @@ class Room extends Component {
                                     <th scope="col" width="5%">Fin</th>
                                 </tr>
                             </thead>
+                            {
+                                this.state.todos.map((todo, i) =>{
+                                    return <TableRowTodo 
+                                    assignee={todo.assignee}
+                                    category={todo.category}
+                                    body={todo.body}
+                                    dueDate={todo.dueDate}
+                                    title={todo.title}
+                                    paid={todo.paid}
+                                    id={todo._id}
+                                    key={todo._id}
+                                    completeTask={this.completeTask}
+                                    />
+                                    })
+                                }
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>

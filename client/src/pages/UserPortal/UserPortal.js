@@ -35,7 +35,8 @@ class UserPortal extends Component {
     componentDidMount = () => {
         console.log(this.props)&
         API.getUserRoom(this.props.id).then(res =>
-            console.log(res)&
+            // console.log(res)&
+            {res.data[0]&&
             this.setState({ 
                 roomId: res.data[0]._id,
                 name: res.data[0].name,
@@ -53,6 +54,7 @@ class UserPortal extends Component {
                 todos: res.data[0].todo,
                 messages: res.data[0].message,
               })
+            }
         )
     }
     createRoom =()=>{
