@@ -175,27 +175,6 @@ class Room extends Component {
                                     />
                                     })
                                 }
-                            {/* <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                        <td>Mow yard</td>
-                                        <td>Bob Boberson</td>
-                                        <td>11/1/2018</td>
-                                        <td>Weedwhack and mow lawn</td>
-                                        <td><button onClick={this.completeTask}>X</button></td>
-                                    </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                        <td>Dishes</td>
-                                        <td>Frank Frankfurt</td>
-                                        <td>10/15/2018</td>
-                                        <td>Wash, dry, put away dishes</td>
-                                        <td><button onClick={this.completeTask}>X</button></td>
-                                    </tr>
-                                <tr>
-                                
-                                </tr>
-                            </tbody> */}
                             </Table>
                         </div>
                     </Row>

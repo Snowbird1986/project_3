@@ -213,7 +213,7 @@ class RoomCreate extends Component {
                                 </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
+                                        Post Room
                                     </FormBtn>
                                 </div>
                             </form>
