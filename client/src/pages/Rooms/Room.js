@@ -135,6 +135,7 @@ class Room extends Component {
                                     id={user._id}
                                     key={user._id}
                                     imgUrl={user.imgUrl}
+                                    // viewUser={this.state.viewUser}
                                     />
                                     })
                                 }
