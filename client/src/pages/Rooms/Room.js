@@ -70,7 +70,8 @@ class Room extends Component {
     componentDidMount = () => {
         console.log(this.props)
         API.getUserRoom(this.props.id).then(res =>
-            console.log(res)&
+            // console.log(res)&
+            {res.data[0]&&
             this.setState({ 
                 name: res.data[0].name,
                 description: res.data[0].description,
@@ -88,6 +89,7 @@ class Room extends Component {
                 messages: res.data[0].message,
                 roomID: res.data[0]._id
               })
+            }
         )
     }
 
