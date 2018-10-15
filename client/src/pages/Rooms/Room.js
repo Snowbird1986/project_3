@@ -165,15 +165,17 @@ class Room extends Component {
                                     category={todo.category}
                                     body={todo.body}
                                     dueDate={todo.dueDate}
+                                    completed={todo.completed}
+                                    recurring={todo.recurring}
+                                    frequency={todo.frequency}
                                     title={todo.title}
-                                    paid={todo.paid}
                                     id={todo._id}
                                     key={todo._id}
                                     completeTask={this.completeTask}
                                     />
                                     })
                                 }
-                            <tbody>
+                            {/* <tbody>
                                 <tr>
                                     <th scope="row">1</th>
                                         <td>Mow yard</td>
@@ -193,7 +195,7 @@ class Room extends Component {
                                 <tr>
                                 
                                 </tr>
-                            </tbody>
+                            </tbody> */}
                             </Table>
                         </div>
                     </Row>
