@@ -104,7 +104,7 @@ class RoomCreate extends Component {
                     // return 
                     // console.log(result.data._id)
                     // console.log(this.props.id)
-                    API.updateRooms(result.data._id,{"$push":{ user: this.props.id }}).then(console.log)
+                    API.updateRooms(result.data._id,{"$push":{ user: this.props.id }})
                     .then(res => this.props.history.push(`/room`));
                   }
                 )
@@ -213,7 +213,7 @@ class RoomCreate extends Component {
                                 </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
+                                        Post Room
                                     </FormBtn>
                                 </div>
                             </form>

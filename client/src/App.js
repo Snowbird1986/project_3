@@ -31,6 +31,7 @@ class App extends Component {
       location: null,
       img: null,
       id: null,
+      roomID:null,
     }
   }
   onFacebookLogin = (loginStatus, resultObject) => {
@@ -52,13 +53,36 @@ class App extends Component {
       // window.location="/userPortal"
       API.getFBUser(this.state.facebookId).then(res =>
         // console.log(res))
+        
         this.setState({
           gender: res.data[0].gender,
           // email: res.email,
           birthday: res.data[0].birthday,
           location: res.data[0].location,
           id: res.data[0]._id
-        })
+        })&
+        API.getUserRoom(this.state.id).then(res =>
+          // console.log(res)&
+          {res.data[0]&&
+          this.setState({ 
+              // name: res.data[0].name,
+              // description: res.data[0].description,
+              // rent: res.data[0].rent,
+              // category: res.data[0].category,
+              // openSpots: res.data[0].openSpots,
+              // availableDate: res.data[0].availableDate,
+              // city: res.data[0].city,
+              // state: res.data[0].state,
+              // zip: res.data[0].zip,
+              // users: res.data[0].user,
+              // owner: res.data[0].user[0],
+              // bills: res.data[0].bill,
+              // todos: res.data[0].todo,
+              // messages: res.data[0].message,
+              roomID: res.data[0]._id
+            })
+          }
+      )
       )
         .catch(err => console.log(err));
     } else {
@@ -135,9 +159,20 @@ class App extends Component {
               state={this.state}>
             </RoomCard>
             } />
-            <Route exact path="/roomCreate" component={RoomCreate} />
-            <Route exact path="/todoCreate" component={TodoCreate} />
-            <Route exact path="/billCreate" component={BillCreate} />
+            <Route exact path="/roomCreate" render={(props) =><RoomCreate {...props} 
+                  id={this.state.id}
+                />
+              } />
+            <Route exact path="/todoCreate" render={(props) =><TodoCreate {...props} 
+                  id={this.state.id}
+                  roomID={this.state.roomID}
+                />
+              } />
+            <Route exact path="/billCreate" render={(props) =><BillCreate {...props} 
+                  id={this.state.id}
+                  roomID={this.state.roomID}
+                />
+              } />
             <Route component={NoMatch} />
           </Switch>
           <Footer />
