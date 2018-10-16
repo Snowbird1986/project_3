@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
+import TableRowTodoPortal from "../../components/TableRowTodoPortal";
+import TableRowBillPortal from "../../components/TableRowBillPortal";
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
 import "./UserPortal.css";
@@ -57,6 +59,9 @@ class UserPortal extends Component {
             }
         )
     }
+    componentDidUpdate =()=>{
+        console.log(this.state)
+    }
     createRoom =()=>{
         this.props.history.push(`/roomCreate`)
     }
@@ -101,17 +106,23 @@ class UserPortal extends Component {
                                                     <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row"></th>
-                                                        <td>Electric</td>
-                                                        <td>Jeff Kounter</td>
-                                                        <td>$95</td>
-                                                        <td>11/1/2018</td>
-                                                        <td>Utilities</td>
-                                                        <td><button onClick={this.payBill}>X</button></td>
-                                                </tr>
-                                            </tbody>
+                                            {
+                                                this.state.bills.map((bill, i) =>{
+                                                    return <TableRowBillPortal 
+                                                    amount={bill.amount}
+                                                    assignee={bill.assignee}
+                                                    category={bill.category}
+                                                    description={bill.description}
+                                                    dueDate={bill.dueDate}
+                                                    title={bill.title}
+                                                    paid={bill.paid}
+                                                    id={bill._id}
+                                                    key={bill._id}
+                                                    payBill={this.payBill}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
                                         </Table>
                                     </div>
                                     <div className="col-md-10 offset-md-1">
@@ -129,16 +140,24 @@ class UserPortal extends Component {
                                                     <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                        <td>Mow yard</td>
-                                                        <td>Jeff Kounter</td>
-                                                        <td>11/1/2018</td>
-                                                        <td>Weedwhack and mow lawn</td>
-                                                        <td><button onClick={this.completeTask}>X</button></td>
-                                                    </tr>
-                                            </tbody>
+                                            {
+                                                this.state.todos.map((todo, i) =>{
+                                                    return <TableRowTodoPortal 
+                                                    assignee={todo.assignee}
+                                                    category={todo.category}
+                                                    body={todo.body}
+                                                    dueDate={todo.dueDate}
+                                                    completed={todo.completed}
+                                                    recurring={todo.recurring}
+                                                    frequency={todo.frequency}
+                                                    title={todo.title}
+                                                    id={todo._id}
+                                                    key={todo._id}
+                                                    completeTask={this.completeTask}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
                                         </Table>
                                     </div>                          
                                 </Row>
