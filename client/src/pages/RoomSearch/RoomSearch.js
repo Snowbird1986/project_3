@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import RoomCard from "../../components/roomCard";
+import _ from 'lodash';
 import API from "../../utils/API";
 
 import "./RoomSearch.css";
@@ -52,20 +53,28 @@ class RoomSearch extends Component {
         rooms: [],
         roomates: []
     }
-    viewRoom = event => {
+    viewRoom = (event) => {
         event.preventDefault();
+        // console.log(this.state.budget.replace(/[^0-9]/, ''))
 
         if ("farts" == "farts") {
             API.getRooms({
 
             })
                 .then(res => {
+
                     this.setState({
-                        rooms: res.data,
+                        rooms: res.data.filter(rooms => {
+                            return rooms.rent == 800
+                        }),
                         roomates: Array.apply(null, Array(Number(res.data[0].openSpots)))
                         //roomates: new Array(Number(res.data[0].openSpots))
                     });
-                    console.log(res.data)
+
+                    // let roomFilter = res.data.filter(rooms => {
+                    //     return rooms.rent == 800
+                    // })
+                    //console.log(roomFilter);
                     //console.log(this.state.img)
                     // console.log(res.data[0].imgUrl)
                 })
@@ -82,6 +91,7 @@ class RoomSearch extends Component {
         this.setState({
             [name]: value
         });
+
     };
     handleFormSubmit = event => {
         event.preventDefault();
@@ -104,11 +114,13 @@ class RoomSearch extends Component {
                         <Jumbotron>
                             Search Rooms:
                         </Jumbotron>
-                        {this.state.rooms.map((room, idx) =>
-                            <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
-                        )}
+                        <div id="rooms">
+                            {this.state.rooms.map((room, idx) =>
+                                <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
+                            )}
 
-                        <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div>
+                            <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div>
+                        </div>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
@@ -192,15 +204,15 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <div className="buttons">
-                                    <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
+                                    <FormBtn onClick={this.viewRoom}>
+                                        Find a room
                                     </FormBtn>
                                 </div>
                             </form>
                         </div>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
         )
     }
 }

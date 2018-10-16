@@ -10,11 +10,11 @@ var RoomsSchema = new Schema({
   name: String,
   // `body` is of type String
   description: String,
-  rent: {type:Number},
-  category: {type:String},
-  openSpots: {type:Number},
-  availableDate: { 
-    type: Date, 
+  rent: { type: Number },
+  category: { type: String },
+  openSpots: { type: Number },
+  availableDate: {
+    type: Date,
     // validate: [
     //     function(availableDate) {
     //         return availableDate>Date.now
@@ -22,47 +22,47 @@ var RoomsSchema = new Schema({
     //     "Available Date Must be a future date"
     // ]
   },
-  city:{
-    type:String,
+  city: {
+    type: String,
     required: [true, "City required"]
   },
-  state:{
-      type:String,
-      required: [true, "State required"]
-    },
-  zip:{
-      type:String,
-      required: [true, "Zip required"]
-    },
+  state: {
+    type: String,
+    required: [true, "State required"]
+  },
+  zip: {
+    type: String,
+    required: [true, "Zip required"]
+  },
   message: [{
     type: Schema.Types.ObjectId,
     ref: "Message"
-    }
+  }
   ],
   bill: [{
     type: Schema.Types.ObjectId,
     ref: "Bill"
-    }
+  }
   ],
   todo: [{
     type: Schema.Types.ObjectId,
     ref: "Todo"
-    }
+  }
   ],
   owner: [{
     type: Schema.Types.ObjectId,
     ref: "User"
-    }
+  }
   ],
   user: [{
     type: Schema.Types.ObjectId,
     ref: "User"
-    }
+  }
   ],
   contract: [{
     type: Schema.Types.ObjectId,
     ref: "Contract"
-    }
+  }
   ],
 
   dateAdded: { type: Date, default: Date.now }

@@ -2,6 +2,13 @@
     background-color:lightslategray;
     
 }
+#rooms{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 40px;
+    grid-row-gap: 40px;
+    margin:40px;
+}
 form {
     padding-top: 30px;
     padding-bottom: 10px;
@@ -14,4 +21,5 @@ form {
 }
 .buttons {
     text-align:center;
+    
 }
