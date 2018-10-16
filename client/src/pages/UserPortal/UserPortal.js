@@ -62,11 +62,18 @@ class UserPortal extends Component {
     }
     componentDidUpdate =()=>{
         console.log(this.state)
+        console.log(this.props)
     }
     createRoom =()=>{
         this.props.history.push(`/roomCreate`)
     }
     viewRoom =()=>{
+        this.props.history.push(`/room`)
+    }
+    editRoom =()=>{
+        this.props.history.push(`/roomEdit`)
+    }
+    deleteRoom =()=>{
         this.props.history.push(`/room`)
     }
     trashMessage=()=>{
@@ -92,6 +99,37 @@ class UserPortal extends Component {
                                     <div className="col-md-3">
                                         {this.props.username}
                                         </div>
+                                    {!this.state.roomId &&
+                                        <div className="col-md-2" >
+                                        <button onClick={this.createRoom}>Create New Room</button>
+                                        </div>
+                                    }
+                                    {this.state.roomId && this.props.id!==this.state.owner._id &&
+                                        <div className="row col-md-7">
+                                            <div className="col-md-4" >
+                                            <button onClick={this.viewRoom}>View Room</button>
+                                            </div>
+                                            {/* <div className="col-md-4 " >
+                                            <button onClick={this.editRoom}>Edit Room</button>
+                                            </div>
+                                            <div className="col-md-4" >
+                                            <button onClick={this.deleteRoom}>Delete Room</button>
+                                            </div> */}
+                                        </div>
+                                    }
+                                    {this.props.id==this.state.owner._id &&
+                                        <div className="row col-md-7">
+                                            <div className="col-md-4" >
+                                            <button onClick={this.viewRoom}>View Room</button>
+                                            </div>
+                                            <div className="col-md-4 " >
+                                            <button onClick={this.editRoom}>Edit Room</button>
+                                            </div>
+                                            <div className="col-md-4" >
+                                            <button onClick={this.deleteRoom}>Delete Room</button>
+                                            </div>
+                                        </div>
+                                    }
                                     </Row>
                                 </div>
                                 <br />
@@ -197,24 +235,32 @@ class UserPortal extends Component {
                                         </Table>
                                     </div>                              
                                 </Row>
-                                <div className="col-md-12" id="createroomButton">
+                                {/* <div className="col-md-12" id="createroomButton">
                                         {!this.state.roomId &&
                                             <div className="col-md-3 offset-md-1" >
                                             <button onClick={this.createRoom}>Create New Room</button>
                                             </div>
                                         }
                                         {this.state.roomId &&
-                                            <div className="col-md-3 offset-md-1" >
-                                            <button onClick={this.viewRoom}>View Room</button>
+                                            <div className="row">
+                                                <div className="col-md-3 offset-md-1" >
+                                                <button onClick={this.viewRoom}>View Room</button>
+                                                </div>
+                                                <div className="col-md-3 " >
+                                                <button onClick={this.editRoom}>Edit Room</button>
+                                                </div>
+                                                <div className="col-md-3" >
+                                                <button onClick={this.deleteRoom}>Delete Room</button>
+                                                </div>
                                             </div>
-                                        }
+                                        } */}
                                         {/* <div className="col-md-3 offset-md-1" >
                                             <button onClick={this.createRoom}>Create New Room</button>
                                         </div> */}
                                         {/* <div className="col-md-3 offset-md-1" >
                                             <button onClick={this.viewRoom}>View Room</button>
                                         </div> */}
-                                    </div>
+                                    {/* </div> */}
                             </div>
                         </Col>
                     </Row>
