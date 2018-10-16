@@ -22,9 +22,8 @@ class TableRowTodo extends Component {
               <th scope="row"></th>
                 <td>{this.props.title}</td>
                 <td>{this.props.assignee}</td>
-                <td>${this.props.amount}</td>
                 <td>{this.state.dueDate}</td>
-                <td>{this.props.description}</td>
+                <td>{this.props.body}</td>
                 <td><button value={this.props.id} onClick={this.props.completeTask}>X</button></td>
           </tr>
         }

@@ -7,7 +7,9 @@ import API from "../../utils/API";
 import Table from "../../components/Table";
 import TableRow from "../../components/TableRow";
 import TableRowBill from "../../components/TableRowBill";
+import TableRowMessage from "../../components/TableRowMessage";
 import TableRowTodo from "../../components/TableRowTodo";
+import BillUserCard from "../../components/BillUserCard";
 import "./Room.css";
 
 class Room extends Component {
@@ -31,6 +33,11 @@ class Room extends Component {
         message: "",
         roomID:""
     }
+    handleOnChange2 = (e) => {
+        this.setState({
+            to: e.target.value
+        })
+    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -39,15 +46,45 @@ class Room extends Component {
     };
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
+        console.log(this.state)
+        console.log(this.props)
+        let messageData = {
+            title: this.state.subject,
+            to: this.state.to,
+            from: this.props.username,
+            body: this.state.message, 
+        }
+        console.log(messageData)
+        if (this.state.subject &&
+            this.state.to &&
+            this.props.username &&
+            this.state.message
+        ) {
+            API.saveMessages(
+                // {
+                messageData
+                // title: this.state.name,
+                // category: this.state.description,
+                // description: this.state.rent,
+                // amount: this.state.category,
+                // dueDate: this.state.openSpots,
+                // assignee: this.state.availableDate,
+            // }
+        )
+                .then(result => {
+                    // function(err,docsInserted){
+                    // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
+                    // // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+                    // // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+                    // return 
+                    // console.log(result.data._id)
+                    // console.log(this.props.id)
+                    API.updateRooms(this.state.roomID,{"$push":{ message: result.data._id }}).then(console.log)
+                    .then(res => this.props.history.push(`/room`));
+                  }
+                )
+                .catch(err => console.log(err));
+            } else { "did not post" }
     };
     viewUser =()=>{
         this.props.history.push(`/userHome`)
@@ -91,6 +128,9 @@ class Room extends Component {
               })
             }
         )
+    }
+    componentDidUpdate=()=>{
+        console.log(this.state)
     }
 
     render() {
@@ -221,22 +261,28 @@ class Room extends Component {
                                         <tr>
                                             <th scope="col"></th>
                                             <th scope="col" width="10%">Subject</th>
+                                            <th scope="col" width="10%">From:</th>
                                             <th scope="col" width="10%">To:</th>
                                             <th scope="col" width="15%">Date Posted</th>
-                                            <th scope="col" width="60%">Message</th>
+                                            <th scope="col" width="50%">Message</th>
                                             <th scope="col" width="5%">Fin</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Hello</td>
-                                            <td>Frank</td>
-                                            <td>10/07/2018</td>
-                                            <td>Have a great day!!!</td>
-                                            <td><button onClick={this.trashMessage}>X</button></td>
-                                        </tr>
-                                    </tbody>
+                                    {
+                                    this.state.messages.map((message, i) =>{
+                                        return <TableRowMessage 
+                                        subject={message.title}
+                                        from={message.from}
+                                        to={message.to}
+                                        message={message.body}
+                                        datePosted={message.dateAdded}
+                                        read={message.read}
+                                        id={message._id}
+                                        key={message._id}
+                                        trashMessage={this.trashMessage}
+                                        />
+                                        })
+                                    }
                                 </Table>
                             <h2>New Messages</h2>
                                 <form id="formdiv">
@@ -250,12 +296,20 @@ class Room extends Component {
                                             />
                                         </Col>
                                         <Col size="md-6">
-                                            <Input
-                                                value={this.state.to}
-                                                onChange={this.handleInputChange}
-                                                name="to"
-                                                placeholder="To:"
-                                            />
+                                            <select defaultValue="" onChange={this.handleOnChange2}>
+                                                <option value="">To:</option>
+                                                {
+                                                this.state.users.map((user, i) =>{
+                                                    return <BillUserCard 
+                                                    firstName={user.firstName}
+                                                    lastName={user.lastName}
+                                                    id={user._id}
+                                                    key={user._id}
+                                                    imgUrl={user.imgUrl}
+                                                    />
+                                                    })
+                                                }
+                                            </select>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -270,7 +324,7 @@ class Room extends Component {
                                     </Row>
                                     <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Post
+                                        Post Message
                                     </FormBtn>
                                 </div>
                                 </form>

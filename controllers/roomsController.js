@@ -22,6 +22,7 @@ module.exports = {
       .populate("user")
       .populate("bill")
       .populate("todo")
+      .populate("message")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

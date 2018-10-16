@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import TableRowTodoPortal from "../../components/TableRowTodoPortal";
 import TableRowBillPortal from "../../components/TableRowBillPortal";
+import TableRowMessagePortal from "../../components/TableRowMessagePortal";
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
 import "./UserPortal.css";
@@ -68,6 +69,9 @@ class UserPortal extends Component {
     viewRoom =()=>{
         this.props.history.push(`/room`)
     }
+    trashMessage=()=>{
+
+    }
 
     render() {
         return (
@@ -131,10 +135,10 @@ class UserPortal extends Component {
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
-                                                    <th scope="col" width="20%">Task</th>
-                                                    <th scope="col" width="25%">Assigned To</th>
+                                                    <th scope="col" width="15%">Task</th>
+                                                    <th scope="col" width="20%">Assigned To</th>
                                                     {/* <th scope="col">Recurring</th> */}
-                                                    <th scope="col" width="20%">Due Date</th>
+                                                    <th scope="col" width="30%">Due Date</th>
                                                     {/* <th scope="col">Category</th> */}
                                                     <th scope="col" width="30%">Description</th>
                                                     <th scope="col" width="5%">Fin</th>
@@ -159,7 +163,39 @@ class UserPortal extends Component {
                                                     })
                                                 }
                                         </Table>
-                                    </div>                          
+                                    </div>
+                                    <div className="col-md-10 offset-md-1">
+                                    <h2>Your Messages</h2>
+                                        <Table>                                            
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col" width="10%">Subject</th>
+                                                    <th scope="col" width="10%">From:</th>
+                                                    {/* <th scope="col" width="10%">To:</th> */}
+                                                    <th scope="col" width="20%">Date Posted</th>
+                                                    <th scope="col" width="55%">Message</th>
+                                                    <th scope="col" width="5%">Fin</th>
+                                                </tr>
+                                            </thead>
+                                            {
+                                                this.state.messages.map((message, i) =>{
+                                                    return <TableRowMessagePortal 
+                                                    subject={message.title}
+                                                    from={message.from}
+                                                    to={message.to}
+                                                    message={message.body}
+                                                    datePosted={message.dateAdded}
+                                                    read={message.read}
+                                                    id={message._id}
+                                                    key={message._id}
+                                                    trashMessage={this.trashMessage}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
+                                        </Table>
+                                    </div>                              
                                 </Row>
                                 <div className="col-md-12" id="createroomButton">
                                         {!this.state.roomId &&
