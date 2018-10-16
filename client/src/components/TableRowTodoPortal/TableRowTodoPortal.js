@@ -1,8 +1,8 @@
 import React , { Component } from "react";
 import moment from 'moment';
-import "./TableRowTodo.css";
+import "./TableRowTodoPortal.css";
 
-class TableRowTodo extends Component {
+class TableRowTodoPortal extends Component {
   state={
     dueDate:""
   }
@@ -17,7 +17,7 @@ class TableRowTodo extends Component {
   render(){
     return (
       <tbody>
-        {!this.props.completed&&
+        {!this.props.completed&&this.props.assignee==this.props.username&&
           <tr>
               <th scope="row"></th>
                 <td>{this.props.title}</td>
@@ -31,4 +31,4 @@ class TableRowTodo extends Component {
     );
   };
 };
-export default TableRowTodo;
+export default TableRowTodoPortal;

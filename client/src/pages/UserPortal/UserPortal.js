@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
+import TableRowTodoPortal from "../../components/TableRowTodoPortal";
+import TableRowBillPortal from "../../components/TableRowBillPortal";
+import TableRowMessagePortal from "../../components/TableRowMessagePortal";
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
 import "./UserPortal.css";
@@ -57,11 +60,17 @@ class UserPortal extends Component {
             }
         )
     }
+    componentDidUpdate =()=>{
+        console.log(this.state)
+    }
     createRoom =()=>{
         this.props.history.push(`/roomCreate`)
     }
     viewRoom =()=>{
         this.props.history.push(`/room`)
+    }
+    trashMessage=()=>{
+
     }
 
     render() {
@@ -101,17 +110,23 @@ class UserPortal extends Component {
                                                     <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row"></th>
-                                                        <td>Electric</td>
-                                                        <td>Jeff Kounter</td>
-                                                        <td>$95</td>
-                                                        <td>11/1/2018</td>
-                                                        <td>Utilities</td>
-                                                        <td><button onClick={this.payBill}>X</button></td>
-                                                </tr>
-                                            </tbody>
+                                            {
+                                                this.state.bills.map((bill, i) =>{
+                                                    return <TableRowBillPortal 
+                                                    amount={bill.amount}
+                                                    assignee={bill.assignee}
+                                                    category={bill.category}
+                                                    description={bill.description}
+                                                    dueDate={bill.dueDate}
+                                                    title={bill.title}
+                                                    paid={bill.paid}
+                                                    id={bill._id}
+                                                    key={bill._id}
+                                                    payBill={this.payBill}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
                                         </Table>
                                     </div>
                                     <div className="col-md-10 offset-md-1">
@@ -120,27 +135,67 @@ class UserPortal extends Component {
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
-                                                    <th scope="col" width="20%">Task</th>
-                                                    <th scope="col" width="25%">Assigned To</th>
+                                                    <th scope="col" width="15%">Task</th>
+                                                    <th scope="col" width="20%">Assigned To</th>
                                                     {/* <th scope="col">Recurring</th> */}
-                                                    <th scope="col" width="20%">Due Date</th>
+                                                    <th scope="col" width="30%">Due Date</th>
                                                     {/* <th scope="col">Category</th> */}
                                                     <th scope="col" width="30%">Description</th>
                                                     <th scope="col" width="5%">Fin</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                        <td>Mow yard</td>
-                                                        <td>Jeff Kounter</td>
-                                                        <td>11/1/2018</td>
-                                                        <td>Weedwhack and mow lawn</td>
-                                                        <td><button onClick={this.completeTask}>X</button></td>
-                                                    </tr>
-                                            </tbody>
+                                            {
+                                                this.state.todos.map((todo, i) =>{
+                                                    return <TableRowTodoPortal 
+                                                    assignee={todo.assignee}
+                                                    category={todo.category}
+                                                    body={todo.body}
+                                                    dueDate={todo.dueDate}
+                                                    completed={todo.completed}
+                                                    recurring={todo.recurring}
+                                                    frequency={todo.frequency}
+                                                    title={todo.title}
+                                                    id={todo._id}
+                                                    key={todo._id}
+                                                    completeTask={this.completeTask}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
                                         </Table>
-                                    </div>                          
+                                    </div>
+                                    <div className="col-md-10 offset-md-1">
+                                    <h2>Your Messages</h2>
+                                        <Table>                                            
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col" width="10%">Subject</th>
+                                                    <th scope="col" width="10%">From:</th>
+                                                    {/* <th scope="col" width="10%">To:</th> */}
+                                                    <th scope="col" width="20%">Date Posted</th>
+                                                    <th scope="col" width="55%">Message</th>
+                                                    <th scope="col" width="5%">Fin</th>
+                                                </tr>
+                                            </thead>
+                                            {
+                                                this.state.messages.map((message, i) =>{
+                                                    return <TableRowMessagePortal 
+                                                    subject={message.title}
+                                                    from={message.from}
+                                                    to={message.to}
+                                                    message={message.body}
+                                                    datePosted={message.dateAdded}
+                                                    read={message.read}
+                                                    id={message._id}
+                                                    key={message._id}
+                                                    trashMessage={this.trashMessage}
+                                                    username={this.props.username}
+                                                    />
+                                                    })
+                                                }
+                                        </Table>
+                                    </div>                              
                                 </Row>
                                 <div className="col-md-12" id="createroomButton">
                                         {!this.state.roomId &&

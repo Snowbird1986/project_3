@@ -10,6 +10,8 @@ var MessagesSchema = new Schema({
   title: String,
   // `body` is of type String
   body: String,
+  to: {type:String},
+  from: {type:String},
   read: {
     type:Boolean,
     default: false
