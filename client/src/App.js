@@ -8,6 +8,7 @@ import Landing from "./pages/Landing";
 import Room from "./pages/Rooms";
 import RoomSearch from "./pages/RoomSearch";
 import RoomCreate from "./pages/RoomCreate";
+import RoomEdit from "./pages/RoomEdit";
 import TodoCreate from "./pages/TodoCreate";
 import BillCreate from "./pages/BillCreate";
 import Detail from "./pages/Detail";
@@ -65,20 +66,20 @@ class App extends Component {
           // console.log(res)&
           {res.data[0]&&
           this.setState({ 
-              // name: res.data[0].name,
-              // description: res.data[0].description,
-              // rent: res.data[0].rent,
-              // category: res.data[0].category,
-              // openSpots: res.data[0].openSpots,
-              // availableDate: res.data[0].availableDate,
-              // city: res.data[0].city,
-              // state: res.data[0].state,
-              // zip: res.data[0].zip,
-              // users: res.data[0].user,
-              // owner: res.data[0].user[0],
-              // bills: res.data[0].bill,
-              // todos: res.data[0].todo,
-              // messages: res.data[0].message,
+              name: res.data[0].name,
+              description: res.data[0].description,
+              rent: res.data[0].rent,
+              category: res.data[0].category,
+              openSpots: res.data[0].openSpots,
+              availableDate: res.data[0].availableDate,
+              city: res.data[0].city,
+              state: res.data[0].state,
+              zip: res.data[0].zip,
+              users: res.data[0].user,
+              owner: res.data[0].user[0],
+              bills: res.data[0].bill,
+              todos: res.data[0].todo,
+              messages: res.data[0].message,
               roomID: res.data[0]._id
             })
           }
@@ -132,6 +133,7 @@ class App extends Component {
               birthday={this.state.birthday}
               img={this.state.img}
               id={this.state.id}
+              owner={this.state.owner}
             />
             } />
             <Route exact path="/userHome" component={UserHome} />
@@ -162,6 +164,25 @@ class App extends Component {
             } />
             <Route exact path="/roomCreate" render={(props) =><RoomCreate {...props} 
                   id={this.state.id}
+                />
+              } />
+            <Route exact path="/roomEdit" render={(props) =><RoomEdit {...props} 
+                  id={this.state.id}
+                  name={this.state.name}
+                  description={this.state.description}
+                  rent={this.state.rent}
+                  category={this.state.category}
+                  openSpots={this.state.openSpots}
+                  availableDate={this.state.availableDate}
+                  city={this.state.city}
+                  state={this.state.state}
+                  zip={this.state.zip}
+                  users={this.state.users}
+                  owner={this.state.owner}
+                  bills={this.state.bills}
+                  todos={this.state.todos}
+                  messages={this.state.messages}
+                  roomID={this.state.roomID}
                 />
               } />
             <Route exact path="/todoCreate" render={(props) =><TodoCreate {...props} 
