@@ -19,6 +19,8 @@ class BillCreate extends Component {
         paid: "",
         assignee: "",
         dateAdded: "",
+        recurring:"",
+        frequency:"",
         date: new Date(),
         hideCalender: true,
         users:[]
@@ -32,6 +34,16 @@ class BillCreate extends Component {
     handleOnChange2 = (e) => {
         this.setState({
             assignee: e.target.value
+        })
+    }
+    handleOnChange3 = (e) => {
+        this.setState({
+            recurring: e.target.value
+        })
+    }
+    handleOnChange4 = (e) => {
+        this.setState({
+            frequency: e.target.value
         })
     }
     componentDidMount(){
@@ -81,7 +93,9 @@ class BillCreate extends Component {
             assignee: this.state.assignee,
             amount: this.state.amount,
             dueDate: this.state.dueDate,
-            description: this.state.description, 
+            description: this.state.description,
+            recurring: this.state.recurring, 
+            frequency: this.state.frequency
         }
         console.log(billData)
         if (this.state.title &&
@@ -89,7 +103,9 @@ class BillCreate extends Component {
             this.state.assignee &&
             this.state.dueDate &&
             this.state.amount &&
-            this.state.description
+            this.state.description&&
+            this.state.recurring&&
+            this.state.frequency
         ) {
             API.saveBills(
                 // {
@@ -138,7 +154,7 @@ class BillCreate extends Component {
                                             placeholder="Title"
                                         />
                                     </Col>
-                                    <Col size="md-5">
+                                    <Col size="md-3">
                                         <select defaultValue="" onChange={this.handleOnChange2}>
                                             <option value="">Assign Responsibility</option>
                                             {
@@ -163,9 +179,16 @@ class BillCreate extends Component {
                                             <option value="Water">Water</option>
                                         </select>
                                     </Col>
+                                    <Col size="md-2">
+                                        <select defaultValue="" onChange={this.handleOnChange3}>
+                                            <option value="null">Recurring:</option>
+                                            <option value="true">True</option>
+                                            <option value="false">False</option>
+                                        </select>
+                                    </Col>
                                 </Row>
                                 <Row>
-                                    <Col size="md-6">
+                                    <Col size="md-4">
                                         <Input
                                             value={this.state.amount}
                                             onChange={this.handleInputChange}
@@ -186,6 +209,21 @@ class BillCreate extends Component {
                                             onChange={this.onChange}
                                             value={this.state.date}>
                                         </Calendar>
+                                    </Col>
+                                    <Col size="md-2">
+                                        {/* <Input
+                                            value={this.state.frequency}
+                                            onChange={this.handleInputChange}
+                                            name="frequency"
+                                            placeholder="Frequency"
+                                        /> */}
+                                        <select defaultValue="" onChange={this.handleOnChange4}>
+                                            <option value="">Frequency</option>
+                                            <option value="days">Daily</option>
+                                            <option value="weeks">Weekly</option>
+                                            <option value="months">Monthly</option>
+                                            <option value="years">Yearly</option>
+                                        </select>
                                     </Col>
                                 </Row>
                                 <Row>

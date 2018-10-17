@@ -201,10 +201,10 @@ class TodoCreate extends Component {
                                         /> */}
                                         <select defaultValue="" onChange={this.handleOnChange4}>
                                             <option value="">Frequency</option>
-                                            <option value="Daily">Daily</option>
-                                            <option value="Weekly">Weekly</option>
-                                            <option value="Monthly">Monthly</option>
-                                            <option value="Yearly">Yearly</option>
+                                            <option value="days">Daily</option>
+                                            <option value="weeks">Weekly</option>
+                                            <option value="months">Monthly</option>
+                                            <option value="years">Yearly</option>
                                         </select>
                                     </Col>
                                     <Col size="md-4">
