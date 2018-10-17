@@ -10,6 +10,7 @@ import TableRowBill from "../../components/TableRowBill";
 import TableRowMessage from "../../components/TableRowMessage";
 import TableRowTodo from "../../components/TableRowTodo";
 import BillUserCard from "../../components/BillUserCard";
+import moment from 'moment';
 import "./Room.css";
 
 class Room extends Component {
@@ -92,16 +93,36 @@ class Room extends Component {
     createTask =()=>{
         this.props.history.push(`/todoCreate`)
     }
-    completeTask =(e)=>{
-        console.log(e.target.value)
-        API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/room`));
+    completeTask =(event)=>{
+        event.persist()
+        API.getTodo(event.target.value).then(res=> {
+            event.persist()
+            API.updateTodos(event.target.value,
+                { 
+                completed: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/room`));
+        })
+        // console.log(e.target.value)
+        // API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/room`));
     }
     createBill =()=>{
         this.props.history.push(`/billCreate`)
     }
-    payBill=(e)=>{
-        console.log(e.target.value)
-        API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/room`));
+    payBill=(event)=>{
+        event.persist()
+        API.getBill(event.target.value).then(res=> {
+            event.persist()
+            API.updateBills(event.target.value,
+                { 
+                paid: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/room`));
+        })
+        // console.log(e.target.value)
+        // API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/room`));
     }
     trashMessage=(e)=>{
         console.log(e.target.value)

@@ -14,6 +14,12 @@ var BillsSchema = new Schema({
   amount: {
     type:Number,
   },
+  recurring: {
+    type: Boolean,
+  },
+  frequency: {
+    type:String
+  },
   dueDate: {
     type: Date, 
     // validate: [

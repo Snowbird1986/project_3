@@ -5,6 +5,7 @@ import Jumbotron from "../../components/Jumbotron";
 import TableRowTodoPortal from "../../components/TableRowTodoPortal";
 import TableRowBillPortal from "../../components/TableRowBillPortal";
 import TableRowMessagePortal from "../../components/TableRowMessagePortal";
+import moment from 'moment';
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
 import "./UserPortal.css";
@@ -29,13 +30,33 @@ class UserPortal extends Component {
         messages: [],
     }
 
-    payBill=(e)=>{
-        console.log(e.target.value)
-        API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/userPortal`));
+    payBill=(event)=>{
+        event.persist()
+        API.getBill(event.target.value).then(res=> {
+            event.persist()
+            API.updateBills(event.target.value,
+                { 
+                paid: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/userPortal`));
+        })
+        // console.log(e.target.value)
+        // API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
-    completeTask =(e)=>{
-        console.log(e.target.value)
-        API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/userPortal`));
+    completeTask =(event)=>{
+        event.persist()
+        API.getTodo(event.target.value).then(res=> {
+            event.persist()
+            API.updateTodos(event.target.value,
+                { 
+                completed: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/userPortal`));
+        })
+        // console.log(e.target.value)
+        // API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
     componentDidMount = () => {
         console.log(this.props)&
