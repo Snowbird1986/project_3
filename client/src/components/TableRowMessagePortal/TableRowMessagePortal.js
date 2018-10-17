@@ -17,7 +17,7 @@ class TableRowMessagePortal extends Component {
   render(){
     return (
       <tbody>
-        {!this.props.completed&&this.props.to==this.props.username&&
+        {!this.props.read&&this.props.to==this.props.username&&
           <tr>
               <th scope="row"></th>
                 <td>{this.props.subject}</td>

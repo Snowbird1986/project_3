@@ -86,4 +86,13 @@ export default {
   updateRooms: function (id, data) {
     return axios.put("/api/rooms/"+id, data);
   },
+  updateBills: function (id, data) {
+    return axios.put("/api/bills/"+id, data);
+  },
+  updateTodos: function (id, data) {
+    return axios.put("/api/todos/"+id, data);
+  },
+  updateMessages: function (id, data) {
+    return axios.put("/api/messages/"+id, data);
+  },
 };

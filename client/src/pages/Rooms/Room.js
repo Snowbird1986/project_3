@@ -92,17 +92,20 @@ class Room extends Component {
     createTask =()=>{
         this.props.history.push(`/todoCreate`)
     }
-    completeTask =()=>{
-        
+    completeTask =(e)=>{
+        console.log(e.target.value)
+        API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/room`));
     }
     createBill =()=>{
         this.props.history.push(`/billCreate`)
     }
-    payBill=()=>{
-
+    payBill=(e)=>{
+        console.log(e.target.value)
+        API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/room`));
     }
-    trashMessage=()=>{
-
+    trashMessage=(e)=>{
+        console.log(e.target.value)
+        API.updateMessages(e.target.value,{ read: true }).then(this.props.history.push(`/refresh/room`));
     }
     componentDidMount = () => {
         console.log(this.props)

@@ -6,6 +6,7 @@ import UserPortal from "./pages/UserPortal";
 import UserSearch from "./pages/UserSearch";
 import Landing from "./pages/Landing";
 import Room from "./pages/Rooms";
+import Refresh from "./pages/Refresh";
 import RoomSearch from "./pages/RoomSearch";
 import RoomCreate from "./pages/RoomCreate";
 import RoomEdit from "./pages/RoomEdit";
@@ -99,6 +100,7 @@ class App extends Component {
         <div>
           <Nav username={this.state.username} id={this.state.id} />
           <Switch>
+            <Refresh path="/refresh" />
             <Route exact path="/" render={(props) => (this.state.username ? (<Redirect to="/user" />) : (<Landing {...props}
               onFacebookLogin={this.onFacebookLogin}
               username={this.state.username}

@@ -29,11 +29,13 @@ class UserPortal extends Component {
         messages: [],
     }
 
-    payBill=()=>{
-
+    payBill=(e)=>{
+        console.log(e.target.value)
+        API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
-    completeTask =()=>{
-        
+    completeTask =(e)=>{
+        console.log(e.target.value)
+        API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
     componentDidMount = () => {
         console.log(this.props)&
@@ -76,8 +78,9 @@ class UserPortal extends Component {
     deleteRoom =()=>{
         this.props.history.push(`/room`)
     }
-    trashMessage=()=>{
-
+    trashMessage=(e)=>{
+        console.log(e.target.value)
+        API.updateMessages(e.target.value,{ read: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
 
     render() {
@@ -117,7 +120,7 @@ class UserPortal extends Component {
                                             </div> */}
                                         </div>
                                     }
-                                    {this.props.id==this.state.owner._id &&
+                                    {this.props.id!==null&& this.props.id==this.state.owner._id &&
                                         <div className="row col-md-7">
                                             <div className="col-md-4" >
                                             <button onClick={this.viewRoom}>View Room</button>
