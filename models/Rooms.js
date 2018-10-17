@@ -59,6 +59,11 @@ var RoomsSchema = new Schema({
     ref: "User"
   }
   ],
+  pendinguser: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
+    }
+  ],
   contract: [{
     type: Schema.Types.ObjectId,
     ref: "Contract"

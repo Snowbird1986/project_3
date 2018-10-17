@@ -1,0 +1,14 @@
+#tablediv {
+    background-color:lightslategray;
+    
+}
+table {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin-bottom:20px
+}
+.fin{
+    background-color:lightcoral;
+    color:black;
+    cursor:pointer
+}

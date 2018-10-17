@@ -6,6 +6,11 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import Table from "../../components/Table";
 import TableRow from "../../components/TableRow";
+import TableRowBill from "../../components/TableRowBill";
+import TableRowMessage from "../../components/TableRowMessage";
+import TableRowTodo from "../../components/TableRowTodo";
+import BillUserCard from "../../components/BillUserCard";
+import moment from 'moment';
 import "./Room.css";
 
 class Room extends Component {
@@ -27,6 +32,12 @@ class Room extends Component {
         subject: "",
         to: "",
         message: "",
+        roomID:""
+    }
+    handleOnChange2 = (e) => {
+        this.setState({
+            to: e.target.value
+        })
     }
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -36,15 +47,45 @@ class Room extends Component {
     };
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
+        console.log(this.state)
+        console.log(this.props)
+        let messageData = {
+            title: this.state.subject,
+            to: this.state.to,
+            from: this.props.username,
+            body: this.state.message, 
+        }
+        console.log(messageData)
+        if (this.state.subject &&
+            this.state.to &&
+            this.props.username &&
+            this.state.message
+        ) {
+            API.saveMessages(
+                // {
+                messageData
+                // title: this.state.name,
+                // category: this.state.description,
+                // description: this.state.rent,
+                // amount: this.state.category,
+                // dueDate: this.state.openSpots,
+                // assignee: this.state.availableDate,
+            // }
+        )
+                .then(result => {
+                    // function(err,docsInserted){
+                    // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
+                    // // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+                    // // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+                    // return 
+                    // console.log(result.data._id)
+                    // console.log(this.props.id)
+                    API.updateRooms(this.state.roomID,{"$push":{ message: result.data._id }}).then(console.log)
+                    .then(res => this.props.history.push(`/room`));
+                  }
+                )
+                .catch(err => console.log(err));
+            } else { "did not post" }
     };
     viewUser =()=>{
         this.props.history.push(`/userHome`)
@@ -52,22 +93,46 @@ class Room extends Component {
     createTask =()=>{
         this.props.history.push(`/todoCreate`)
     }
-    completeTask =()=>{
-        
+    completeTask =(event)=>{
+        event.persist()
+        API.getTodo(event.target.value).then(res=> {
+            event.persist()
+            API.updateTodos(event.target.value,
+                { 
+                completed: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/room`));
+        })
+        // console.log(e.target.value)
+        // API.updateTodos(e.target.value,{ completed: true }).then(this.props.history.push(`/refresh/room`));
     }
     createBill =()=>{
         this.props.history.push(`/billCreate`)
     }
-    payBill=()=>{
-
+    payBill=(event)=>{
+        event.persist()
+        API.getBill(event.target.value).then(res=> {
+            event.persist()
+            API.updateBills(event.target.value,
+                { 
+                paid: !res.data.recurring,
+                dueDate:moment(res.data.dueDate).add(1, res.data.frequency)?moment(res.data.dueDate).add(1, res.data.frequency):""
+            })
+            .then(this.props.history.push(`/refresh/room`));
+        })
+        // console.log(e.target.value)
+        // API.updateBills(e.target.value,{ paid: true }).then(this.props.history.push(`/refresh/room`));
     }
-    trashMessage=()=>{
-
+    trashMessage=(e)=>{
+        console.log(e.target.value)
+        API.updateMessages(e.target.value,{ read: true }).then(this.props.history.push(`/refresh/room`));
     }
     componentDidMount = () => {
         console.log(this.props)
         API.getUserRoom(this.props.id).then(res =>
-            console.log(res)&
+            // console.log(res)&
+            {res.data[0]&&
             this.setState({ 
                 name: res.data[0].name,
                 description: res.data[0].description,
@@ -83,8 +148,13 @@ class Room extends Component {
                 bills: res.data[0].bill,
                 todos: res.data[0].todo,
                 messages: res.data[0].message,
+                roomID: res.data[0]._id
               })
+            }
         )
+    }
+    componentDidUpdate=()=>{
+        console.log(this.state)
     }
 
     render() {
@@ -129,6 +199,7 @@ class Room extends Component {
                                     id={user._id}
                                     key={user._id}
                                     imgUrl={user.imgUrl}
+                                    // viewUser={this.state.viewUser}
                                     />
                                     })
                                 }
@@ -137,7 +208,7 @@ class Room extends Component {
                         </div> 
                         <div className="col-md-6" id="tasks">
                             <div className="col-md-12">
-                                <h2>Tasks <button onClick={this.createTask}>Create Task</button></h2> 
+                                <h2>Tasks <button id="view" onClick={this.createTask}>Create Task</button></h2> 
                             </div>
                         <Table>
                             <thead>
@@ -152,57 +223,57 @@ class Room extends Component {
                                     <th scope="col" width="5%">Fin</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                        <td>Mow yard</td>
-                                        <td>Bob Boberson</td>
-                                        <td>11/1/2018</td>
-                                        <td>Weedwhack and mow lawn</td>
-                                        <td><button onClick={this.completeTask}>X</button></td>
-                                    </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                        <td>Dishes</td>
-                                        <td>Frank Frankfurt</td>
-                                        <td>10/15/2018</td>
-                                        <td>Wash, dry, put away dishes</td>
-                                        <td><button onClick={this.completeTask}>X</button></td>
-                                    </tr>
-                                <tr>
-                                
-                                </tr>
-                            </tbody>
+                            {
+                                this.state.todos.map((todo, i) =>{
+                                    return <TableRowTodo 
+                                    assignee={todo.assignee}
+                                    category={todo.category}
+                                    body={todo.body}
+                                    dueDate={todo.dueDate}
+                                    completed={todo.completed}
+                                    recurring={todo.recurring}
+                                    frequency={todo.frequency}
+                                    title={todo.title}
+                                    id={todo._id}
+                                    key={todo._id}
+                                    completeTask={this.completeTask}
+                                    />
+                                    })
+                                }
                             </Table>
                         </div>
                     </Row>
                     <Row>
                         <div className="col-md-6" id="bills">
-                            <h2>Current Bills <button onClick={this.createBill}>Create Bill</button></h2>
+                            <h2>Current Bills <button id="view" onClick={this.createBill}>Create Bill</button></h2>
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col" width="15%">Bill Name</th>
-                                    <th scope="col" width="20%">Assigned To</th>
-                                    <th scope="col" width="10%">Amount</th>
-                                    <th scope="col" width="20%">Due Date</th>
-                                    <th scope="col" width="30%">Description</th>
-                                    <th scope="col" width="5%">Fin</th>
+                                        <th scope="col"></th>
+                                        <th scope="col" width="15%">Bill Name</th>
+                                        <th scope="col" width="20%">Assigned To</th>
+                                        <th scope="col" width="10%">Amount</th>
+                                        <th scope="col" width="20%">Due Date</th>
+                                        <th scope="col" width="30%">Description</th>
+                                        <th scope="col" width="5%">Fin</th>
                                     </tr>
                                 </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                            <td>Electric</td>
-                                            <td>Frank</td>
-                                            <td>$95</td>
-                                            <td>11/1/2018</td>
-                                            <td>Mail check by Friday</td>
-                                            <td><button onClick={this.payBill}>X</button></td>
-                                    </tr>
-                                </tbody>
+                                    {
+                                    this.state.bills.map((bill, i) =>{
+                                        return <TableRowBill 
+                                        amount={bill.amount}
+                                        assignee={bill.assignee}
+                                        category={bill.category}
+                                        description={bill.description}
+                                        dueDate={bill.dueDate}
+                                        title={bill.title}
+                                        paid={bill.paid}
+                                        id={bill._id}
+                                        key={bill._id}
+                                        payBill={this.payBill}
+                                        />
+                                        })
+                                    }
                             </Table>
                         </div>
 
@@ -214,22 +285,28 @@ class Room extends Component {
                                         <tr>
                                             <th scope="col"></th>
                                             <th scope="col" width="10%">Subject</th>
+                                            <th scope="col" width="10%">From:</th>
                                             <th scope="col" width="10%">To:</th>
                                             <th scope="col" width="15%">Date Posted</th>
-                                            <th scope="col" width="60%">Message</th>
+                                            <th scope="col" width="50%">Message</th>
                                             <th scope="col" width="5%">Fin</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Hello</td>
-                                            <td>Frank</td>
-                                            <td>10/07/2018</td>
-                                            <td>Have a great day!!!</td>
-                                            <td><button onClick={this.trashMessage}>X</button></td>
-                                        </tr>
-                                    </tbody>
+                                    {
+                                    this.state.messages.map((message, i) =>{
+                                        return <TableRowMessage 
+                                        subject={message.title}
+                                        from={message.from}
+                                        to={message.to}
+                                        message={message.body}
+                                        datePosted={message.dateAdded}
+                                        read={message.read}
+                                        id={message._id}
+                                        key={message._id}
+                                        trashMessage={this.trashMessage}
+                                        />
+                                        })
+                                    }
                                 </Table>
                             <h2>New Messages</h2>
                                 <form id="formdiv">
@@ -243,12 +320,20 @@ class Room extends Component {
                                             />
                                         </Col>
                                         <Col size="md-6">
-                                            <Input
-                                                value={this.state.to}
-                                                onChange={this.handleInputChange}
-                                                name="to"
-                                                placeholder="To:"
-                                            />
+                                            <select defaultValue="" onChange={this.handleOnChange2}>
+                                                <option value="">To:</option>
+                                                {
+                                                this.state.users.map((user, i) =>{
+                                                    return <BillUserCard 
+                                                    firstName={user.firstName}
+                                                    lastName={user.lastName}
+                                                    id={user._id}
+                                                    key={user._id}
+                                                    imgUrl={user.imgUrl}
+                                                    />
+                                                    })
+                                                }
+                                            </select>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -263,7 +348,7 @@ class Room extends Component {
                                     </Row>
                                     <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Post
+                                        Post Message
                                     </FormBtn>
                                 </div>
                                 </form>

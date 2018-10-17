@@ -1,15 +1,26 @@
-import React from "react";
+import React , { Component } from "react";
+// import { Link } from "react-router-dom";
+// import {withRouter} from "react-router-dom";
+// import {browserHistory,withRouter} from "react-router-dom"
 import "./TableRow.css";
 
-const TableRow = props => {
+class TableRow extends Component {
+
+
+viewUser =()=>{
+  this.props.history.push(`/userHome`)
+}
+// const TableRow = props => {
+render(){
   return (
     <tr>
-      <th scope="row"><img src={props.imgUrl} /></th>
-        <td>{props.firstName}</td>
-        <td>{props.lastName}</td>
-        <td><a href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a></td>
-        <td><a href={`mailto:${props.email}`}>{props.email}</a></td>
+      <th scope="row" value={this.props.id} onClick={this.viewUser}><img src={this.props.imgUrl} /></th>
+        <td>{this.props.firstName}</td>
+        <td>{this.props.lastName}</td>
+        <td><a href={`tel:${this.props.phoneNumber}`}>{this.props.phoneNumber}</a></td>
+        <td><a href={`mailto:${this.props.email}`}>{this.props.email}</a></td>
     </tr>
-  );
-};
+    );
+  };
+}
 export default TableRow;

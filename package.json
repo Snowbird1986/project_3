@@ -25,7 +25,11 @@
     "express": "^4.15.4",
     "gsap": "^2.0.2",
     "if-env": "^1.0.4",
+<<<<<<< HEAD
     "lodash": "^4.17.11",
+=======
+    "moment": "^2.22.2",
+>>>>>>> 46e3cd9d650f78bde5c6a1b0f88417fb2d8100f2
     "mongoose": "^5.0.17",
     "react-calendar": "^2.17.4"
   }

@@ -24,3 +24,13 @@ img {
 #userinfo{
     padding-top:15px
 }
+#view{
+    background-color:teal;
+    color:whitesmoke;
+    cursor:pointer
+}
+#edit{
+    background-color:lightskyblue;
+    color:black;
+    cursor:pointer
+}

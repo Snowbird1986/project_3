@@ -5,7 +5,7 @@ import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import Calendar from 'react-calendar';
 import API from "../../utils/API";
-import "./RoomCreate.css";
+import "./RoomEdit.css";
 // var ObjectId = require('mongoose').Types.ObjectId
 
 
@@ -17,7 +17,7 @@ class RoomCreate extends Component {
         rent: "",
         category: "",
         openSpots: "",
-        availableDate: "Available Date",
+        availableDate: "",
         city: "",
         state: "",
         zip: "",
@@ -63,40 +63,30 @@ class RoomCreate extends Component {
         console.log(this.state)
         console.log(this.props)
         let roomData = {
-            name: this.state.name,
-            description: this.state.description,
-            rent: this.state.rent,
-            category: this.state.category,
-            openSpots: this.state.openSpots,
-            availableDate: this.state.availableDate,
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip,
+            name: this.state.name?this.state.name:this.props.name,
+            description: this.state.description?this.state.description:this.props.description,
+            rent: this.state.rent?this.state.rent:this.props.rent,
+            category: this.state.category?this.state.category:this.props.category,
+            openSpots: this.state.openSpots?this.state.openSpots:this.props.openSpots,
+            availableDate: this.state.availableDate?this.state.availableDate:this.props.availableDate,
+            city: this.state.city?this.state.city:this.props.city,
+            state: this.state.state?this.state.state:this.props.state,
+            zip: this.state.zip?this.state.zip:this.props.zip,
             
         }
         console.log(roomData)
-        if (this.state.name &&
-            this.state.description &&
-            this.state.rent &&
-            this.state.category &&
-            this.state.openSpots &&
-            this.state.availableDate &&
-            this.state.city &&
-            this.state.state &&
-            this.state.zip 
+        if ((this.state.name|| this.props.name)&&
+            (this.state.description|| this.props.description)&&
+            (this.state.rent|| this.props.rent)&&
+            (this.state.category|| this.props.category)&&
+            (this.state.openSpots|| this.props.openSpots)&&
+            (this.state.availableDate|| this.props.availableDate)&&
+            (this.state.city|| this.props.city)&&
+            (this.state.state|| this.props.state)&&
+            (this.state.zip|| this.props.zip)
         ) {
-            API.saveRooms({
-                name: this.state.name,
-                description: this.state.description,
-                rent: this.state.rent,
-                category: this.state.category,
-                openSpots: this.state.openSpots,
-                availableDate: this.state.availableDate,
-                city: this.state.city,
-                state: this.state.state,
-                zip: this.state.zip,
-            })
-                .then(result => {
+            API.updateRooms(this.props.roomID, roomData)
+                // .then(result => {
                     // function(err,docsInserted){
                     // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
                     // // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
@@ -104,10 +94,11 @@ class RoomCreate extends Component {
                     // return 
                     // console.log(result.data._id)
                     // console.log(this.props.id)
-                    API.updateRooms(result.data._id,{"$push":{ user: this.props.id }})
-                    .then(res => this.props.history.push(`/room`));
-                  }
-                )
+                    // API.updateRooms(result.data._id,{"$push":{ user: this.props.id }})
+                    .then(res => this.props.history.push(`/room`))
+                    // ;
+                //   }
+                // )
                 .catch(err => console.log(err));
             } else { "did not post" }
     };
@@ -129,12 +120,12 @@ class RoomCreate extends Component {
                                             value={this.state.name}
                                             onChange={this.handleInputChange}
                                             name="name"
-                                            placeholder="Title"
+                                            placeholder={this.props.name}
                                         />
                                     </Col>
                                     <Col size="md-6">
                                         <select defaultValue="" onChange={this.handleOnChange}>
-                                            <option value="">Category</option>
+                                            <option value="">{this.props.category}</option>
                                             <option value="Dormroom">Dorm Room</option>
                                             <option value="Apartment">Apartment</option>
                                             <option value="Duplex">Duplex</option>
@@ -148,7 +139,7 @@ class RoomCreate extends Component {
                                             value={this.state.rent}
                                             onChange={this.handleInputChange}
                                             name="rent"
-                                            placeholder="Rent"
+                                            placeholder={this.props.rent}
                                         />
                                     </Col>
                                     <Col size="md-4">
@@ -156,7 +147,7 @@ class RoomCreate extends Component {
                                             value={this.state.openSpots}
                                             onChange={this.handleInputChange}
                                             name="openSpots"
-                                            placeholder="Roommate spots Remaining"
+                                            placeholder={this.props.openSpots}
                                         />
                                     </Col>
                                     <Col size="md-5">
@@ -164,7 +155,7 @@ class RoomCreate extends Component {
                                             value={this.state.availableDate}
                                             onChange={this.handleInputChange}
                                             name="availableDate"
-                                            placeholder={this.state.availableDate}
+                                            placeholder={this.props.availableDate}
                                             onClick={this.changeAvailableDate.bind(this)}
                                         ></Input>
                                         <Calendar
@@ -180,7 +171,7 @@ class RoomCreate extends Component {
                                             value={this.state.city}
                                             onChange={this.handleInputChange}
                                             name="city"
-                                            placeholder="City"
+                                            placeholder={this.props.city}
                                         />
                                     </Col>
                                     <Col size="md-3">
@@ -188,7 +179,7 @@ class RoomCreate extends Component {
                                             value={this.state.state}
                                             onChange={this.handleInputChange}
                                             name="state"
-                                            placeholder="State"
+                                            placeholder={this.props.state}
                                         />
                                     </Col>
                                     <Col size="md-4">
@@ -196,7 +187,7 @@ class RoomCreate extends Component {
                                             value={this.state.zip}
                                             onChange={this.handleInputChange}
                                             name="zip"
-                                            placeholder="Zip"
+                                            placeholder={this.props.zip}
                                         />
                                     </Col>
                                 </Row>
@@ -206,14 +197,14 @@ class RoomCreate extends Component {
                                             value={this.state.description}
                                             onChange={this.handleInputChange}
                                             name="description"
-                                            placeholder="Description"
+                                            placeholder={this.props.description}
                                             id="description"
                                         />
                                     </Col>
                                 </Row>
                                 <div className="buttons">
                                     <FormBtn onClick={this.handleFormSubmit}>
-                                        Post Room
+                                        Update Room
                                     </FormBtn>
                                 </div>
                             </form>
