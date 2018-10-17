@@ -5,6 +5,7 @@ import Jumbotron from "../../components/Jumbotron";
 import TableRowTodoPortal from "../../components/TableRowTodoPortal";
 import TableRowBillPortal from "../../components/TableRowBillPortal";
 import TableRowMessagePortal from "../../components/TableRowMessagePortal";
+import TableRowUserPortal from "../../components/TableRowUserPortal";
 import moment from 'moment';
 // import UserCard from "../../components/userCard";
 import API from "../../utils/API";
@@ -28,6 +29,7 @@ class UserPortal extends Component {
         bills: [],
         todos: [],
         messages: [],
+        pendinguser: [],
     }
 
     payBill=(event)=>{
@@ -79,6 +81,7 @@ class UserPortal extends Component {
                 bills: res.data[0].bill,
                 todos: res.data[0].todo,
                 messages: res.data[0].message,
+                pendinguser: res.data[0].pendinguser,
               })
             }
         )
@@ -103,6 +106,15 @@ class UserPortal extends Component {
         console.log(e.target.value)
         API.updateMessages(e.target.value,{ read: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
+    approveUser =()=>{
+        
+    }
+    rejectUser =()=>{
+        
+    }
+    viewUser =()=>{
+        
+    }
 
     render() {
         return (
@@ -125,13 +137,13 @@ class UserPortal extends Component {
                                         </div>
                                     {!this.state.roomId &&
                                         <div className="col-md-2" >
-                                        <button onClick={this.createRoom}>Create New Room</button>
+                                        <button id="view" onClick={this.createRoom}>Create New Room</button>
                                         </div>
                                     }
                                     {this.state.roomId && this.props.id!==this.state.owner._id &&
                                         <div className="row col-md-7">
                                             <div className="col-md-4" >
-                                            <button onClick={this.viewRoom}>View Room</button>
+                                            <button id="view" onClick={this.viewRoom}>View Room</button>
                                             </div>
                                             {/* <div className="col-md-4 " >
                                             <button onClick={this.editRoom}>Edit Room</button>
@@ -144,13 +156,13 @@ class UserPortal extends Component {
                                     {this.props.id!==null&& this.props.id==this.state.owner._id &&
                                         <div className="row col-md-7">
                                             <div className="col-md-4" >
-                                            <button onClick={this.viewRoom}>View Room</button>
+                                            <button id="view" onClick={this.viewRoom}>View Room</button>
                                             </div>
                                             <div className="col-md-4 " >
-                                            <button onClick={this.editRoom}>Edit Room</button>
+                                            <button id="edit" onClick={this.editRoom}>Edit Room</button>
                                             </div>
                                             <div className="col-md-4" >
-                                            <button onClick={this.deleteRoom}>Delete Room</button>
+                                            <button className="fin" onClick={this.deleteRoom}>Delete Room</button>
                                             </div>
                                         </div>
                                     }
@@ -259,32 +271,62 @@ class UserPortal extends Component {
                                         </Table>
                                     </div>                              
                                 </Row>
-                                {/* <div className="col-md-12" id="createroomButton">
-                                        {!this.state.roomId &&
-                                            <div className="col-md-3 offset-md-1" >
-                                            <button onClick={this.createRoom}>Create New Room</button>
-                                            </div>
-                                        }
-                                        {this.state.roomId &&
-                                            <div className="row">
-                                                <div className="col-md-3 offset-md-1" >
-                                                <button onClick={this.viewRoom}>View Room</button>
-                                                </div>
-                                                <div className="col-md-3 " >
-                                                <button onClick={this.editRoom}>Edit Room</button>
-                                                </div>
-                                                <div className="col-md-3" >
-                                                <button onClick={this.deleteRoom}>Delete Room</button>
-                                                </div>
-                                            </div>
-                                        } */}
-                                        {/* <div className="col-md-3 offset-md-1" >
-                                            <button onClick={this.createRoom}>Create New Room</button>
-                                        </div> */}
-                                        {/* <div className="col-md-3 offset-md-1" >
-                                            <button onClick={this.viewRoom}>View Room</button>
-                                        </div> */}
-                                    {/* </div> */}
+                                <div className="col-md-10 offset-md-1" id="createroomButton">
+                                    {/* {!this.state.roomId &&
+                                        <div className="col-md-3 offset-md-1" >
+                                        <button onClick={this.createRoom}>Create New Room</button>
+                                        </div>
+                                    } */}
+                                    {this.props.id!==null&& this.props.id==this.state.owner._id &&
+                                         <div>
+                                         <h2>Potential Roomies</h2>
+                                             <Table>                                            
+                                                 <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" width="15%">Name</th>
+                                                        <th scope="col" width="15%">Phone</th>
+                                                        <th scope="col" width="20%">Email</th>
+                                                        <th scope="col" width="10%">Budget</th>
+                                                        <th scope="col" width="5%">Age</th>
+                                                        <th scope="col" width="5%">Gender</th>
+                                                        <th scope="col" width="20%">Move In Date</th>
+                                                        {/* <th scope="col" width="10%">City</th>
+                                                        <th scope="col" width="5%">State</th>
+                                                        <th scope="col" width="5%">Zip</th> */}
+                                                        <th scope="col" width="5%">App</th>
+                                                        <th scope="col" width="5%">Rej</th>
+                                                    </tr>
+                                                 </thead>
+                                                 {
+                                                     this.state.pendinguser.map((user, i) =>{
+                                                        return <TableRowUserPortal 
+                                                            firstName={user.firstName}
+                                                            lastName={user.lastName}
+                                                            email={user.email}
+                                                            introduction={user.introduction}
+                                                            phoneNumber={user.phoneNumber}
+                                                            birthday={user.birthday}
+                                                            gender={user.gender}
+                                                            budget={user.budget}
+                                                            moveInDate={user.moveInDate}
+                                                            facebookId={user.facebookId}
+                                                            city={user.city}
+                                                            state={user.state}
+                                                            zip={user.zip}
+                                                            id={user._id}
+                                                            key={user._id}
+                                                            imgUrl={user.imgUrl}
+                                                            viewUser={this.viewUser}
+                                                            approveUser={this.approveUser}
+                                                            rejectUser={this.rejectUser}
+                                                            />
+                                                        })
+                                                     }
+                                             </Table>
+                                         </div>      
+                                    }
+                                </div>
                             </div>
                         </Col>
                     </Row>

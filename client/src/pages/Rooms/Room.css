@@ -40,3 +40,8 @@ img {
     width:50px;
     height:auto;
 }
+#view{
+    background-color:teal;
+    color:whitesmoke;
+    cursor:pointer
+}

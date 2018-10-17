@@ -12,3 +12,8 @@ table {
     color:black;
     cursor:pointer
 }
+#approve{
+    background-color:teal;
+    color:whitesmoke;
+    cursor:pointer
+}

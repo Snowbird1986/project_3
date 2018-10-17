@@ -208,7 +208,7 @@ class Room extends Component {
                         </div> 
                         <div className="col-md-6" id="tasks">
                             <div className="col-md-12">
-                                <h2>Tasks <button onClick={this.createTask}>Create Task</button></h2> 
+                                <h2>Tasks <button id="view" onClick={this.createTask}>Create Task</button></h2> 
                             </div>
                         <Table>
                             <thead>
@@ -245,7 +245,7 @@ class Room extends Component {
                     </Row>
                     <Row>
                         <div className="col-md-6" id="bills">
-                            <h2>Current Bills <button onClick={this.createBill}>Create Bill</button></h2>
+                            <h2>Current Bills <button id="view" onClick={this.createBill}>Create Bill</button></h2>
                             <Table>
                                 <thead>
                                     <tr>

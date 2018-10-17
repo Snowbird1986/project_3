@@ -24,7 +24,7 @@ class TableRowTodoPortal extends Component {
                 <td>{this.props.assignee}</td>
                 <td>{this.state.dueDate}</td>
                 <td>{this.props.body}</td>
-                <td><button value={this.props.id} onClick={this.props.completeTask}>X</button></td>
+                <td><button className="fin" value={this.props.id} onClick={this.props.completeTask}>X</button></td>
           </tr>
         }
       </tbody>
