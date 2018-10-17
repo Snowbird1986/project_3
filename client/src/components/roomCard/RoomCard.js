@@ -1,51 +1,55 @@
 import React, { Component } from "react";
 import "./RoomCard.css";
+
 class RoomCard extends Component {
   componentDidMount = () => {
-    //console.log(this.props)
   }
 
   state = {
     userArray: this.props.children
-    // userArray: [
-    //   //   {
-
-    //   //   pic: this.props.children[0].img,
-    //   //   birthday: this.props.children[0].birthday,
-    //   //   email: this.props.children[0].email,
-    //   //   first_Name: this.props.children[0].firstName,
-    //   //   gender: this.props.children[0].gender,
-    //   //   last_Name: this.props.children[0].lastName,
-    //   //   location: this.props.children[0].location
-
-    //   // }
-    //   //, 
-    //   "user2", "user3", "user4", "user5"]
-
 
   };
   picSize = (userArray) => {
-    const boxWidth = 230 / userArray.length;
+    const boxWidth = 1500 / userArray.length;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
   };
+  makeLoop = (spots) => {
+    let roomsWithAvailable = [];
+    roomsWithAvailable.push(Array.apply(null, Array(Number(spots))));
+    // roomsWithAvailable.push(this.props.children[0].user);
+    // console.log(this.props.children[0].user);
+    let thisWork = roomsWithAvailable[0].concat(this.props.children[0].user);
+
+    return thisWork
+  }
+  joinRoom = () => {
+    //return console.log("you have joined")
+  }
+
 
   render() {
-    console.log(this.props.children)
 
-    const dims = this.picSize(this.state.userArray);
-    // const pic = this.props.children[0].img;
-    // const birthday = this.props.children[0].birthday;
-    // const email = this.props.children[0].email;
-    // const first_Name = this.props.children[0].firstName;
-    // const gender = this.props.children[0].gender;
-    // const last_Name = this.props.children[0].lastName;
-    // const location = this.props.children[0].location;
+
+    const spots = this.props.children[0].openSpots;
+
+    const ourArray = this.makeLoop(spots);
+
+
+    const dims = this.picSize(ourArray);
     return (
-      <div onClick={() => console.log("")} className="card">
+      <div onClick={() => console.log("")} style={{
+        backgroundColor: "lightseagreen",
+        width: "100%",
+        height: "100%"
 
-        <div className="img-container">
+      }} className="card">
+        {/* {this.state.rooms.map((room, idx) =>
+          <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
+        )} */}
+        <div
+          className="room-container">
           <div style={{
             backgroundColor: "Black",
             width: "100%",
@@ -56,31 +60,64 @@ class RoomCard extends Component {
               color: "white",
               fontSize: "21px"
             }}>
-              4 person occupancy : 1 vacancy
+              4 person occupancy : {this.props.children[0].openSpots} vacancy
             </h1>
           </div>
-          {this.props.children.map((user, idx) => <div style={{
-            margin: "10px",
-            width: `${dims[0]}px`,
-            height: `${dims[1]}px`,
-            float: "left",
-            backgroundColor: "white"
-          }} key={`img-${idx}`} >
-            <img src={user.img} /></div>
-          )}
-          {/* <div style={{
-            margin: "10px",
-            width: "40px",
-            height: "40px",
-            backgroundColor: "white"
-          }}>
+          {ourArray.map((room, idx) => {
+            return (
+              < div style={{
+                margin: "10px",
+                width: `${dims[0]}px`,
+                height: `${dims[1]}px`,
+                float: "left",
+                backgroundColor: "white"
+              }} key={`img-${idx}`}>
+                <h1
 
-          </div> */}
+                  style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
+                >
+                  {
+                    !!room ? room.firstName : 'Vacancy'
 
-          {/* <img alt={props.name} src={props.image} /> */}
-          {/* <img src={this.props.img} /> */}
+                  }
+
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.budget : ''
+
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.state : ''
+
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.moveInDate : ''
+
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.gender : ''
+
+                  }
+                </h1>
+                <button onClick={this.joinRoom} style={{
+                  marginBottom: "200px",
+                  position: "fixed"
+                }}>join room</button>
+              </div>
+            )
+          })}
+
+
+
         </div>
-      </div>
+      </div >
     )
   }
 }

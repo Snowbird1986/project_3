@@ -33,7 +33,7 @@ class App extends Component {
       location: null,
       img: null,
       id: null,
-      roomID:null,
+      roomID: null,
     }
   }
   onFacebookLogin = (loginStatus, resultObject) => {
@@ -55,36 +55,37 @@ class App extends Component {
       // window.location="/userPortal"
       API.getFBUser(this.state.facebookId).then(res =>
         // console.log(res))
-        
+
         this.setState({
           gender: res.data[0].gender,
           // email: res.email,
           birthday: res.data[0].birthday,
           location: res.data[0].location,
           id: res.data[0]._id
-        })&
+        }) &
         API.getUserRoom(this.state.id).then(res =>
-          // console.log(res)&
-          {res.data[0]&&
-          this.setState({ 
-              name: res.data[0].name,
-              description: res.data[0].description,
-              rent: res.data[0].rent,
-              category: res.data[0].category,
-              openSpots: res.data[0].openSpots,
-              availableDate: res.data[0].availableDate,
-              city: res.data[0].city,
-              state: res.data[0].state,
-              zip: res.data[0].zip,
-              users: res.data[0].user,
-              owner: res.data[0].user[0],
-              bills: res.data[0].bill,
-              todos: res.data[0].todo,
-              messages: res.data[0].message,
-              roomID: res.data[0]._id
-            })
-          }
-      )
+        // console.log(res)&
+        {
+        res.data[0] &&
+          this.setState({
+            name: res.data[0].name,
+            description: res.data[0].description,
+            rent: res.data[0].rent,
+            category: res.data[0].category,
+            openSpots: res.data[0].openSpots,
+            availableDate: res.data[0].availableDate,
+            city: res.data[0].city,
+            state: res.data[0].state,
+            zip: res.data[0].zip,
+            users: res.data[0].user,
+            owner: res.data[0].user[0],
+            bills: res.data[0].bill,
+            todos: res.data[0].todo,
+            messages: res.data[0].message,
+            roomID: res.data[0]._id
+          })
+        }
+        )
       )
         .catch(err => console.log(err));
     } else {
@@ -139,11 +140,11 @@ class App extends Component {
             />
             } />
             <Route exact path="/userHome" component={UserHome} />
-            <Route exact path="/room" render={(props) =><Room {...props} 
-                  id={this.state.id}
-                  username={this.state.username}
-                />
-              } />
+            <Route exact path="/room" render={(props) => <Room {...props}
+              id={this.state.id}
+              username={this.state.username}
+            />
+            } />
             <Route exact path="/userSearch" component={UserSearch}
             />
             <Route exact path="/roomSearch" render={(props) => <RoomSearch {...props}
@@ -164,39 +165,39 @@ class App extends Component {
               state={this.state}>
             </RoomCard>
             } />
-            <Route exact path="/roomCreate" render={(props) =><RoomCreate {...props} 
-                  id={this.state.id}
-                />
-              } />
-            <Route exact path="/roomEdit" render={(props) =><RoomEdit {...props} 
-                  id={this.state.id}
-                  name={this.state.name}
-                  description={this.state.description}
-                  rent={this.state.rent}
-                  category={this.state.category}
-                  openSpots={this.state.openSpots}
-                  availableDate={this.state.availableDate}
-                  city={this.state.city}
-                  state={this.state.state}
-                  zip={this.state.zip}
-                  users={this.state.users}
-                  owner={this.state.owner}
-                  bills={this.state.bills}
-                  todos={this.state.todos}
-                  messages={this.state.messages}
-                  roomID={this.state.roomID}
-                />
-              } />
-            <Route exact path="/todoCreate" render={(props) =><TodoCreate {...props} 
-                  id={this.state.id}
-                  roomID={this.state.roomID}
-                />
-              } />
-            <Route exact path="/billCreate" render={(props) =><BillCreate {...props} 
-                  id={this.state.id}
-                  roomID={this.state.roomID}
-                />
-              } />
+            <Route exact path="/roomCreate" render={(props) => <RoomCreate {...props}
+              id={this.state.id}
+            />
+            } />
+            <Route exact path="/roomEdit" render={(props) => <RoomEdit {...props}
+              id={this.state.id}
+              name={this.state.name}
+              description={this.state.description}
+              rent={this.state.rent}
+              category={this.state.category}
+              openSpots={this.state.openSpots}
+              availableDate={this.state.availableDate}
+              city={this.state.city}
+              state={this.state.state}
+              zip={this.state.zip}
+              users={this.state.users}
+              owner={this.state.owner}
+              bills={this.state.bills}
+              todos={this.state.todos}
+              messages={this.state.messages}
+              roomID={this.state.roomID}
+            />
+            } />
+            <Route exact path="/todoCreate" render={(props) => <TodoCreate {...props}
+              id={this.state.id}
+              roomID={this.state.roomID}
+            />
+            } />
+            <Route exact path="/billCreate" render={(props) => <BillCreate {...props}
+              id={this.state.id}
+              roomID={this.state.roomID}
+            />
+            } />
             <Route component={NoMatch} />
           </Switch>
           <Footer />
