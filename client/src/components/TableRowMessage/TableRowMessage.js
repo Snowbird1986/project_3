@@ -25,7 +25,7 @@ class TableRowMessage extends Component {
                 <td>{this.props.to}</td>
                 <td>{this.state.datePosted}</td>
                 <td>{this.props.message}</td>
-                <td><button value={this.props.id} onClick={this.props.trashMessage}>X</button></td>
+                <td><button className="fin" value={this.props.id} onClick={this.props.trashMessage}>X</button></td>
           </tr>
         }
       </tbody>

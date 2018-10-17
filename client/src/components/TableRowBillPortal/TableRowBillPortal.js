@@ -25,7 +25,7 @@ class TableRowBillPortal extends Component {
                 <td>${this.props.amount}</td>
                 <td>{this.state.dueDate}</td>
                 <td>{this.props.description}</td>
-                <td><button value={this.props.id} onClick={this.props.payBill}>X</button></td>
+                <td><button className="fin" value={this.props.id} onClick={this.props.payBill}>X</button></td>
           </tr>
         }
       </tbody>
