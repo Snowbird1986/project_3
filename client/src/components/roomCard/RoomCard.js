@@ -10,7 +10,7 @@ class RoomCard extends Component {
 
   };
   picSize = (userArray) => {
-    const boxWidth = 500 / userArray.length;
+    const boxWidth = 1500 / userArray.length;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
@@ -24,22 +24,18 @@ class RoomCard extends Component {
 
     return thisWork
   }
-  // makeLoop()
+  joinRoom = () => {
+    //return console.log("you have joined")
+  }
+
 
   render() {
 
-    console.log(this.props.children[0].user)
-    console.log(this.props.children[0].openSpots)
+
     const spots = this.props.children[0].openSpots;
-    //const myRooms = this.props.children[0].rooms;
 
-
-
-    //console.log(this.makeLoop(spots));
     const ourArray = this.makeLoop(spots);
-    console.log(ourArray)
-    console.log(ourArray[0] === undefined)
-    console.log(ourArray[3].firstName)
+
 
     const dims = this.picSize(ourArray);
     return (
@@ -67,32 +63,61 @@ class RoomCard extends Component {
               4 person occupancy : {this.props.children[0].openSpots} vacancy
             </h1>
           </div>
-          {ourArray.map((room, idx) =>
+          {ourArray.map((room, idx) => {
+            return (
+              < div style={{
+                margin: "10px",
+                width: `${dims[0]}px`,
+                height: `${dims[1]}px`,
+                float: "left",
+                backgroundColor: "white"
+              }} key={`img-${idx}`}>
+                <h1
 
-            <div style={{
-              margin: "10px",
-              width: `${dims[0]}px`,
-              height: `${dims[1]}px`,
-              float: "left",
-              backgroundColor: "white"
-            }} key={`img-${idx}`}>
-              <h1
+                  style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
+                >
+                  {
+                    !!room ? room.firstName : 'Vacancy'
 
-                style={ourArray[idx] !== undefined ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
-              >
-                {
-                  ourArray[idx] !== undefined ? ourArray[idx].firstName : 'Vacancy'
+                  }
 
-                }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.budget : ''
 
-              </h1>
-            </div>
-          )}
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.state : ''
+
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.moveInDate : ''
+
+                  }
+                </h1>
+                <h1>
+                  {
+                    !!room ? room.gender : ''
+
+                  }
+                </h1>
+                <button onClick={this.joinRoom} style={{
+                  marginBottom: "200px",
+                  position: "fixed"
+                }}>join room</button>
+              </div>
+            )
+          })}
 
 
 
         </div>
-      </div>
+      </div >
     )
   }
 }

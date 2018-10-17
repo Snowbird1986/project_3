@@ -8,6 +8,8 @@ import _ from 'lodash';
 import API from "../../utils/API";
 
 import "./RoomSearch.css";
+const objectForSearch = {}
+
 
 class RoomSearch extends Component {
     componentDidMount = () => {
@@ -53,6 +55,34 @@ class RoomSearch extends Component {
         rooms: [],
         roomates: []
     }
+
+    filterRoom(room) {
+        let comparisons = ["rent",
+            "category",
+            "openSpots",
+            "availableDate",
+            "city",
+            "state",
+            "zip"];
+
+        let matchValues = []
+        comparisons.forEach(k => {
+            console.log(k, this.state[k], room[k], typeof this.state[k] === "string");
+            if (!!this.state[k] && this.state[k].length > 0) {
+
+                matchValues.push(room[k] && room[k] == this.state[k]);
+            }
+        })
+
+        console.log(matchValues);
+        const valid = matchValues.reduce((acc, i) => {
+            console.log(acc && i);
+            return acc && i
+        }, true);
+        console.log(valid);
+        return valid;
+    }
+
     viewRoom = (event) => {
         event.preventDefault();
         // console.log(this.state.budget.replace(/[^0-9]/, ''))
@@ -62,21 +92,14 @@ class RoomSearch extends Component {
 
             })
                 .then(res => {
+                    //console.log(this.state.rent)
+                    const validRooms = res.data.filter(this.filterRoom.bind(this));
 
                     this.setState({
-                        rooms: res.data.filter(rooms => {
-                            return rooms.rent == 800
-                        }),
-                        roomates: Array.apply(null, Array(Number(res.data[0].openSpots)))
+                        rooms: validRooms,
+                        roomates: Array.apply(null, Array(Number(validRooms.length ? validRooms[0].openSpots : 0)))
                         //roomates: new Array(Number(res.data[0].openSpots))
                     });
-
-                    // let roomFilter = res.data.filter(rooms => {
-                    //     return rooms.rent == 800
-                    // })
-                    //console.log(roomFilter);
-                    //console.log(this.state.img)
-                    // console.log(res.data[0].imgUrl)
                 })
                 .catch(err => console.log(err));
         } else { "did not post" }
@@ -87,9 +110,31 @@ class RoomSearch extends Component {
 
 
     handleInputChange = event => {
+        //this.handleSearchChange
         const { name, value } = event.target;
         this.setState({
             [name]: value
+        });
+
+
+
+
+    };
+
+    handleSearchChange = event => {
+        //const { name, value } = event.target;
+        this.setState({
+
+            category: "",
+            rent: "",
+            openSpots: "",
+            availableDate: "",
+            dateAdded: "",
+            phone: "",
+            gender: "",
+            city: "",
+            state: "",
+            zip: ""
         });
 
     };
@@ -104,6 +149,7 @@ class RoomSearch extends Component {
         //     .then(res => this.loadBooks())
         //     .catch(err => console.log(err));
         // }
+        // this.setState()
     };
 
     render() {
@@ -116,10 +162,10 @@ class RoomSearch extends Component {
                         </Jumbotron>
                         <div id="rooms">
                             {this.state.rooms.map((room, idx) =>
-                                <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
+                                <RoomCard key={`img-${idx}`}>{room} </RoomCard>
                             )}
 
-                            <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div>
+                            {/* <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div> */}
                         </div>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
