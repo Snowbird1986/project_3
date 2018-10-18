@@ -5,14 +5,39 @@ import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import "./UserSearch.css";
+import UserCard from "../../components/userCard";
+import _ from 'lodash';
 
 class UserSearch extends Component {
+    componentDidMount = () => {
+        console.log(this.props);
+
+        if("search" == "search") {
+            API.getUsers({
+
+            })
+            .then(res => {
+                this.setState({
+                    img: res.data[0].imgUrl,
+                    name: res.data[0].firstName.toString(),
+                    phone: res.data[0].phoneNumber,
+                    gender: res.data[0].gender,
+                    city: res.data[0].city,
+                    state: res.data[0].state,
+                    zip: res.data[0].zip,
+                    budget: res.data[0].budget
+                });
+                console.log(res);
+            })
+            .catch(err => console.log(err));
+        } else { "did not post" }
+    }
+    
     state = {
         user: [],
         firstName: "",
         lastName: "",
         email: "",
-        introduction: "",
         phoneNumber: "",
         birthday: "",
         gender: "",
@@ -21,7 +46,59 @@ class UserSearch extends Component {
         zip: "",
         budget: "",
         moveInDate: "",
+        users: [],
+        roommates: []
     }
+
+    filterUser(user) {
+        let comparisons = [
+            "city",
+            "state",
+            "zip",
+            "gender",
+            "budget",
+            "moveInDate"
+        ];
+
+        let matchValues = []
+        comparisons.forEach(k => {
+            console.log(k, this.state[k], user[k], typeof this.state[k] === "string");
+
+            if (!!this.state[k] && this.state[k].length > 0) {
+                matchValues.push(user[k] && user[k] == this.state[k]);
+            }
+        })
+
+        console.log(matchValues);
+
+        const valid = matchValues.reduce((acc, i) => {
+            console.log(acc && i);
+            return acc && i
+        }, true);
+        console.log(valid);
+        return valid;
+    }
+
+    viewUsers = (event) => {
+        event.preventDefault();
+
+        if ("search" == "search") {
+            API.getUsers({
+
+            })
+            .then(res => {
+                const validUsers = res.data.filter(this.filterUser.bind(this));
+
+                this.setState({
+                    users: validUsers,
+                    //roommates: Array.apply(null, Array(Number(validUsers.length ? validUsers[0].openSpots : 0))),
+                    roommates: new Array(Number(res.data[0].openSpots))
+                });
+            })
+            .catch(err => console.log(err));
+
+        } else { "did not post" }
+    };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -29,17 +106,27 @@ class UserSearch extends Component {
             [name]: value
         });
     };
+
+    handleSearchChange = event => {
+        this.setState({
+            user: [],
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            birthday: "",
+            gender: "",
+            city: "",
+            state: "",
+            zip: "",
+            budget: "",
+            moveInDate: ""
+        });
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
+        
     };
 
     render() {
@@ -49,7 +136,8 @@ class UserSearch extends Component {
                     <Col size="md-12">
                         <Jumbotron>
                             Search Users:
-                </Jumbotron>
+                        </Jumbotron>
+
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
@@ -151,11 +239,19 @@ class UserSearch extends Component {
                                     </Col>
                                 </Row>
                                 <div className="buttons">
-                                    <FormBtn onClick={this.handleFormSubmit}>
-                                        Poop
+                                    <FormBtn onClick={this.viewUsers}>
+                                        Find Users
                                     </FormBtn>
                                 </div>
                             </form>
+                        </div>
+                        
+                        <div id="searchresults">
+                            {this.state.user.map((user, idx) =>
+                                <UserCard key={`img-${idx}`}> {user} </UserCard>
+                            )}
+
+                        
                         </div>
                     </Col>
                 </Row>
