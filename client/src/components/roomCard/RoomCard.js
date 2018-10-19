@@ -106,7 +106,7 @@ class RoomCard extends Component {
 
                   }
                 </h1>
-                <button onClick={this.joinRoom} style={{
+                <button value={this.props.roomID} onClick={this.props.applyRoom} style={{
                   marginBottom: "200px",
                   position: "fixed"
                 }}>join room</button>
