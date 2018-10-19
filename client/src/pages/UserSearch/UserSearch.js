@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
+import Table from "../../components/Table";
+import TableRow from "../../components/TableRow";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import "./UserSearch.css";
@@ -91,8 +93,7 @@ class UserSearch extends Component {
 
                 this.setState({
                     users: validUsers,
-                    //roommates: Array.apply(null, Array(Number(validUsers.length ? validUsers[0].openSpots : 0))),
-                    roommates: new Array(Number(res.data[0].openSpots))
+                    roommates: this.state.users,
                 });
             })
             .catch(err => console.log(err));
@@ -128,6 +129,10 @@ class UserSearch extends Component {
         event.preventDefault();
         
     };
+
+    componentDidUpdate = () => {
+        console.log(this.state.users);
+    }
 
     render() {
         return (
@@ -247,11 +252,39 @@ class UserSearch extends Component {
                         </div>
                         
                         <div id="searchresults">
-                            {this.state.user.map((user, idx) =>
-                                <UserCard key={`img-${idx}`}> {user} </UserCard>
-                            )}
+                           
+                            <Table>
+                                <thead>
+                                    <tr>
+                                    
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Move In Date</th>
+                                        <th scope="col">Budget</th>
+                                        <th scope="col">Contact</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                this.state.users.map((user) =>{
+                                    return <UserCard 
+                                    firstName={user.firstName}
+                                    lastName={user.lastName}
+                                    email={user.email}
+                                    introduction={user.introduction}
+                                    phoneNumber={user.phoneNumber}
+                                    birthday={user.birthday}
+                                    gender={user.gender}
+                                    budget={user.budget}
+                                    moveInDate={user.moveInDate}
+                                    />
+                                    })
+                                }
+                            </tbody>
+                            </Table>
 
-                        
+
                         </div>
                     </Col>
                 </Row>
