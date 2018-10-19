@@ -15,6 +15,12 @@
   text-align: center;
   background:#6CADDC;
 } */
+.joinRoom{
+  margin-top:22%;
+  margin-right:15px;
+  float:right;
+  margin:30px;
+}
 .card > .img-container > img {
   width: 60%
 }
@@ -42,6 +48,38 @@
   cursor: pointer;
 }
 
-.card > .remove:hover {
+/* .card > .remove:hover {
   color: #d50000;
+} */
+/* .smallCard-container {
+  cursor: pointer;
+  height: 150px;
+  perspective: 600;
+  position: relative;
+  width: 150px;
 }
+.smallCard {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+}
+.smallCard:hover {
+  transform: rotateY(180deg);
+}
+.smallCard .side {
+  backface-visibility: hidden;
+  border-radius: 6px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+.smallCard.back {
+  background: #eaeaed;
+  color: #0087cc;
+  line-height: 150px;
+  text-align: center;
+  transform: rotateY(180deg);
+} */

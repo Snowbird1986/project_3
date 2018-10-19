@@ -62,7 +62,7 @@ var RoomsSchema = new Schema({
   pendinguser: [{
     type: Schema.Types.ObjectId,
     ref: "User"
-    }
+  }
   ],
   contract: [{
     type: Schema.Types.ObjectId,
@@ -70,7 +70,11 @@ var RoomsSchema = new Schema({
   }
   ],
 
-  dateAdded: { type: Date, default: Date.now }
+  dateAdded: { type: Date, default: Date.now },
+  pending: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method

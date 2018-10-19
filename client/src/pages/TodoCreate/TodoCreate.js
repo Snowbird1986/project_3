@@ -17,12 +17,12 @@ class TodoCreate extends Component {
         recurring: "",
         frequency: "",
         assignee: "",
-        category:"",
+        category: "",
         dateAdded: "",
         dueDate: "Due Date",
         date: new Date(),
         hideCalender: true,
-        users:[]
+        users: []
     }
 
     handleOnChange = (e) => {
@@ -45,13 +45,13 @@ class TodoCreate extends Component {
             frequency: e.target.value
         })
     }
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props)
         API.getUserRoom(this.props.id).then(res =>
-            console.log(res)&
+            console.log(res) &
             this.setState({
                 users: res.data[0].user
-              })
+            })
         )
     }
 
@@ -93,12 +93,12 @@ class TodoCreate extends Component {
             category: this.state.category,
             frequency: this.state.frequency,
             dueDate: this.state.dueDate,
-            body: this.state.body, 
+            body: this.state.body,
         }
         console.log(todoData)
         if (this.state.title &&
             this.state.category &&
-            this.state.recurring&&
+            this.state.recurring &&
             this.state.assignee &&
             this.state.dueDate &&
             this.state.frequency &&
@@ -106,15 +106,15 @@ class TodoCreate extends Component {
         ) {
             API.saveTodos(
                 // {
-                    todoData
+                todoData
                 // title: this.state.name,
                 // category: this.state.description,
                 // description: this.state.rent,
                 // amount: this.state.category,
                 // dueDate: this.state.openSpots,
                 // assignee: this.state.availableDate,
-            // }
-        )
+                // }
+            )
                 .then(result => {
                     // function(err,docsInserted){
                     // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
@@ -123,12 +123,12 @@ class TodoCreate extends Component {
                     // return 
                     // console.log(result.data._id)
                     // console.log(this.props.id)
-                    API.updateRooms(this.props.roomID,{"$push":{ todo: result.data._id }}).then(console.log)
-                    .then(res => this.props.history.push(`/room`));
-                  }
+                    API.updateRooms(this.props.roomID, { "$push": { todo: result.data._id } }).then(console.log)
+                        .then(res => this.props.history.push(`/room`));
+                }
                 )
                 .catch(err => console.log(err));
-            } else { "did not post" }
+        } else { "did not post" }
     };
 
     render() {
@@ -161,14 +161,14 @@ class TodoCreate extends Component {
                                         <select defaultValue="" onChange={this.handleOnChange2}>
                                             <option value="">Assign Responsibility</option>
                                             {
-                                            this.state.users.map((user, i) =>{
-                                                return <BillUserCard 
-                                                firstName={user.firstName}
-                                                lastName={user.lastName}
-                                                id={user._id}
-                                                key={user._id}
-                                                imgUrl={user.imgUrl}
-                                                />
+                                                this.state.users.map((user, i) => {
+                                                    return <BillUserCard
+                                                        firstName={user.firstName}
+                                                        lastName={user.lastName}
+                                                        id={user._id}
+                                                        key={user._id}
+                                                        imgUrl={user.imgUrl}
+                                                    />
                                                 })
                                             }
                                         </select>
@@ -181,7 +181,7 @@ class TodoCreate extends Component {
                                             <option value="Bathroom">Bathroom</option>
                                             <option value="Outdoors">Outdoors</option>
                                             <option value="Laundry">Laundry</option>
-                                            </select>
+                                        </select>
                                     </Col>
                                 </Row>
                                 <Row>
