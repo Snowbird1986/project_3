@@ -2,7 +2,7 @@ const db = require("../models");
 
 // Defining methods for the RoomsController
 module.exports = {
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     db.Room
       .find(req.query)
       .populate("user")
@@ -10,15 +10,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findById: function (req, res) {
     db.Room
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findByUserId: function(req, res) {
+  findByUserId: function (req, res) {
     db.Room
-      .find({user:req.params.id})
+      .find({ user: req.params.id })
       .populate("user")
       .populate("bill")
       .populate("todo")
@@ -26,13 +26,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function (req, res) {
     db.Room
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  update: function (req, res) {
     console.log(req.params._id)
     console.log(req.body)
     db.Room
@@ -40,7 +40,7 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  remove: function (req, res) {
     db.Room
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./RoomCard.css";
+import API from "../../utils/API";
 
 class RoomCard extends Component {
   componentDidMount = () => {
@@ -10,7 +11,7 @@ class RoomCard extends Component {
 
   };
   picSize = (userArray) => {
-    const boxWidth = 1500 / userArray.length;
+    const boxWidth = 1000 / userArray.length;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
@@ -25,8 +26,25 @@ class RoomCard extends Component {
     return thisWork
   }
   joinRoom = () => {
-    //return console.log("you have joined")
+    console.log(this.props.children[0]._id);
+    // console.log(this.)
+    // API.updateRooms({
+    //   pending: true
+
+    // })
+
+
+    //   .then(res => {
+    //     console.log(res)
+    //     this.setState({
+    //       pending: res.pending
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
+
   }
+
+
 
 
   render() {
@@ -35,11 +53,12 @@ class RoomCard extends Component {
     const spots = this.props.children[0].openSpots;
 
     const ourArray = this.makeLoop(spots);
+    console.log(ourArray)
 
 
     const dims = this.picSize(ourArray);
     return (
-      <div onClick={() => console.log("")} style={{
+      <div style={{
         backgroundColor: "lightseagreen",
         width: "100%",
         height: "100%"
@@ -65,7 +84,7 @@ class RoomCard extends Component {
           </div>
           {ourArray.map((room, idx) => {
             return (
-              < div style={{
+              < div className="smallCard" style={{
                 margin: "10px",
                 width: `${dims[0]}px`,
                 height: `${dims[1]}px`,
@@ -82,39 +101,54 @@ class RoomCard extends Component {
                   }
 
                 </h1>
-                <h1>
+
+                <h1
+                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
+                >
                   {
-                    !!room ? room.budget : ''
+                    !!room ? "Budget: " + room.budget : ''
 
                   }
                 </h1>
-                <h1>
+                <h1
+                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
+                >
                   {
-                    !!room ? room.state : ''
+                    !!room ? "City: " + room.city : ''
 
                   }
                 </h1>
-                <h1>
+                <h1
+                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
+                >
                   {
-                    !!room ? room.moveInDate : ''
+                    !!room ? "State: " + room.state : ''
 
                   }
                 </h1>
-                <h1>
+                <h1
+                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
+                >
                   {
-                    !!room ? room.gender : ''
+                    !!room ? "Move in date: " + room.moveInDate.slice(0, 10) : ''
 
                   }
                 </h1>
-                <button onClick={this.joinRoom} style={{
-                  marginBottom: "200px",
-                  position: "fixed"
-                }}>join room</button>
+                <h1
+                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
+                >
+                  {
+                    !!room ? "Gender: " + room.gender : ''
+
+                  }
+                </h1>
+
               </div>
             )
           })}
 
-
+          <button className="joinRoom" value={this.props.children[0]._id} onClick={this.joinRoom}
+          >join room</button>
 
         </div>
       </div >
