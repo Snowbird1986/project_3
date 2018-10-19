@@ -8,11 +8,11 @@ var Schema = mongoose.Schema;
 var ContractsSchema = new Schema({
   // `title` is of type String
   rent: {type:Number},
-  userID: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  roomID: {
+  room: {
       type: Schema.Types.ObjectId,
       ref: "Room"
   },

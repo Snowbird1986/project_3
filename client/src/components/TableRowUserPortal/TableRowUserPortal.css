@@ -17,3 +17,8 @@ table {
     color:whitesmoke;
     cursor:pointer
 }
+#scroll {
+    overflow-x: scroll;
+    max-width: 100%;
+    display: inline-block;
+}

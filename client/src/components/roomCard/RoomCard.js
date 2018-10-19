@@ -147,7 +147,7 @@ class RoomCard extends Component {
             )
           })}
 
-          <button className="joinRoom" value={this.props.children[0]._id} onClick={this.joinRoom}
+          <button className="joinRoom" value={this.props.children[0]._id} onClick={this.props.applyRoom}
           >join room</button>
 
         </div>

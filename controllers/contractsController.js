@@ -5,7 +5,19 @@ module.exports = {
   findAll: function(req, res) {
     db.Contract
       .find(req.query)
-      .sort({ date: -1 })
+      .sort({ dateApplied: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByRoomId: function(req, res) {
+    db.Contract
+      .find({ 
+        RoomID: req.params.id,
+        // approved: false
+       })
+      // .populate("user")
+      // .populate("room")
+      .sort({ dateApplied: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
