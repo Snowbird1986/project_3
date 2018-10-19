@@ -146,6 +146,7 @@ class Room extends Component {
                 users: res.data[0].user,
                 owner: res.data[0].user[0],
                 bills: res.data[0].bill,
+                contracts: res.data[0].contract,
                 todos: res.data[0].todo,
                 messages: res.data[0].message,
                 roomID: res.data[0]._id

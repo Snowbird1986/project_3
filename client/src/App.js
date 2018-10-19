@@ -92,6 +92,7 @@ class App extends Component {
       alert('Facebook login error');
     }
   }
+  
   componentDidUpdate() {
     console.log(this.state)
   }
@@ -153,8 +154,9 @@ class App extends Component {
               lastName={this.state.lastName}
               gender={this.state.gender}
               email={this.state.email}
-              // location="Kansas City"
-              // facebookToken={this.state.facebookToken}
+              city={this.state.city}
+              state={this.state.state}
+              zip={this.state.zip}
               facebookId={this.state.facebookId}
               birthday={this.state.birthday}
               img={this.state.img}
@@ -167,8 +169,14 @@ class App extends Component {
             } />
             <Route exact path="/roomCreate" render={(props) => <RoomCreate {...props}
               id={this.state.id}
+              // roomID={this.state.roomID}
             />
             } />
+            {/* <Route exact path="/roomApply" render={(props) => <RoomApply {...props}
+              id={this.state.id}
+              roomID={this.state.roomID}
+            />
+            } /> */}
             <Route exact path="/roomEdit" render={(props) => <RoomEdit {...props}
               id={this.state.id}
               name={this.state.name}
