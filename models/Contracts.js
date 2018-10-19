@@ -7,12 +7,28 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var ContractsSchema = new Schema({
   // `title` is of type String
-  title: String,
-  // `body` is of type String
-  body: String,
+  rent: {type:Number},
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  roomID: {
+      type: Schema.Types.ObjectId,
+      ref: "Room"
+  },
+  length: {type:String},
+  availableDate: { 
+    type: Date
+  },
+  description: String,
+  approved: {
+    type: Boolean,
+    default: false
+  },
   dateSigned: { 
     type: Date
   },
+  dateApplied: { type: Date, default: Date.now },
   dateAdded: { type: Date, default: Date.now }
 });
 

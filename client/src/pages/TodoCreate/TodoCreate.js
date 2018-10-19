@@ -222,17 +222,6 @@ class TodoCreate extends Component {
                                         </Calendar>
                                     </Col>
                                 </Row>
-                                {/* <Row>
-                                    <Col size="md-12">
-                                        <select defaultValue="" onChange={this.handleOnChange}>
-                                            <option value="">Category</option>
-                                            <option value="Dormroom">Dorm Room</option>
-                                            <option value="Apartment">Apartment</option>
-                                            <option value="Duplex">Duplex</option>
-                                            <option value="House">House</option>
-                                        </select>
-                                    </Col>
-                                </Row> */}
                                 <Row>
                                     <Col size="md-12">
                                         <TextArea

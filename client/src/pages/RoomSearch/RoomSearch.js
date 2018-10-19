@@ -4,6 +4,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import RoomCard from "../../components/roomCard";
+import RoomApply from "../../components/RoomApply";
 import _ from 'lodash';
 import API from "../../utils/API";
 
@@ -12,32 +13,10 @@ const objectForSearch = {}
 
 
 class RoomSearch extends Component {
-    componentDidMount = () => {
-        //console.log(this.props)
-        if ("farts" == "farts") {
-            API.getUsers({
-
-            })
-                .then(res => {
-                    this.setState({
-                        img: res.data[0].imgUrl,
-                        name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
-                        phone: res.data[0].phoneNumber,
-                        gender: res.data[0].gender,
-                        city: res.data[0].city,
-                        state: res.data[0].state,
-                        zip: res.data[0].zip,
-                        budget: res.data[0].budget
-                    });
-                    //console.log(this.state.img)
-                    //console.log(this.state.name)
-                    // console.log(res.data[0].imgUrl)
-                })
-                .catch(err => console.log(err));
-        } else { "did not post" }
-    }
     state = {
         room: [],
+        roomID:"",
+        userID:"",
         name: "",
         description: "",
         rent: "",
@@ -52,9 +31,38 @@ class RoomSearch extends Component {
         state: "",
         zip: "",
         img: "",
+        apply: false,
         rooms: [],
         roomates: []
     }
+    componentDidMount = () => {
+        //console.log(this.props)
+
+            // API.getUsers({}).then(res => {
+            //         console.log(res)&
+            //         this.setState({
+            //             img: res.data[0].imgUrl,
+            //             name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
+            //             phone: res.data[0].phoneNumber,
+            //             gender: res.data[0].gender,
+            //             city: res.data[0].city,
+            //             state: res.data[0].state,
+            //             zip: res.data[0].zip,
+            //             budget: res.data[0].budget,
+            //             id: res.data[0]._id
+            //         });
+                    
+            //         //console.log(this.state.img)
+            //         //console.log(this.state.name)
+            //         // console.log(res.data[0].imgUrl)
+            //     })
+            //     .catch(err => console.log(err));
+
+    }
+    componentDidUpdate=()=>{
+        console.log(this.state)
+    }
+    
 
     filterRoom(room) {
         let comparisons = ["rent",
@@ -87,10 +95,8 @@ class RoomSearch extends Component {
         event.preventDefault();
         // console.log(this.state.budget.replace(/[^0-9]/, ''))
 
-        if ("farts" == "farts") {
-            API.getRooms({
 
-            })
+            API.getRooms({})
                 .then(res => {
                     //console.log(this.state.rent)
                     const validRooms = res.data.filter(this.filterRoom.bind(this));
@@ -102,12 +108,24 @@ class RoomSearch extends Component {
                     });
                 })
                 .catch(err => console.log(err));
-        } else { "did not post" }
+
 
 
 
     };
-
+    applyRoom = (event) => {
+        event.preventDefault();
+        this.setState({
+            roomID:event.target.value,
+            apply:true,
+        })
+    }
+    resetApply = () =>{
+        this.setState({
+            apply:false,
+            roomID:""
+        })
+    }
 
     handleInputChange = event => {
         //this.handleSearchChange
@@ -162,10 +180,31 @@ class RoomSearch extends Component {
                         </Jumbotron>
                         <div id="rooms">
                             {this.state.rooms.map((room, idx) =>
-                                <RoomCard key={`img-${idx}`}>{room} </RoomCard>
+                                <RoomCard 
+                                key={`img-${idx}`}
+                                applyRoom={this.applyRoom}
+                                roomID={this.state.roomID}
+                                >{room} </RoomCard>
                             )}
 
                             {/* <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div> */}
+                        </div>
+                        <div id="apply">
+                            {this.state.apply &&
+                                <RoomApply 
+                                    userID={this.props.id}
+                                    roomID={this.state.roomID}
+                                    username={this.props.username}
+                                    firstName={this.props.firstName}
+                                    lastName={this.props.lastName}
+                                    gender={this.props.gender}
+                                    budget={this.props.budget}
+                                    email={this.props.email}
+                                    img={this.props.img}
+                                    birthday={this.props.birthday}
+                                    resetApply={this.resetApply}
+                                />
+                            }
                         </div>
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
