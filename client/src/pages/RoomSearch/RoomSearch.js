@@ -4,8 +4,12 @@ import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import RoomCard from "../../components/roomCard";
+<<<<<<< HEAD
 import RoomApply from "../../components/RoomApply";
 import _ from 'lodash';
+=======
+import Calendar from 'react-calendar';
+>>>>>>> SearchRoom
 import API from "../../utils/API";
 
 import "./RoomSearch.css";
@@ -23,7 +27,6 @@ class RoomSearch extends Component {
         budget: "",
         category: "",
         openSpots: "",
-        availableDate: "",
         dateAdded: "",
         phone: "",
         gender: "",
@@ -33,7 +36,11 @@ class RoomSearch extends Component {
         img: "",
         apply: false,
         rooms: [],
-        roomates: []
+        roomates: [],
+        availableDate: "",
+        date: new Date(),
+        hideCalender: true,
+        hideCalender2: true,
     }
     componentDidMount = () => {
         //console.log(this.props)
@@ -129,10 +136,12 @@ class RoomSearch extends Component {
 
     handleInputChange = event => {
         //this.handleSearchChange
+        console.log(this.availableDate)
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
+        //console.log(this.availableDate)
 
 
 
@@ -169,8 +178,33 @@ class RoomSearch extends Component {
         // }
         // this.setState()
     };
+    onChange2 = date => {
+        // console.log(this.availableDate)
+        //var date = date.toString().slice(0, -41);
+        console.log(date)
+        this.setState({ date: date });
+        this.availableDate(date);
+        this.setState({ hideCalender: !this.state.hideCalender });
+
+    };
+    changeAvailableDate = event => {
+        this.setState({ hideCalender: !this.state.hideCalender });
+        //console.log(document.getElementById('react-calendar').style);
+        //console.log(event.target.style)
+        // if(this.state.hideCalender==false){
+
+        // }
+    }
+    availableDate = value => {
+        value = value.toString().slice(0, -41)
+        this.setState({
+            availableDate: value
+        });
+    }
 
     render() {
+        let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
+        let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
         return (
             <Container fluid>
                 <Row>
@@ -254,8 +288,15 @@ class RoomSearch extends Component {
                                             value={this.state.availableDate}
                                             onChange={this.handleInputChange}
                                             name="availableDate"
-                                            placeholder="Available Date"
-                                        />
+                                            placeholder={this.state.availableDate}
+                                            onClick={this.changeAvailableDate.bind(this)}
+                                        // onClick={console.log("clicked")}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar}
+                                            onChange={this.onChange2}
+                                            value={this.state.date}>
+                                        </Calendar>
                                     </div>
                                 </Row>
                                 <Row>
