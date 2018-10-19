@@ -4,12 +4,9 @@ import { Col, Row, Container } from "../../components/Grid";
 import { FormBtn, Input, TextArea } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron";
 import RoomCard from "../../components/roomCard";
-<<<<<<< HEAD
 import RoomApply from "../../components/RoomApply";
 import _ from 'lodash';
-=======
 import Calendar from 'react-calendar';
->>>>>>> SearchRoom
 import API from "../../utils/API";
 
 import "./RoomSearch.css";

@@ -134,12 +134,6 @@ class RoomCard extends Component {
 
                   }
                 </h1>
-<<<<<<< HEAD
-                <button value={this.props.roomID} onClick={this.props.applyRoom} style={{
-                  marginBottom: "200px",
-                  position: "fixed"
-                }}>join room</button>
-=======
                 <h1
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
@@ -149,7 +143,6 @@ class RoomCard extends Component {
                   }
                 </h1>
 
->>>>>>> SearchRoom
               </div>
             )
           })}
