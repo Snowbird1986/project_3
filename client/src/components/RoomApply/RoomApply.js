@@ -13,26 +13,26 @@ class RoomApply extends Component {
     state = {
         room: [],
         name: "",
-        userID:"",
-        email:"",
-        img:"",
+        userID: "",
+        email: "",
+        img: "",
         description: "",
         rent: "",
-        roomID:"",
-        gender:"",
+        roomID: "",
+        gender: "",
         length: "",
         availableDate: "Available Date",
         date: new Date(),
         hideCalender: true
     }
 
-    componentDidMount=()=>{
+    componentDidMount = () => {
         this.setState({
             name: this.props.firstName,
             rent: this.props.budget,
             userID: this.props.userID,
-            email:this.props.email,
-            gender:this.props.gender,
+            email: this.props.email,
+            gender: this.props.gender,
             img: this.props.img,
             birthday: this.props.birthday,
             roomID: this.props.roomID
@@ -77,39 +77,33 @@ class RoomApply extends Component {
         console.log(this.state)
         console.log(this.props)
         let contractData = {
-            user: this.state.userID,
-            room:this.state.roomID,
+            userID: this.state.userID,
+            roomID: this.state.roomID,
             description: this.state.description,
-            length:this.state.length,
+            length: this.state.length,
             rent: this.state.rent,
             availableDate: this.state.availableDate,
-            
+
         }
         console.log(contractData)
         if (
-            this.state.rent&&
-            this.state.userID&&
-            this.state.length&&
+            this.state.rent &&
+            this.state.userID &&
+            this.state.length &&
             this.state.description &&
-            this.state.availableDate&&
+            this.state.availableDate &&
             this.state.roomID
         ) {
             API.saveContracts(contractData)
                 .then(result => {
-                    // function(err,docsInserted){
-                    // // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
-                    // // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-                    // // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-                    // return 
-                    // console.log(result.data._id)
-                    // console.log(this.props.id)
-                    API.updateRooms(this.props.roomID,{"$push":{ contract: result.data._id }})
-                    API.updateRooms(this.props.roomID,{"$push":{ pendinguser: this.props.userID }})
-                    .then(this.props.resetApply);
-                  }
+
+                    API.updateRooms(this.props.roomID, { "$push": { contract: result.data._id } })
+                    API.updateRooms(this.props.roomID, { "$push": { pendinguser: this.props.userID } })
+                        .then(this.props.resetApply);
+                }
                 )
                 .catch(err => console.log(err));
-            } else { "did not post" }
+        } else { "did not post" }
     };
 
     render() {
@@ -125,7 +119,7 @@ class RoomApply extends Component {
                             <form>
                                 <Row>
                                     <Col size="md-4">
-                                    <select defaultValue="" onChange={this.handleOnChange}>
+                                        <select defaultValue="" onChange={this.handleOnChange}>
                                             <option value="">Frequency</option>
                                             <option value="months">Monthly</option>
                                             <option value="6 months">Semi-Annual</option>
