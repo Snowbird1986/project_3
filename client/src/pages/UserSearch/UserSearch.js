@@ -14,25 +14,25 @@ class UserSearch extends Component {
     componentDidMount = () => {
         console.log(this.props);
 
-        if("search" == "search") {
-            API.getUsers({
+        // if("search" == "search") {
+        //     API.getUsers({
 
-            })
-            .then(res => {
-                this.setState({
-                    img: res.data[0].imgUrl,
-                    name: res.data[0].firstName.toString(),
-                    phone: res.data[0].phoneNumber,
-                    gender: res.data[0].gender,
-                    city: res.data[0].city,
-                    state: res.data[0].state,
-                    zip: res.data[0].zip,
-                    budget: res.data[0].budget
-                });
-                console.log(res);
-            })
-            .catch(err => console.log(err));
-        } else { "did not post" }
+        //     })
+        //     .then(res => {
+        //         this.setState({
+        //             img: res.data[0].imgUrl,
+        //             name: res.data[0].firstName.toString(),
+        //             phone: res.data[0].phoneNumber,
+        //             gender: res.data[0].gender,
+        //             city: res.data[0].city,
+        //             state: res.data[0].state,
+        //             zip: res.data[0].zip,
+        //             budget: res.data[0].budget
+        //         });
+        //         console.log(res);
+        //     })
+        //     .catch(err => console.log(err));
+        // } else { "did not post" }
     }
     
     state = {
@@ -55,6 +55,11 @@ class UserSearch extends Component {
 
     filterUser(user) {
         let comparisons = [
+            "firstName",
+            "lastName",
+            "email",
+            "phoneNumber",
+            "birthday",
             "city",
             "state",
             "zip",
@@ -68,15 +73,19 @@ class UserSearch extends Component {
         let matchValues = []
         comparisons.forEach(k => {
             // console.log(k, this.state[k], user[k], typeof this.state[k] === "string");
-
+            // console.log(this.state[k])
+            // console.log(!!this.state[k])
+            // console.log(this.state[k].length)
+            // console.log(this.state[k].length > 0)
+            // console.log(!!this.state[k] && this.state[k].length > 0)         
             if (!!this.state[k] && this.state[k].length > 0) {
-                if (k =="budget") {
-                    if (user[k] > this.state.budget) {
-                        console.log(user.budget)
-                        matchValues.push(user[k] && user[k] == this.state[k]);
-                    }
+
+                if (k == "budget") {
+                    // console.log('user[k]', user[k], 'this.state[k]', this.state[k])
+                    // console.log('greatere than?', parseInt(user[k]) > parseInt(this.state[k]))
+                    matchValues.push(user[k] && parseInt(user[k]) > parseInt(this.state[k]));
                 } else {
-                    matchValues.push(user[k] && user[k]== this.state[k]);
+                    matchValues.push(user[k] && user[k] == this.state[k]);
                 }
             }           
         })
@@ -95,7 +104,7 @@ class UserSearch extends Component {
         event.preventDefault();
         
 
-        if ("search" == "search") {
+        // if ("search" == "search") {
             API.getUsers({
 
             })
@@ -109,7 +118,7 @@ class UserSearch extends Component {
             })
             .catch(err => console.log(err));
 
-        } else { "did not post" }
+        // } else { "did not post" }
     };
 
     handleInputChange = event => {
