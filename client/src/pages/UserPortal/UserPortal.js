@@ -102,6 +102,12 @@ class UserPortal extends Component {
     viewRoom =()=>{
         this.props.history.push(`/room`)
     }
+    roomSearch =()=>{
+        this.props.history.push(`/roomSearch`)
+    }
+    userSearch =()=>{
+        this.props.history.push(`/userSearch`)
+    }
     editRoom =()=>{
         this.props.history.push(`/roomEdit`)
     }
@@ -152,8 +158,13 @@ class UserPortal extends Component {
                                         {this.props.username}
                                         </div>
                                     {!this.state.roomId &&
-                                        <div className="col-md-2" >
-                                        <button id="view" onClick={this.createRoom}>Create New Room</button>
+                                        <div className="row col-md-7">
+                                            <div className="col-md-4" >
+                                            <button id="view" onClick={this.createRoom}>Create New Room</button>
+                                            </div>
+                                            <div className="col-md-4 " >
+                                            <button id="edit" onClick={this.roomSearch}>Search Room</button>
+                                            </div>
                                         </div>
                                     }
                                     {this.state.roomId && this.props.id!==this.state.owner._id &&
@@ -161,10 +172,10 @@ class UserPortal extends Component {
                                             <div className="col-md-4" >
                                             <button id="view" onClick={this.viewRoom}>View Room</button>
                                             </div>
-                                            {/* <div className="col-md-4 " >
-                                            <button onClick={this.editRoom}>Edit Room</button>
+                                            <div className="col-md-4 " >
+                                            <button id="edit" onClick={this.userSearch}>Search Users</button>
                                             </div>
-                                            <div className="col-md-4" >
+                                            {/* <div className="col-md-4" >
                                             <button onClick={this.deleteRoom}>Delete Room</button>
                                             </div> */}
                                         </div>
@@ -343,6 +354,7 @@ class UserPortal extends Component {
                                                      this.state.contracts.map((contract, i) =>{
                                                         return <TableRowUserPortal 
                                                             approved={contract.approved}
+                                                            history={this.props.history}
                                                             // lastName={contract.lastName}
                                                             // email={contract.email}
                                                             description={contract.description}

@@ -113,7 +113,7 @@ class Nav extends Component {
         <Container fluid>
           <Row>
             <Col size="md-4">
-              <a className="navbar-brand" href="/userPortal">
+              <a>
                 {/* <svg id="demo" width="700" height="100" viewBox="0 0 700 100">
                   <defs>
                     <mask id="theMask">
@@ -145,7 +145,7 @@ class Nav extends Component {
 
                     } */}
                     {this.props.username &&
-                      <p>Welcome back, {this.props.username}</p>
+                      <h4>Welcome back, {this.props.username}</h4>
 
 
                     }
