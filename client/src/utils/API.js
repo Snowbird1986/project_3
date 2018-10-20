@@ -98,4 +98,7 @@ export default {
   updateMessages: function (id, data) {
     return axios.put("/api/messages/" + id, data);
   },
+  updateContracts: function (id, data) {
+    return axios.put("/api/contracts/" + id, data);
+  },
 };
