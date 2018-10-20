@@ -68,15 +68,17 @@ class TableRowUserPortal extends Component {
   approveUser =(e)=>{
     console.log(e.target.value)
     console.log(this.props)
+    let updatedSlots=this.props.openSpots-1
     API.updateContracts(e.target.value,{
         approved:true,
         pending:false,
         dateApproved: Date.now()
     }).then(
+      // updatedslots=this.props.openspots-1,
       API.updateRooms(this.props.room,{
       "$push":{ user: this.props.user},
       "$pull":{ pendinguser: this.props.user},
-      openspots: this.props.openspots-1,
+      openSpots: updatedSlots,
     })).then(this.props.history.push(`/refresh/userPortal`))
 }
 rejectUser =(e)=>{
