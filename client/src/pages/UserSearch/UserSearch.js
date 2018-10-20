@@ -49,7 +49,8 @@ class UserSearch extends Component {
         budget: "",
         moveInDate: "",
         users: [],
-        roommates: []
+        roommates: [],
+        imgUrl: ""
     }
 
     filterUser(user) {
@@ -62,13 +63,22 @@ class UserSearch extends Component {
             "moveInDate"
         ];
 
+        
+
         let matchValues = []
         comparisons.forEach(k => {
-            console.log(k, this.state[k], user[k], typeof this.state[k] === "string");
+            // console.log(k, this.state[k], user[k], typeof this.state[k] === "string");
 
             if (!!this.state[k] && this.state[k].length > 0) {
-                matchValues.push(user[k] && user[k] == this.state[k]);
-            }
+                if (k =="budget") {
+                    if (user[k] > this.state.budget) {
+                        console.log(user.budget)
+                        matchValues.push(user[k] && user[k] == this.state[k]);
+                    }
+                } else {
+                    matchValues.push(user[k] && user[k]== this.state[k]);
+                }
+            }           
         })
 
         console.log(matchValues);
@@ -83,6 +93,7 @@ class UserSearch extends Component {
 
     viewUsers = (event) => {
         event.preventDefault();
+        
 
         if ("search" == "search") {
             API.getUsers({
@@ -121,7 +132,8 @@ class UserSearch extends Component {
             state: "",
             zip: "",
             budget: "",
-            moveInDate: ""
+            moveInDate: "",
+            imgUrl: ""
         });
     }
 
@@ -142,6 +154,21 @@ class UserSearch extends Component {
                         <Jumbotron>
                             Search Users:
                         </Jumbotron>
+                                                                                                            
+                                    {
+                                    this.state.users.map((user) =>{
+                                        return <UserCard 
+                                        imgUrl={user.imgUrl}
+                                        firstName={user.firstName}
+                                        lastName={user.lastName}
+                                        email={user.email}
+                                        phoneNumber={user.phoneNumber}
+                                        budget={user.budget}
+                                        moveInDate={user.moveInDate}
+                                        />
+                                        })
+                                    }                        
+                            
 
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
@@ -251,41 +278,7 @@ class UserSearch extends Component {
                             </form>
                         </div>
                         
-                        <div id="searchresults">
-                           
-                            <Table>
-                                <thead>
-                                    <tr>
-                                    
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Move In Date</th>
-                                        <th scope="col">Budget</th>
-                                        <th scope="col">Contact</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                this.state.users.map((user) =>{
-                                    return <UserCard 
-                                    firstName={user.firstName}
-                                    lastName={user.lastName}
-                                    email={user.email}
-                                    introduction={user.introduction}
-                                    phoneNumber={user.phoneNumber}
-                                    birthday={user.birthday}
-                                    gender={user.gender}
-                                    budget={user.budget}
-                                    moveInDate={user.moveInDate}
-                                    />
-                                    })
-                                }
-                            </tbody>
-                            </Table>
-
-
-                        </div>
+                        
                     </Col>
                 </Row>
             </Container>
