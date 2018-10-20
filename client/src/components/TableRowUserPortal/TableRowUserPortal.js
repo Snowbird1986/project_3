@@ -6,6 +6,7 @@ import API from "../../utils/API";
 // import {withRouter} from "react-router-dom";
 // import {browserHistory,withRouter} from "react-router-dom"
 import "./TableRowUserPortal.css";
+import Table from "../../components/Table";
 
 class TableRowUserPortal extends Component {
   state={
@@ -64,27 +65,83 @@ class TableRowUserPortal extends Component {
     // })
 
   }
+  approveUser =(e)=>{
+    console.log(e.target.value)
+    console.log(this.props)
+    API.updateContracts(e.target.value,{
+        approved:true,
+        pending:false,
+        dateApproved: Date.now()
+    }).then(API.updateRooms(this.props.room,{
+      openspots: this.props.openspots-1,
+      "$push":{ user: this.props.user},
+      "$pull":{ pendinguser: this.props.user} 
+    })).then(this.props.history.push(`/refresh/userPortal`))
+}
+rejectUser =(e)=>{
+    console.log(e.target.value)
+    console.log(this.props)
+    API.updateContracts(e.target.value,{
+        pending:false,
+    }).then(API.updateRooms(this.props.room,{"$pull":{ pendinguser: this.props.user}})).then(this.props.history.push(`/refresh/userPortal`))
+}
 // viewUser =()=>{
 //   this.props.history.push(`/userHome`)
 // }
 // const TableRow = props => {
 render(){
   return (
-    <tbody>
-      <tr>
-        <th scope="row" value={this.props.user} onClick={this.props.viewUser}><img src={this.state.imgUrl} /></th>
-          <td>{this.state.firstName} {this.state.lastName}</td>
-          <td><a href={`tel:${this.state.phoneNumber}`}>{this.state.phoneNumber}</a></td>
-          <td><a href={`mailto:${this.state.email}`}>{this.state.email}</a></td>
-          <td>${this.props.rent}</td>
-          <td>{this.props.length}</td>
-          <td>{this.state.age} Yrs. Old</td>
-          <td>{this.state.gender}</td>
-          <td>{this.state.availableDate}</td>
-          <td><button id="approve" value={this.props.user} onClick={this.props.approveUser}>X</button></td>
-          <td><button id="fin" value={this.props.user} onClick={this.props.rejectUser}>X</button></td>
-      </tr>
-    </tbody>
+    <div>
+      
+      {this.props.pending&&
+        <div className="col-md-10 offset-md-1" id="scroll">
+        <h2>Potential Roomie</h2>
+          <Table>
+              <thead>
+              <tr>
+                  <th scope="col"></th>
+                  <th scope="col" width="15%">Name</th>
+                  <th scope="col" width="15%">Phone</th>
+                  <th scope="col" width="10%">Email</th>
+                  <th scope="col" width="10%">Proposed Rent/Mo.</th>
+                  <th scope="col" width="10%">Length</th>
+                  <th scope="col" width="5%">Age</th>
+                  <th scope="col" width="5%">Gender</th>
+                  <th scope="col" width="20%">Move In Date</th>
+                  {/* <th scope="col" width="10%">City</th>
+                  <th scope="col" width="5%">State</th>
+                  <th scope="col" width="5%">Zip</th> */}
+                  <th scope="col" width="5%">App</th>
+                  <th scope="col" width="5%">Rej</th>
+              </tr>
+            </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" value={this.props.user} onClick={this.props.viewUser}><img src={this.state.imgUrl} /></th>
+                    <td>{this.state.firstName} {this.state.lastName}</td>
+                    <td><a href={`tel:${this.state.phoneNumber}`}>{this.state.phoneNumber}</a></td>
+                    <td><a href={`mailto:${this.state.email}`}>{this.state.email}</a></td>
+                    <td>${this.props.rent}</td>
+                    <td>{this.props.length}</td>
+                    <td>{this.state.age} Yrs. Old</td>
+                    <td>{this.state.gender}</td>
+                    <td>{this.state.availableDate}</td>
+                    <td><button id="approve" value={this.props._id} onClick={this.approveUser}>X</button></td>
+                    <td><button id="fin" value={this.props._id} onClick={this.rejectUser}>X</button></td>
+                </tr>
+                <tr>
+                  <td colSpan="5">User Intro:</td>
+                  <td colSpan="6">Application Comments:</td>
+                </tr>
+                <tr>
+                  <td colSpan="5">{this.state.introduction}</td>
+                  <td colSpan="6">{this.props.description}</td>
+                </tr>
+              </tbody>
+          </Table>
+        </div>
+      }
+    </div>
     );
   };
 }

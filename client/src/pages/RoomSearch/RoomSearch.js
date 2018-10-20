@@ -100,7 +100,9 @@ class RoomSearch extends Component {
         // console.log(this.state.budget.replace(/[^0-9]/, ''))
 
 
-            API.getRooms({})
+            API.getRooms({
+                openSpots:{$gt:0}
+            })
                 .then(res => {
                     //console.log(this.state.rent)
                     const validRooms = res.data.filter(this.filterRoom.bind(this));
@@ -237,6 +239,7 @@ class RoomSearch extends Component {
                                 />
                             }
                         </div>
+                        {!this.state.apply &&
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
@@ -333,6 +336,7 @@ class RoomSearch extends Component {
                                 </div>
                             </form>
                         </div>
+                        }
                     </Col>
                 </Row>
             </Container >

@@ -112,12 +112,22 @@ class UserPortal extends Component {
         console.log(e.target.value)
         API.updateMessages(e.target.value,{ read: true }).then(this.props.history.push(`/refresh/userPortal`));
     }
-    approveUser =()=>{
-        
-    }
-    rejectUser =()=>{
-        
-    }
+    // approveUser =(e)=>{
+    //     console.log(e.target.value)
+    //     console.log(this.props)
+    //     // API.updateContracts(e.target.value,{
+    //     //     approved:true,
+    //     //     pending:false,
+    //     //     dateApproved: Date.now()
+    //     // }).then(API.updateRooms(this.state.roomId,{"$push":{ user: this.props.user}}))
+    // }
+    // rejectUser =(e)=>{
+    //     console.log(e.target.value)
+    //     console.log(this.props)
+    //     // API.updateContracts(e.target.value,{
+    //     //     pending:false,
+    //     // }).then(API.updateRooms(this.state.roomId,{"$pull":{ user: this.props.user}}))
+    // }
     viewUser =()=>{
         
     }
@@ -175,7 +185,7 @@ class UserPortal extends Component {
                                     </Row>
                                 </div>
                                 <br />
-                                <Row>
+                                <div className="row col-md-12" id="padding">
                                     <div className="col-md-10 offset-md-1">
                                     <h2>Your Bills</h2>
                                         <Table>            
@@ -283,10 +293,10 @@ class UserPortal extends Component {
                                         </div>
                                     } */}
                                     {this.props.id!==null&& this.props.id==this.state.owner._id &&
-                                         <div className="col-md-10 offset-md-1" id="scroll">
-                                         <h2>Potential Roomies</h2>
-                                             <Table>                                            
-                                                 <thead>
+                                         <div>
+                                        {/* //  <h2>Potential Roomies</h2> */}
+                                             {/* <Table>                                             */}
+                                                 {/* <thead>
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col" width="15%">Name</th>
@@ -297,13 +307,13 @@ class UserPortal extends Component {
                                                         <th scope="col" width="5%">Age</th>
                                                         <th scope="col" width="5%">Gender</th>
                                                         <th scope="col" width="20%">Move In Date</th>
-                                                        {/* <th scope="col" width="10%">City</th>
+                                                        <th scope="col" width="10%">City</th>
                                                         <th scope="col" width="5%">State</th>
-                                                        <th scope="col" width="5%">Zip</th> */}
+                                                        <th scope="col" width="5%">Zip</th>
                                                         <th scope="col" width="5%">App</th>
                                                         <th scope="col" width="5%">Rej</th>
                                                     </tr>
-                                                 </thead>
+                                                 </thead> */}
                                                  {/* {
                                                      this.state.pendinguser.map((user, i) =>{
                                                         return <TableRowUserPortal 
@@ -341,12 +351,16 @@ class UserPortal extends Component {
                                                             // gender={contract.gender}
                                                             rent={contract.rent}
                                                             availableDate={contract.availableDate}
+                                                            openSpots={this.state.openSpots}
                                                             // facebookId={contract.facebookId}
                                                             dateApplied={moment(contract.dateApplied)}
+                                                            dateApproved={moment(contract.dateApproved)}
+                                                            pending={contract.pending}
                                                             length={contract.length=="years"?"Annual":contract.length=="6 months"?"Semi-Annual":contract.length=="months"?"Monthly":"Weekly"}
                                                             // zip={contract.zip}
                                                             _id={contract._id}
                                                             user={contract.user}
+                                                            room={contract.room}
                                                             key={contract._id}
                                                             // imgUrl={contract.imgUrl}
                                                             viewUser={this.viewUser}
@@ -355,11 +369,11 @@ class UserPortal extends Component {
                                                             />
                                                         })
                                                      }
-                                             </Table>
+                                             {/* </Table> */}
                                          </div>      
                                     }
                                 {/* </div>                               */}
-                                </Row>
+                                </div>
                             </div>
                         </Col>
                     </Row>

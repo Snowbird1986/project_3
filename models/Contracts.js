@@ -21,6 +21,10 @@ var ContractsSchema = new Schema({
     type: Date
   },
   description: String,
+  pending: {
+    type: Boolean,
+    default: true
+  },
   approved: {
     type: Boolean,
     default: false
@@ -29,6 +33,7 @@ var ContractsSchema = new Schema({
     type: Date
   },
   dateApplied: { type: Date, default: Date.now },
+  dateApproved: { type: Date},
   dateAdded: { type: Date, default: Date.now }
 });
 
