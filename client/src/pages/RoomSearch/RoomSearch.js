@@ -16,8 +16,8 @@ const objectForSearch = {}
 class RoomSearch extends Component {
     state = {
         room: [],
-        roomID:"",
-        userID:"",
+        roomID: "",
+        userID: "",
         name: "",
         description: "",
         rent: "",
@@ -42,31 +42,31 @@ class RoomSearch extends Component {
     componentDidMount = () => {
         //console.log(this.props)
 
-            // API.getUsers({}).then(res => {
-            //         console.log(res)&
-            //         this.setState({
-            //             img: res.data[0].imgUrl,
-            //             name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
-            //             phone: res.data[0].phoneNumber,
-            //             gender: res.data[0].gender,
-            //             city: res.data[0].city,
-            //             state: res.data[0].state,
-            //             zip: res.data[0].zip,
-            //             budget: res.data[0].budget,
-            //             id: res.data[0]._id
-            //         });
-                    
-            //         //console.log(this.state.img)
-            //         //console.log(this.state.name)
-            //         // console.log(res.data[0].imgUrl)
-            //     })
-            //     .catch(err => console.log(err));
+        // API.getUsers({}).then(res => {
+        //         console.log(res)&
+        //         this.setState({
+        //             img: res.data[0].imgUrl,
+        //             name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
+        //             phone: res.data[0].phoneNumber,
+        //             gender: res.data[0].gender,
+        //             city: res.data[0].city,
+        //             state: res.data[0].state,
+        //             zip: res.data[0].zip,
+        //             budget: res.data[0].budget,
+        //             id: res.data[0]._id
+        //         });
+
+        //         //console.log(this.state.img)
+        //         //console.log(this.state.name)
+        //         // console.log(res.data[0].imgUrl)
+        //     })
+        //     .catch(err => console.log(err));
 
     }
-    componentDidUpdate=()=>{
+    componentDidUpdate = () => {
         console.log(this.state)
     }
-    
+
 
     filterRoom(room) {
         let comparisons = ["rent",
@@ -100,18 +100,18 @@ class RoomSearch extends Component {
         // console.log(this.state.budget.replace(/[^0-9]/, ''))
 
 
-            API.getRooms({})
-                .then(res => {
-                    //console.log(this.state.rent)
-                    const validRooms = res.data.filter(this.filterRoom.bind(this));
+        API.getRooms({})
+            .then(res => {
+                //console.log(this.state.rent)
+                const validRooms = res.data.filter(this.filterRoom.bind(this));
 
-                    this.setState({
-                        rooms: validRooms,
-                        roomates: Array.apply(null, Array(Number(validRooms.length ? validRooms[0].openSpots : 0)))
-                        //roomates: new Array(Number(res.data[0].openSpots))
-                    });
-                })
-                .catch(err => console.log(err));
+                this.setState({
+                    rooms: validRooms,
+                    roomates: Array.apply(null, Array(Number(validRooms.length ? validRooms[0].openSpots : 0)))
+                    //roomates: new Array(Number(res.data[0].openSpots))
+                });
+            })
+            .catch(err => console.log(err));
 
 
 
@@ -120,14 +120,14 @@ class RoomSearch extends Component {
     applyRoom = (event) => {
         event.preventDefault();
         this.setState({
-            roomID:event.target.value,
-            apply:true,
+            roomID: event.target.value,
+            apply: true,
         })
     }
-    resetApply = () =>{
+    resetApply = () => {
         this.setState({
-            apply:false,
-            roomID:""
+            apply: false,
+            roomID: ""
         })
     }
 
@@ -206,15 +206,15 @@ class RoomSearch extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
-                        <Jumbotron>
+                        {/* <Jumbotron>
                             Search Rooms:
-                        </Jumbotron>
-                        <div id="rooms">
+                        </Jumbotron> */}
+                        <div style={{ margin: "10px" }} id="rooms">
                             {this.state.rooms.map((room, idx) =>
-                                <RoomCard 
-                                key={`img-${idx}`}
-                                applyRoom={this.applyRoom}
-                                roomID={this.state.roomID}
+                                <RoomCard
+                                    key={`img-${idx}`}
+                                    applyRoom={this.applyRoom}
+                                    roomID={this.state.roomID}
                                 >{room} </RoomCard>
                             )}
 
@@ -222,7 +222,7 @@ class RoomSearch extends Component {
                         </div>
                         <div id="apply">
                             {this.state.apply &&
-                                <RoomApply 
+                                <RoomApply
                                     userID={this.props.id}
                                     roomID={this.state.roomID}
                                     username={this.props.username}
