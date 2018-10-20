@@ -79,10 +79,18 @@ class RoomSearch extends Component {
 
         let matchValues = []
         comparisons.forEach(k => {
-            console.log(k, this.state[k], room[k], typeof this.state[k] === "string");
-            if (!!this.state[k] && this.state[k].length > 0) {
 
-                matchValues.push(room[k] && room[k] == this.state[k]);
+            if (!!this.state[k] && this.state[k].length > 0) {
+                if (k == "rent") {
+                    if (room[k] > this.state.rent) {
+                        console.log(room.rent)
+                        //console.log("This is under 900")
+                        matchValues.push(room[k] && room[k] == this.state[k]);
+                    }
+                }
+                else {
+                    matchValues.push(room[k] && room[k] == this.state[k]);
+                }
             }
         })
 
@@ -202,6 +210,7 @@ class RoomSearch extends Component {
         });
     }
 
+
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
@@ -209,9 +218,9 @@ class RoomSearch extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
-                        {/* <Jumbotron>
+                        <Jumbotron>
                             Search Rooms:
-                        </Jumbotron> */}
+                        </Jumbotron>
                         <div style={{ margin: "10px" }} id="rooms">
                             {this.state.rooms.map((room, idx) =>
                                 <RoomCard

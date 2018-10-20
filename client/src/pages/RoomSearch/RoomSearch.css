@@ -4,7 +4,7 @@
 }
 #rooms{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto;
     column-gap: 40px;
     grid-row-gap: 40px;
     margin:40px;
