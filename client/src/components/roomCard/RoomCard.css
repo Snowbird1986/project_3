@@ -16,10 +16,11 @@
   background:#6CADDC;
 } */
 .joinRoom{
-  margin-top:22%;
+  cursor: pointer;
+  position: relative;
   margin-right:15px;
   float:right;
-  margin:30px;
+  margin:10px;
 }
 .card > .img-container > img {
   width: 60%
@@ -39,14 +40,14 @@
   margin-top: 18px;
 }
 
-.card > .remove {
+/* .card > .remove {
   color: #ff1744;
   font-size: 48px;
   position: absolute;
   top: -20px;
   right: 5px;
   cursor: pointer;
-}
+} */
 
 /* .card > .remove:hover {
   color: #d50000;
@@ -57,13 +58,20 @@
   perspective: 600;
   position: relative;
   width: 150px;
+} */
+.joinButton{
+  font-size: 10px;
+  margin-left:20%;
+  /* margin-top:10%; */
+
 }
+
 .smallCard {
   height: 100%;
-  position: absolute;
+  /* position: absolute; */
   transform-style: preserve-3d;
-  transition: all 1s ease-in-out;
-  width: 100%;
+  transition: all 1.5s ease-in-out;
+  width: 200%;
 }
 .smallCard:hover {
   transform: rotateY(180deg);
@@ -76,7 +84,7 @@
   overflow: hidden;
   width: 100%;
 }
-.smallCard.back {
+/* .smallCard.back {
   background: #eaeaed;
   color: #0087cc;
   line-height: 150px;
