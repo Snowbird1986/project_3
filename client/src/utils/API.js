@@ -27,6 +27,9 @@ export default {
   getContract: function (id) {
     return axios.get("/api/contracts/" + id);
   },
+  getContractByRoom: function (id) {
+    return axios.get("/api/contracts/" + id);
+  },
   getMessage: function (id) {
     return axios.get("/api/messages/" + id);
   },

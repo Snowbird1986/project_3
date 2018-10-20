@@ -13,4 +13,8 @@ router
   .put(contractsController.update)
   .delete(contractsController.remove);
 
+router
+  .route("/contracts/:id")
+  .get(contractsController.findByRoomId)
+
 module.exports = router;

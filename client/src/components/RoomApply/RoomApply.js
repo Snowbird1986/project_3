@@ -122,7 +122,7 @@ class RoomApply extends Component {
                                         <select defaultValue="" onChange={this.handleOnChange}>
                                             <option value="">Frequency</option>
                                             <option value="months">Monthly</option>
-                                            <option value="months">Semi-Annual</option>
+                                            <option value="6 months">Semi-Annual</option>
                                             <option value="years">Yearly</option>
                                         </select>
                                     </Col>
@@ -131,7 +131,7 @@ class RoomApply extends Component {
                                             value={this.state.rent}
                                             onChange={this.handleInputChange}
                                             name="rent"
-                                            placeholder="Rent"
+                                            placeholder="Rent/Month"
                                         />
                                     </Col>
                                     <Col size="md-5">
