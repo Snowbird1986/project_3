@@ -207,6 +207,7 @@ class RoomSearch extends Component {
         });
     }
 
+
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
