@@ -126,7 +126,7 @@ class BillCreate extends Component {
                     // return 
                     // console.log(result.data._id)
                     // console.log(this.props.id)
-                    API.updateRooms(this.props.roomID,{"$push":{ bill: result.data._id }}).then(console.log)
+                    API.updateRooms(this.props.roomID,{"$push":{ bill: result.data._id }})
                     .then(res => this.props.history.push(`/room`));
                   }
                 )

@@ -30,7 +30,7 @@ class TableRowUserPortal extends Component {
 
   componentDidMount=()=>{
     // console.log(this.state)
-    // console.log(this.props)
+    console.log(this.props)
     API.getUser(this.props.user).then(res=>{
       // console.log(moment(res.data.birthday.slice(0,10),"MM/DD/YYYY"))
       this.setState({
@@ -72,15 +72,17 @@ class TableRowUserPortal extends Component {
         approved:true,
         pending:false,
         dateApproved: Date.now()
-    }).then(API.updateRooms(this.props.room,{
-      openspots: this.props.openspots-1,
+    }).then(
+      API.updateRooms(this.props.room,{
       "$push":{ user: this.props.user},
-      "$pull":{ pendinguser: this.props.user} 
+      "$pull":{ pendinguser: this.props.user},
+      openspots: this.props.openspots-1,
     })).then(this.props.history.push(`/refresh/userPortal`))
 }
 rejectUser =(e)=>{
     console.log(e.target.value)
     console.log(this.props)
+    // const props=this.props
     API.updateContracts(e.target.value,{
         pending:false,
     }).then(API.updateRooms(this.props.room,{"$pull":{ pendinguser: this.props.user}})).then(this.props.history.push(`/refresh/userPortal`))

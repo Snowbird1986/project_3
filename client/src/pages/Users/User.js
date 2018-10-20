@@ -107,7 +107,7 @@ class User extends Component {
                 // facebookToken:this.props.facebookToken,
                 imgUrl: this.props.img,
             })
-                .then(res => this.props.history.push(`/`))
+                .then(res => this.props.history.push(`/userPortal`))
                 .catch(err => console.log(err));
         } else { "did not post" }
 
