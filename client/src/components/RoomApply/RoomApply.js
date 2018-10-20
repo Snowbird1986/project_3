@@ -77,8 +77,8 @@ class RoomApply extends Component {
         console.log(this.state)
         console.log(this.props)
         let contractData = {
-            userID: this.state.userID,
-            roomID:this.state.roomID,
+            user: this.state.userID,
+            room:this.state.roomID,
             description: this.state.description,
             length:this.state.length,
             rent: this.state.rent,
@@ -128,7 +128,7 @@ class RoomApply extends Component {
                                     <select defaultValue="" onChange={this.handleOnChange}>
                                             <option value="">Frequency</option>
                                             <option value="months">Monthly</option>
-                                            <option value="months">Semi-Annual</option>
+                                            <option value="6 months">Semi-Annual</option>
                                             <option value="years">Yearly</option>
                                         </select>
                                     </Col>
@@ -137,7 +137,7 @@ class RoomApply extends Component {
                                             value={this.state.rent}
                                             onChange={this.handleInputChange}
                                             name="rent"
-                                            placeholder="Rent"
+                                            placeholder="Rent/Month"
                                         />
                                     </Col>
                                     <Col size="md-5">

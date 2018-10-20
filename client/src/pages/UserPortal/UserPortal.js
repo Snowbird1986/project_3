@@ -86,6 +86,11 @@ class UserPortal extends Component {
               })
             }
         )
+        .then(
+            API.getContractByRoom(this.state.roomId).then(res=>
+                console.log(res)
+            )
+        )
     }
     componentDidUpdate =()=>{
         console.log(this.state)
@@ -270,16 +275,15 @@ class UserPortal extends Component {
                                                     })
                                                 }
                                         </Table>
-                                    </div>                              
-                                </Row>
-                                <div className="col-md-10 offset-md-1" id="createroomButton">
+                                    </div>
+                                    {/* <div className="col-md-10 offset-md-1"> */}
                                     {/* {!this.state.roomId &&
                                         <div className="col-md-3 offset-md-1" >
                                         <button onClick={this.createRoom}>Create New Room</button>
                                         </div>
                                     } */}
                                     {this.props.id!==null&& this.props.id==this.state.owner._id &&
-                                         <div>
+                                         <div className="col-md-10 offset-md-1" id="scroll">
                                          <h2>Potential Roomies</h2>
                                              <Table>                                            
                                                  <thead>
@@ -287,8 +291,9 @@ class UserPortal extends Component {
                                                         <th scope="col"></th>
                                                         <th scope="col" width="15%">Name</th>
                                                         <th scope="col" width="15%">Phone</th>
-                                                        <th scope="col" width="20%">Email</th>
-                                                        <th scope="col" width="10%">Budget</th>
+                                                        <th scope="col" width="10%">Email</th>
+                                                        <th scope="col" width="10%">Proposed Rent/Mo.</th>
+                                                        <th scope="col" width="10%">Length</th>
                                                         <th scope="col" width="5%">Age</th>
                                                         <th scope="col" width="5%">Gender</th>
                                                         <th scope="col" width="20%">Move In Date</th>
@@ -299,7 +304,7 @@ class UserPortal extends Component {
                                                         <th scope="col" width="5%">Rej</th>
                                                     </tr>
                                                  </thead>
-                                                 {
+                                                 {/* {
                                                      this.state.pendinguser.map((user, i) =>{
                                                         return <TableRowUserPortal 
                                                             firstName={user.firstName}
@@ -323,11 +328,38 @@ class UserPortal extends Component {
                                                             rejectUser={this.rejectUser}
                                                             />
                                                         })
+                                                     } */}
+                                                     {
+                                                     this.state.contracts.map((contract, i) =>{
+                                                        return <TableRowUserPortal 
+                                                            approved={contract.approved}
+                                                            // lastName={contract.lastName}
+                                                            // email={contract.email}
+                                                            description={contract.description}
+                                                            // phoneNumber={contract.phoneNumber}
+                                                            // birthday={contract.birthday}
+                                                            // gender={contract.gender}
+                                                            rent={contract.rent}
+                                                            availableDate={contract.availableDate}
+                                                            // facebookId={contract.facebookId}
+                                                            dateApplied={moment(contract.dateApplied)}
+                                                            length={contract.length=="years"?"Annual":contract.length=="6 months"?"Semi-Annual":contract.length=="months"?"Monthly":"Weekly"}
+                                                            // zip={contract.zip}
+                                                            _id={contract._id}
+                                                            user={contract.user}
+                                                            key={contract._id}
+                                                            // imgUrl={contract.imgUrl}
+                                                            viewUser={this.viewUser}
+                                                            approveUser={this.approveUser}
+                                                            rejectUser={this.rejectUser}
+                                                            />
+                                                        })
                                                      }
                                              </Table>
                                          </div>      
                                     }
-                                </div>
+                                {/* </div>                               */}
+                                </Row>
                             </div>
                         </Col>
                     </Row>
