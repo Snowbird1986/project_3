@@ -1,10 +1,10 @@
 #formdiv {
     background-color:lightslategray;
-    
+    /* margin-top:40px; */
 }
 #rooms{
-    display: grid;
-    grid-template-columns: auto;
+    /* display: grid;
+    grid-template-columns: 16.666666667% auto 16.666666667%; */
     column-gap: 40px;
     grid-row-gap: 40px;
     margin:40px;

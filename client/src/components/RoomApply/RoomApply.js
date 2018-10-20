@@ -77,8 +77,8 @@ class RoomApply extends Component {
         console.log(this.state)
         console.log(this.props)
         let contractData = {
-            userID: this.state.userID,
-            roomID: this.state.roomID,
+            user: this.state.userID,
+            room: this.state.roomID,
             description: this.state.description,
             length: this.state.length,
             rent: this.state.rent,
