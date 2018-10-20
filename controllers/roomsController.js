@@ -4,14 +4,16 @@ const db = require("../models");
 module.exports = {
   findAll: function (req, res) {
     db.Room
-      .find(req.query)
+      .find({
+        openSpots:{$gt:0}
+      })
       .populate("pendinguser")
       .populate("user")
       .populate("bill")
       .populate("todo")
       .populate("message")
       .populate("contract")
-      .sort({ date: -1 })
+      .sort({ dateAdded: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -40,8 +42,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
-    console.log(req.params._id)
-    console.log(req.body)
     db.Room
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
