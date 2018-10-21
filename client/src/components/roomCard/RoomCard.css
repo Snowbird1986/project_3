@@ -68,6 +68,28 @@
   overflow: hidden;
   width: 100%;
 }
+.greenCircle{
+  backface-visibility: hidden;
+  overflow: hidden;
+
+}
+.backCardText{
+  /* visibility: hidden; */
+  backface-visibility: visible;
+  /* overflow: hidden; */
+  z-index: 3;
+  transform: rotateY(-180deg);
+  /* -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1); */
+}
+img{
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
 /* .smallCard.back {
   background: #eaeaed;
   color: #0087cc;

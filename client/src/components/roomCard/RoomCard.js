@@ -118,7 +118,7 @@ class RoomCard extends Component {
 
                     }} src={room.imgUrl} alt="Jimmy Eat World"></img>
                   }
-                  {!!room > 0 && <div style={{
+                  {!!room > 0 && <div className="greenCircle" style={{
                     position: "fixed",
                     zIndex: 3,
                     marginTop: "57px",
@@ -135,7 +135,7 @@ class RoomCard extends Component {
 
                 </div>
                 <h1
-
+                  className="backCardText"
                   style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
                 >
                   {
@@ -146,6 +146,7 @@ class RoomCard extends Component {
                 </h1>
 
                 <h1
+                  className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
                   {
@@ -154,6 +155,7 @@ class RoomCard extends Component {
                   }
                 </h1>
                 <h1
+                  className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
                   {
@@ -162,6 +164,7 @@ class RoomCard extends Component {
                   }
                 </h1>
                 <h1
+                  className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
                   {
@@ -170,6 +173,7 @@ class RoomCard extends Component {
                   }
                 </h1>
                 <h1
+                  className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
                   {
@@ -178,6 +182,7 @@ class RoomCard extends Component {
                   }
                 </h1>
                 <h1
+                  className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
                   {
