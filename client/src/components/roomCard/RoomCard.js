@@ -136,7 +136,7 @@ class RoomCard extends Component {
                 </div>
                 <h2
                   className="backCardText"
-                  style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
+                  style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px", marginLeft: "20px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
                 >
                   {
                     !!room ? room.firstName : 'Vacancy'

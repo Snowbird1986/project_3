@@ -8,12 +8,14 @@ import RoomApply from "../../components/RoomApply";
 import _ from 'lodash';
 import Calendar from 'react-calendar';
 import API from "../../utils/API";
+import ReactTimeout from 'react-timeout'
 
 import "./RoomSearch.css";
 const objectForSearch = {}
 
 
 class RoomSearch extends Component {
+
     state = {
         room: [],
         roomID: "",
@@ -38,33 +40,19 @@ class RoomSearch extends Component {
         date: new Date(),
         hideCalender: true,
         hideCalender2: true,
+        on: false
     }
     componentDidMount = () => {
-        //console.log(this.props)
-
-        // API.getUsers({}).then(res => {
-        //         console.log(res)&
-        //         this.setState({
-        //             img: res.data[0].imgUrl,
-        //             name: res.data[0].firstName.toString() + " " + res.data[0].lastName.toString(),
-        //             phone: res.data[0].phoneNumber,
-        //             gender: res.data[0].gender,
-        //             city: res.data[0].city,
-        //             state: res.data[0].state,
-        //             zip: res.data[0].zip,
-        //             budget: res.data[0].budget,
-        //             id: res.data[0]._id
-        //         });
-
-        //         //console.log(this.state.img)
-        //         //console.log(this.state.name)
-        //         // console.log(res.data[0].imgUrl)
-        //     })
-        //     .catch(err => console.log(err));
+        //this.handleClick
 
     }
     componentDidUpdate = () => {
-        console.log(this.state)
+
+
+        if (this.state.on == false) {
+            setTimeout(this.toggle, 5000)
+        }
+        //console.log(this.state.on)
     }
 
 
@@ -206,6 +194,14 @@ class RoomSearch extends Component {
             availableDate: value
         });
     }
+    toggle = () => {
+        this.setState({ on: !this.state.on })
+    }
+    handleClick = (e) => {
+        console.log("handleClick Fired")
+        setTimeout(this.toggle, 5000) // call the `toggle` function after 5000ms
+        // console.log(this.props)
+    }
 
 
     render() {
@@ -215,9 +211,16 @@ class RoomSearch extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
-                        <Jumbotron>
+                        {
+                            this.state.on ? null : <Jumbotron >Search Rooms:</Jumbotron>
+
+                        }
+                        {/* <Jumbotron >
                             Search Rooms:
-                        </Jumbotron>
+                        </Jumbotron> */}
+                        {/* <Jumbotron>
+                            Search Rooms:
+                        </Jumbotron> */}
                         <div style={{ margin: "10px" }} id="rooms">
                             {this.state.rooms.map((room, idx) =>
                                 <RoomCard
