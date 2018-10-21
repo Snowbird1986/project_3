@@ -211,23 +211,23 @@ class RoomCard extends Component {
 
 
 
-            }}> <br></br><br></br>
-            <strong style={{ color: "white", marginLeft: "60px" }}>Roomee Wanted</strong>
+            }}> <br></br>
+            <strong style={{ color: "white", marginLeft: "35%" }}>Details</strong>
             <br></br>
-            <div style={{ paddingTop: "15px", fontSize:"14px"}} className="joinButton">
+            <div style={{ paddingTop: "15px", fontSize:"70%"}} className="joinButton">
 
               <strong>Type: </strong>{this.props.children[0].category}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
             <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
               <strong>Requested Rent: </strong> ${this.props.children[0].rent}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
               <strong>Date Available: </strong><br></br> {this.state.availableDate}
             </div>
-            <button className="applybutton" style={{ backgroundColor: "lightseagreen",color:"black", marginLeft: "38%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button>
+            <button className="applybutton" style={{ backgroundColor: "lightseagreen",color:"black", marginLeft: "34%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button>
 
           </div>
 
