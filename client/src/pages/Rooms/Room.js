@@ -80,8 +80,8 @@ class Room extends Component {
                     // return 
                     // console.log(result.data._id)
                     // console.log(this.props.id)
-                    API.updateRooms(this.state.roomID,{"$push":{ message: result.data._id }}).then(console.log)
-                    .then(res => this.props.history.push(`/room`));
+                    API.updateRooms(this.state.roomID,{"$push":{ message: result.data._id }})
+                    .then(this.props.history.push(`/refresh/room`));
                   }
                 )
                 .catch(err => console.log(err));

@@ -7,7 +7,7 @@ table {
     padding-bottom: 10px;
     margin-bottom:20px
 }
-.fin{
+#fin{
     background-color:lightcoral;
     color:black;
     cursor:pointer
@@ -21,4 +21,8 @@ table {
     overflow-x: scroll;
     max-width: 100%;
     display: inline-block;
+    padding-bottom: 15px;
+}
+img{
+    cursor:pointer;
 }

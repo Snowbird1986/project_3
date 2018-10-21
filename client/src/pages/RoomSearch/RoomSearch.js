@@ -67,14 +67,14 @@ class RoomSearch extends Component {
 
         let matchValues = []
         comparisons.forEach(k => {
-
+            // console.log(this.state[k])
+            // console.log(!!this.state[k])
+            // console.log(this.state[k].length)
+            // console.log(this.state[k].length > 0)
+            console.log(!!this.state[k] && this.state[k].length > 0)
             if (!!this.state[k] && this.state[k].length > 0) {
                 if (k == "rent") {
-                    if (room[k] > this.state.rent) {
-                        console.log(room.rent)
-                        //console.log("This is under 900")
-                        matchValues.push(room[k] && room[k] == this.state[k]);
-                    }
+                        matchValues.push(room[k] && parseInt(room[k]) < parseInt(this.state[k]));
                 }
                 else {
                     matchValues.push(room[k] && room[k] == this.state[k]);
@@ -96,10 +96,13 @@ class RoomSearch extends Component {
         // console.log(this.state.budget.replace(/[^0-9]/, ''))
 
 
-        API.getRooms({})
-            .then(res => {
-                //console.log(this.state.rent)
-                const validRooms = res.data.filter(this.filterRoom.bind(this));
+
+            API.getRooms({
+                openSpots:{$gt:0}
+            })
+                .then(res => {
+                    //console.log(this.state.rent)
+                    const validRooms = res.data.filter(this.filterRoom.bind(this));
 
                 this.setState({
                     rooms: validRooms,
@@ -211,17 +214,14 @@ class RoomSearch extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
-                        {
-                            this.state.on ? null : <Jumbotron >Search Rooms:</Jumbotron>
 
+                        {!this.state.apply &&
+                        <Jumbotron>
+                            Search Rooms:
+                        </Jumbotron>
                         }
-                        {/* <Jumbotron >
-                            Search Rooms:
-                        </Jumbotron> */}
-                        {/* <Jumbotron>
-                            Search Rooms:
-                        </Jumbotron> */}
-                        <div style={{ margin: "10px" }} id="rooms">
+                        {!this.state.apply &&
+                        <div style={{ margin: "10px" }} className="col-md-8 offset-md-2" id="rooms" >
                             {this.state.rooms.map((room, idx) =>
                                 <RoomCard
                                     key={`img-${idx}`}
@@ -232,6 +232,7 @@ class RoomSearch extends Component {
 
                             {/* <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div> */}
                         </div>
+                        }
                         <div id="apply">
                             {this.state.apply &&
                                 <RoomApply
@@ -249,6 +250,7 @@ class RoomSearch extends Component {
                                 />
                             }
                         </div>
+                        {!this.state.apply &&
                         <div className="col-md-8 offset-md-2" id="formdiv">
                             <form>
                                 <Row>
@@ -345,6 +347,7 @@ class RoomSearch extends Component {
                                 </div>
                             </form>
                         </div>
+                        }
                     </Col>
                 </Row>
             </Container >

@@ -5,9 +5,11 @@ import moment from 'moment';
 
 
 class RoomCard extends Component {
+  
   componentDidMount = () => {
     this.setState({
-      availableDate: moment(this.props.availableDate).format("MMMM Do YYYY")
+      availableDate: moment(this.props.availableDate).format("MMMM Do YYYY"),
+      occupancy: this.props.children[0].openSpots+this.props.children[0].user.length
     })
   }
 
@@ -15,13 +17,13 @@ class RoomCard extends Component {
   state = {
     userArray: this.props.children,
     hover: "",
-    availableDate: ""
-
+    availableDate: "",
+    occupancy:""
   };
 
 
   picSize = (userArray) => {
-    const boxWidth = 700 / userArray.length;
+    const boxWidth = 700 / userArray.length+1;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
@@ -53,8 +55,6 @@ class RoomCard extends Component {
     //   .catch(err => console.log(err));
 
   }
-
-
 
 
 
@@ -91,7 +91,7 @@ class RoomCard extends Component {
               color: "white",
               fontSize: "21px"
             }}>
-              4 person occupancy : {this.props.children[0].openSpots} vacancy
+              {this.state.occupancy} person occupancy : {this.props.children[0].openSpots} vacancy
             </h1>
           </div>
           {ourArray.map((room, idx) => {
@@ -103,10 +103,11 @@ class RoomCard extends Component {
                 width: `${dims[0]}px`,
                 height: `${dims[1]}px`,
                 float: "left",
+                // display:"inline",
                 backgroundColor: "white"
               }} key={`img-${idx}`}>
                 <div className="side">
-                  {!!room > 0 &&
+                  {!!room > 0&&
                     <img style={{
                       borderRadius: "50%",
                       position: "fixed",
@@ -118,6 +119,7 @@ class RoomCard extends Component {
 
                     }} src={room.imgUrl} alt="Jimmy Eat World"></img>
                   }
+
                   {!!room > 0 && <div className="greenCircle" style={{
                     position: "fixed",
                     zIndex: 3,
@@ -146,6 +148,7 @@ class RoomCard extends Component {
                 </h2>
 
 
+
                 <h2
                   className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
@@ -154,6 +157,7 @@ class RoomCard extends Component {
                     !!room ? "City: " + room.city : ''
 
                   }
+
                 </h2>
                 <h2
                   className="backCardText"
@@ -163,6 +167,7 @@ class RoomCard extends Component {
                     !!room ? "State: " + room.state : ''
 
                   }
+
                 </h2>
                 <h2
                   className="backCardText"
@@ -189,15 +194,18 @@ class RoomCard extends Component {
           <div className="joinRoom" value={this.props.children[0]._id} onClick={this.props.applyRoom}
             style={{
 
-              float: "right",
-              width: "175px",
-              height: "175px",
+
+              float: "left",
+              width: `${dims[0]}px`,
+              height: `${dims[1]}px`,
+              //margin: "50px",
               borderRadius: "50%",
               backgroundImage: 'url("images/rectangle.svg")',
               backgroundRepeat: "no-repeat",
               backgroundColor: "white",
               backgroundPositionY: "-5px",
               marginTop: "20px"
+
 
 
 
@@ -209,13 +217,13 @@ class RoomCard extends Component {
               <strong>{this.props.children[0].category}</strong>
             </div>
             <div className="joinButton">
-              {this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
+            <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
             </div>
             <div className="joinButton">
-              <strong>Requested Rent:</strong> ${this.props.children[0].rent}
+              <strong>Requested Rent: </strong> ${this.props.children[0].rent}
             </div>
             <div className="joinButton">
-              <strong>Date Available:</strong> {this.state.availableDate}
+              <strong>Date Available: </strong> {this.state.availableDate}
             </div>
 
           </div>

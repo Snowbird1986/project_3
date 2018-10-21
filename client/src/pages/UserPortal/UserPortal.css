@@ -1,5 +1,6 @@
 #formdiv {
     background-color:lightslategray;
+    padding-top:10px
     
 }
 form {
@@ -33,4 +34,7 @@ img {
     background-color:lightskyblue;
     color:black;
     cursor:pointer
+}
+#padding{
+    padding-bottom:25px;
 }
