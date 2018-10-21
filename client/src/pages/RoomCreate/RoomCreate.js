@@ -105,6 +105,7 @@ class RoomCreate extends Component {
                     // console.log(result.data._id)
                     // console.log(this.props.id)
                     API.updateRooms(result.data._id,{"$push":{ user: this.props.id }})
+                    .then(result =>{this.props.setRoomID(result.data._id)})
                     .then(res => this.props.history.push(`/room`));
                   }
                 )
@@ -114,6 +115,7 @@ class RoomCreate extends Component {
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
+        var setRoomID=this.props.setRoomID;
         return (
             <Container fluid>
                 <Row>

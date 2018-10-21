@@ -11,6 +11,7 @@ class RoomCard extends Component {
       availableDate: moment(this.props.availableDate).format("MMMM Do YYYY"),
       occupancy: this.props.children[0].openSpots+this.props.children[0].user.length
     })
+    console.log(this.props)
   }
 
 
@@ -63,7 +64,7 @@ class RoomCard extends Component {
 
 
     const spots = this.props.children[0].openSpots;
-
+    var applyRoom=this.props.applyRoom;
     const ourArray = this.makeLoop(spots);
     // console.log(ourArray[3].imgUrl)
 
@@ -192,7 +193,7 @@ class RoomCard extends Component {
               </div>
             )
           })}
-          <div className="joinRoom" value={this.props.children[0]._id} onClick={this.props.applyRoom}
+          <div className="joinRoom"
             style={{
 
 
@@ -211,21 +212,22 @@ class RoomCard extends Component {
 
 
             }}> <br></br><br></br>
-            <strong style={{ color: "white", marginLeft: "60px" }}>PRESS TO JOIN</strong>
+            <strong style={{ color: "white", marginLeft: "60px" }}>Roomee Wanted</strong>
             <br></br>
-            <div style={{ paddingTop: "20px", fontSize:"15px"}} className="joinButton">
+            <div style={{ paddingTop: "15px", fontSize:"14px"}} className="joinButton">
 
               <strong>Type: </strong>{this.props.children[0].category}
             </div>
-            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
             <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
             </div>
-            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
               <strong>Requested Rent: </strong> ${this.props.children[0].rent}
             </div>
-            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize:"14px" }} className="joinButton">
               <strong>Date Available: </strong><br></br> {this.state.availableDate}
             </div>
+            <button className="applybutton" style={{ backgroundColor: "lightseagreen",color:"black", marginLeft: "38%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button>
 
           </div>
 
