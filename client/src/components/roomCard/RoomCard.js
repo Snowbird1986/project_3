@@ -134,7 +134,7 @@ class RoomCard extends Component {
                   }
 
                 </div>
-                <h1
+                <h2
                   className="backCardText"
                   style={!!room ? { color: 'lightseagreen', textAlign: "center", fontSize: "28px" } : { color: 'black', textAlign: "center", fontSize: "12px" }}
                 >
@@ -143,18 +143,10 @@ class RoomCard extends Component {
 
                   }
 
-                </h1>
+                </h2>
 
-                <h1
-                  className="backCardText"
-                  style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
-                >
-                  {
-                    !!room ? "Budget: " + room.budget : ''
 
-                  }
-                </h1>
-                <h1
+                <h2
                   className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
@@ -162,8 +154,8 @@ class RoomCard extends Component {
                     !!room ? "City: " + room.city : ''
 
                   }
-                </h1>
-                <h1
+                </h2>
+                <h2
                   className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
@@ -171,8 +163,8 @@ class RoomCard extends Component {
                     !!room ? "State: " + room.state : ''
 
                   }
-                </h1>
-                <h1
+                </h2>
+                <h2
                   className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
@@ -180,8 +172,8 @@ class RoomCard extends Component {
                     !!room ? "Move in date: " + room.moveInDate.slice(0, 10) : ''
 
                   }
-                </h1>
-                <h1
+                </h2>
+                <h2
                   className="backCardText"
                   style={{ color: 'Black', textAlign: "left", fontSize: "18px", marginLeft: "20px" }}
                 >
@@ -189,7 +181,7 @@ class RoomCard extends Component {
                     !!room ? "Gender: " + room.gender : ''
 
                   }
-                </h1>
+                </h2>
 
               </div>
             )
@@ -205,10 +197,12 @@ class RoomCard extends Component {
               backgroundRepeat: "no-repeat",
               backgroundColor: "white",
               backgroundPositionY: "-5px",
+              marginTop: "20px"
 
 
 
-            }}> <strong style={{ color: "white" }}>PRESS TO JOIN</strong>
+            }}> <br></br>
+            <strong style={{ color: "white", marginLeft: "25px" }}>PRESS TO JOIN</strong>
             <br></br>
             <div style={{ paddingTop: "20px" }} className="joinButton">
 

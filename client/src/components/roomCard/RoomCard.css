@@ -41,8 +41,8 @@
 }
 
 .joinButton{
-  /* font-size: 1%; */
-  margin-left:15%;
+  font-size: 1%;
+  margin-left:11%;
   /* border-radius: -.8em; */
   
   /* baseline-shift:30px; */
@@ -76,14 +76,10 @@
 .backCardText{
   /* visibility: hidden; */
   backface-visibility: visible;
+  margin-right:20px;
   /* overflow: hidden; */
   z-index: 3;
   transform: rotateY(-180deg);
-  /* -moz-transform: scale(-1, 1);
-  -webkit-transform: scale(-1, 1);
-  -o-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-  transform: scale(-1, 1); */
 }
 img{
   backface-visibility: hidden;
