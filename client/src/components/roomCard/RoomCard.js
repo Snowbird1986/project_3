@@ -65,7 +65,7 @@ class RoomCard extends Component {
     const spots = this.props.children[0].openSpots;
 
     const ourArray = this.makeLoop(spots);
-    console.log(ourArray[3].imgUrl)
+    // console.log(ourArray[3].imgUrl)
 
 
     const dims = this.picSize(ourArray);
@@ -73,9 +73,10 @@ class RoomCard extends Component {
       <div style={{
         backgroundColor: "lightseagreen",
         width: "100%",
-        height: "100%"
+        height: "100%",
+        // justifyContent:"Center"
 
-      }} className="card">
+      }} className="card row">
         {/* {this.state.rooms.map((room, idx) =>
           <RoomCard key={`img-${idx}`}>{this.state.rooms[idx]} </RoomCard>
         )} */}
@@ -209,21 +210,21 @@ class RoomCard extends Component {
 
 
 
-            }}> <br></br>
-            <strong style={{ color: "white", marginLeft: "25px" }}>PRESS TO JOIN</strong>
+            }}> <br></br><br></br>
+            <strong style={{ color: "white", marginLeft: "60px" }}>PRESS TO JOIN</strong>
             <br></br>
-            <div style={{ paddingTop: "20px" }} className="joinButton">
+            <div style={{ paddingTop: "20px", fontSize:"15px"}} className="joinButton">
 
-              <strong>{this.props.children[0].category}</strong>
+              <strong>Type: </strong>{this.props.children[0].category}
             </div>
-            <div className="joinButton">
+            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
             <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
             </div>
-            <div className="joinButton">
+            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
               <strong>Requested Rent: </strong> ${this.props.children[0].rent}
             </div>
-            <div className="joinButton">
-              <strong>Date Available: </strong> {this.state.availableDate}
+            <div style={{ paddingTop: "5px", fontSize:"15px" }} className="joinButton">
+              <strong>Date Available: </strong><br></br> {this.state.availableDate}
             </div>
 
           </div>

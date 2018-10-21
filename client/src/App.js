@@ -35,6 +35,7 @@ class App extends Component {
       id: null,
       roomID: null,
     }
+    this.setId=this.setID.bind(this)
   }
   onFacebookLogin = (loginStatus, resultObject) => {
 
@@ -92,11 +93,17 @@ class App extends Component {
       alert('Facebook login error');
     }
   }
-  
+  setID(id){
+    // id.preventDefault()
+    this.setState({
+      id: id
+    })
+  }
   componentDidUpdate() {
     console.log(this.state)
   }
   render() {
+    var setID  =   this.setID;
     return (
       <Router>
         <div>
@@ -123,6 +130,7 @@ class App extends Component {
               birthday={this.state.birthday}
               img={this.state.img}
               id={this.state.id}
+              setID={this.setID.bind(this)}
             />
             ))} />
             <Route exact path="/userPortal" render={(props) => <UserPortal {...props}
