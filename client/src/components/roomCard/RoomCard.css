@@ -1,14 +1,17 @@
 .joinRoom{
-  cursor: pointer;
+  
   position: relative;
   margin-right:15px;
   float:right;
   margin:10px;
 }
+.applybutton{
+  cursor: pointer;
+}
 
 .joinButton{
   font-size: 1%;
-  margin-left:15%;
+  margin-left:20%;
   /* border-radius: -.8em; */
   
   /* baseline-shift:30px; */

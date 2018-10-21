@@ -15,39 +15,43 @@ const objectForSearch = {}
 
 
 class RoomSearch extends Component {
-
-    state = {
-        room: [],
-        roomID: "",
-        userID: "",
-        name: "",
-        description: "",
-        rent: "",
-        budget: "",
-        category: "",
-        openSpots: "",
-        dateAdded: "",
-        phone: "",
-        gender: "",
-        city: "",
-        state: "",
-        zip: "",
-        img: "",
-        apply: false,
-        rooms: [],
-        roomates: [],
-        availableDate: "",
-        date: new Date(),
-        hideCalender: true,
-        hideCalender2: true,
-        on: false
-    }
+    constructor(props) {
+        super(props)
+            this.state = {
+                room: [],
+                roomID: "",
+                userID: "",
+                name: "",
+                description: "",
+                rent: "",
+                budget: "",
+                category: "",
+                openSpots: "",
+                dateAdded: "",
+                phone: "",
+                gender: "",
+                city: "",
+                state: "",
+                zip: "",
+                img: "",
+                apply: false,
+                rooms: [],
+                roomates: [],
+                availableDate: "",
+                date: new Date(),
+                hideCalender: true,
+                hideCalender2: true,
+                on: false
+            }
+            this.applyRoom=this.applyRoom.bind(this)
+            this.resetApply=this.resetApply.bind(this)
+        }
     componentDidMount = () => {
         //this.handleClick
 
     }
     componentDidUpdate = () => {
-
+        console.log(this.state)
 
         // if (this.state.on == false) {
         //     setTimeout(this.toggle, 5000)
@@ -116,10 +120,13 @@ class RoomSearch extends Component {
 
 
     };
-    applyRoom = (event) => {
-        event.preventDefault();
+    applyRoom = (e) => {
+        e.preventDefault();
+        console.log(e)
+        console.log(e.target)
+        console.log(e.target.value)
         this.setState({
-            roomID: event.target.value,
+            roomID: e.target.value,
             apply: true,
         })
     }
@@ -211,6 +218,8 @@ class RoomSearch extends Component {
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
+        var applyRoom  =   this.applyRoom;
+        var resetApply  =   this.resetApply;
         return (
             <Container fluid>
                 <Row>
@@ -226,7 +235,7 @@ class RoomSearch extends Component {
                             {this.state.rooms.map((room, idx) =>
                                 <RoomCard
                                     key={`img-${idx}`}
-                                    applyRoom={this.applyRoom}
+                                    applyRoom={this.applyRoom.bind(this)}
                                     roomID={this.state.roomID}
                                 >{room} </RoomCard>
                             )}
@@ -247,7 +256,7 @@ class RoomSearch extends Component {
                                     email={this.props.email}
                                     img={this.props.img}
                                     birthday={this.props.birthday}
-                                    resetApply={this.resetApply}
+                                    resetApply={this.resetApply.bind(this)}
                                 />
                             }
                         </div>

@@ -36,6 +36,7 @@ class App extends Component {
       roomID: null,
     }
     this.setId=this.setID.bind(this)
+    this.setRoomId=this.setRoomID.bind(this)
   }
   onFacebookLogin = (loginStatus, resultObject) => {
 
@@ -99,11 +100,18 @@ class App extends Component {
       id: id
     })
   }
+  setRoomID(id){
+    // id.preventDefault()
+    this.setState({
+      roomID: id
+    })
+  }
   componentDidUpdate() {
     console.log(this.state)
   }
   render() {
     var setID  =   this.setID;
+    var setRoomID  =   this.setRoomID;
     return (
       <Router>
         <div>
@@ -177,6 +185,7 @@ class App extends Component {
             } />
             <Route exact path="/roomCreate" render={(props) => <RoomCreate {...props}
               id={this.state.id}
+              setRoomID={this.setRoomID.bind(this)}
               // roomID={this.state.roomID}
             />
             } />

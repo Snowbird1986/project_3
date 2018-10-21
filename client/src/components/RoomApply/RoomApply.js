@@ -27,6 +27,7 @@ class RoomApply extends Component {
     }
 
     componentDidMount = () => {
+        console.log(this.props)
         this.setState({
             name: this.props.firstName,
             rent: this.props.budget,
@@ -108,6 +109,7 @@ class RoomApply extends Component {
 
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
+        var resetApply=this.props.resetApply;
         return (
             <Container fluid>
                 <Row>
