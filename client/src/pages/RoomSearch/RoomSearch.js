@@ -8,7 +8,7 @@ import RoomApply from "../../components/RoomApply";
 import _ from 'lodash';
 import Calendar from 'react-calendar';
 import API from "../../utils/API";
-import ReactTimeout from 'react-timeout'
+// import ReactTimeout from 'react-timeout'
 
 import "./RoomSearch.css";
 const objectForSearch = {}
@@ -49,9 +49,9 @@ class RoomSearch extends Component {
     componentDidUpdate = () => {
 
 
-        if (this.state.on == false) {
-            setTimeout(this.toggle, 5000)
-        }
+        // if (this.state.on == false) {
+        //     setTimeout(this.toggle, 5000)
+        // }
         //console.log(this.state.on)
     }
 
@@ -197,14 +197,15 @@ class RoomSearch extends Component {
             availableDate: value
         });
     }
-    toggle = () => {
-        this.setState({ on: !this.state.on })
-    }
-    handleClick = (e) => {
-        console.log("handleClick Fired")
-        setTimeout(this.toggle, 5000) // call the `toggle` function after 5000ms
-        // console.log(this.props)
-    }
+    // toggle = () => {
+    //     this.setState({ on: !this.state.on })
+    // }
+    // handleClick = (e) => {
+    //     console.log("handleClick Fired")
+    //     setTimeout(this.toggle, 5000) 
+    //     // call the `toggle` function after 5000ms
+    //     // console.log(this.props)
+    // }
 
 
     render() {

@@ -107,6 +107,7 @@ class User extends Component {
                 // facebookToken:this.props.facebookToken,
                 imgUrl: this.props.img,
             })
+                .then(result =>{this.props.setID(result.data._id)})
                 .then(res => this.props.history.push(`/userPortal`))
                 .catch(err => console.log(err));
         } else { "did not post" }
@@ -163,6 +164,7 @@ class User extends Component {
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
+        var setID=this.props.setID;
         return (
 
             <Container fluid>
