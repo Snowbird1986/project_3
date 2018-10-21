@@ -99,6 +99,7 @@ class RoomCard extends Component {
 
               < div className="smallCard" style={{
                 margin: "10px",
+                borderRadius: "10px",
                 width: `${dims[0]}px`,
                 height: `${dims[1]}px`,
                 float: "left",
@@ -108,21 +109,27 @@ class RoomCard extends Component {
                   {!!room > 0 &&
                     <img style={{
                       borderRadius: "50%",
-                      marginLeft: "60px",
-                      width: "35px",
-                      height: "35px"
+                      position: "fixed",
+                      marginLeft: "93px",
+                      marginTop: "64px",
+                      zIndex: 4,
+                      width: "45px",
+                      height: "45px"
 
                     }} src={room.imgUrl} alt="Jimmy Eat World"></img>
                   }
                   {!!room > 0 && <div style={{
+                    position: "fixed",
+                    zIndex: 3,
+                    marginTop: "57px",
+                    marginLeft: "86px",
                     borderRadius: "50%",
                     backgroundColor: 'lightseagreen',
                     width: "60px",
-                    height: "60px",
-                    marginLeft: "60px"
+                    height: "60px"
                   }}></div>
                   }
-                  {!!room > 0 && <svg style={{ position: "static" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100.44 21.1"><title>card</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M89.63,4.8c-17,1.3-35.49,12.8-41.76,12.58-5.61-.2-5.91-4-1.53-6.44a35.27,35.27,0,0,1,3.74-1.08,9.52,9.52,0,0,1-3.7-7.53A9.42,9.42,0,0,1,46.68,0c-3.63,1.84-7.31,3.62-11.51,4C24.85,4.87,15.24-.18,3.65.27A13.31,13.31,0,0,0,0,1.07V7.38c11.86-4,24.76-1,36.64-.59C29.87,14.34,34,20.24,42.23,21a25.4,25.4,0,0,0,10.69-1.8c7.86-2.79,15.22-7.34,23.39-9a48,48,0,0,1,24.13,1.56V5.33C97,4.26,93.25,4.52,89.63,4.8Z" /></g></g></svg>
+                  {!!room > 0 && <svg style={{ zIndex: 2, marginTop: "85px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100.44 21.1"><title>card</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M89.63,4.8c-17,1.3-35.49,12.8-41.76,12.58-5.61-.2-5.91-4-1.53-6.44a35.27,35.27,0,0,1,3.74-1.08,9.52,9.52,0,0,1-3.7-7.53A9.42,9.42,0,0,1,46.68,0c-3.63,1.84-7.31,3.62-11.51,4C24.85,4.87,15.24-.18,3.65.27A13.31,13.31,0,0,0,0,1.07V7.38c11.86-4,24.76-1,36.64-.59C29.87,14.34,34,20.24,42.23,21a25.4,25.4,0,0,0,10.69-1.8c7.86-2.79,15.22-7.34,23.39-9a48,48,0,0,1,24.13,1.56V5.33C97,4.26,93.25,4.52,89.63,4.8Z" /></g></g></svg>
 
                   }
 
@@ -188,20 +195,19 @@ class RoomCard extends Component {
               float: "right",
               width: "175px",
               height: "175px",
-              //margin: "50px",
               borderRadius: "50%",
-              // marginRight: "40px",
-              backgroundColor: "white"
+              backgroundImage: 'url("images/rectangle.svg")',
+              backgroundRepeat: "no-repeat",
+              backgroundColor: "white",
+              backgroundPositionY: "-5px",
 
-            }}>
-            <div style={{
-              background: "black",
-              width: "100%",
-              height: "20px",
-              color: "lightseagreen"
-            }}><strong>Click Here to Join</strong></div>
-            <div className="joinButton">
-              {this.props.children[0].category}
+
+
+            }}> <strong style={{ color: "white" }}>PRESS TO JOIN</strong>
+            <br></br>
+            <div style={{ paddingTop: "20px" }} className="joinButton">
+
+              <strong>{this.props.children[0].category}</strong>
             </div>
             <div className="joinButton">
               {this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
@@ -214,10 +220,6 @@ class RoomCard extends Component {
             </div>
 
           </div>
-          {/* <button className="joinRoom" value={this.props.children[0]._id} onClick={this.props.applyRoom}
-          >join room
-          
-          </button> */}
 
         </div>
       </div >

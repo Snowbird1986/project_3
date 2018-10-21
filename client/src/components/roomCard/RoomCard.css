@@ -40,29 +40,13 @@
   margin-top: 18px;
 }
 
-/* .card > .remove {
-  color: #ff1744;
-  font-size: 48px;
-  position: absolute;
-  top: -20px;
-  right: 5px;
-  cursor: pointer;
-} */
-
-/* .card > .remove:hover {
-  color: #d50000;
-} */
-/* .smallCard-container {
-  cursor: pointer;
-  height: 150px;
-  perspective: 600;
-  position: relative;
-  width: 150px;
-} */
 .joinButton{
-  font-size: 10px;
-  margin-left:20%;
-  /* margin-top:10%; */
+  /* font-size: 1%; */
+  margin-left:15%;
+  /* border-radius: -.8em; */
+  
+  /* baseline-shift:30px; */
+   margin-top:-5px; 
 
 }
 
