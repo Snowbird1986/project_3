@@ -5,11 +5,11 @@ import moment from 'moment';
 
 
 class RoomCard extends Component {
-  
+
   componentDidMount = () => {
     this.setState({
       availableDate: moment(this.props.availableDate).format("MMMM Do YYYY"),
-      occupancy: this.props.children[0].openSpots+this.props.children[0].user.length
+      occupancy: this.props.children[0].openSpots + this.props.children[0].user.length
     })
     console.log(this.props)
   }
@@ -19,12 +19,12 @@ class RoomCard extends Component {
     userArray: this.props.children,
     hover: "",
     availableDate: "",
-    occupancy:""
+    occupancy: ""
   };
 
 
   picSize = (userArray) => {
-    const boxWidth = 700 / userArray.length+1;
+    const boxWidth = 700 / userArray.length + 1;
     const boxHeight = boxWidth;
     return [boxWidth, boxHeight];
 
@@ -64,7 +64,7 @@ class RoomCard extends Component {
 
 
     const spots = this.props.children[0].openSpots;
-    var applyRoom=this.props.applyRoom;
+    var applyRoom = this.props.applyRoom;
     const ourArray = this.makeLoop(spots);
     // console.log(ourArray[3].imgUrl)
 
@@ -109,7 +109,7 @@ class RoomCard extends Component {
                 backgroundColor: "white"
               }} key={`img-${idx}`}>
                 <div className="side">
-                  {!!room > 0&&
+                  {!!room > 0 &&
                     <img style={{
                       borderRadius: "50%",
                       position: "fixed",
@@ -193,7 +193,7 @@ class RoomCard extends Component {
               </div>
             )
           })}
-          <div className="joinRoom"
+          <div value={this.props.children[0]._id} onClick={this.props.applyRoom} className="joinRoom"
             style={{
 
 
@@ -212,22 +212,22 @@ class RoomCard extends Component {
 
 
             }}> <br></br>
-            <strong style={{ color: "white", marginLeft: "35%" }}>Details</strong>
+            <strong style={{ color: "white", textAlign: "center", marginLeft: "20%" }}>Click to join</strong>
             <br></br>
-            <div style={{ paddingTop: "15px", fontSize:"70%"}} className="joinButton">
+            <div style={{ paddingTop: "15px", fontSize: "70%" }} className="joinButton">
 
               <strong>Type: </strong>{this.props.children[0].category}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
-            <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
+            <div style={{ paddingTop: "2px", fontSize: "70%" }} className="joinButton">
+              <strong>Location: </strong>{this.props.children[0].city}, {this.props.children[0].state} {this.props.children[0].zip}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize: "70%" }} className="joinButton">
               <strong>Requested Rent: </strong> ${this.props.children[0].rent}
             </div>
-            <div style={{ paddingTop: "2px", fontSize:"70%" }} className="joinButton">
+            <div style={{ paddingTop: "2px", fontSize: "70%" }} className="joinButton">
               <strong>Date Available: </strong><br></br> {this.state.availableDate}
             </div>
-            <button className="applybutton" style={{ backgroundColor: "lightseagreen",color:"black", marginLeft: "34%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button>
+            {/* <button className="applybutton" style={{ backgroundColor: "lightseagreen", color: "black", marginLeft: "34%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button> */}
 
           </div>
 
