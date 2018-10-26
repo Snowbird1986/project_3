@@ -120,13 +120,14 @@ class RoomSearch extends Component {
 
 
     };
-    applyRoom = (e) => {
-        e.preventDefault();
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.value)
+    applyRoom = (id) => {
+        // e.preventDefault();
+        // console.log(e)
+        // console.log(e.target)
+        // console.log(e.target.value)
+        console.log(id)
         this.setState({
-            roomID: e.target.value,
+            roomID: id,
             apply: true,
         })
     }
@@ -170,16 +171,24 @@ class RoomSearch extends Component {
     };
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
-        // this.setState()
+        console.log("Nothing!!")
+
+
+
+            API.getRooms({
+                openSpots:{$gt:0}
+            })
+                .then(res => {
+                    //console.log(this.state.rent)
+                    const validRooms = res.data.filter(this.filterRoom.bind(this));
+
+                this.setState({
+                    rooms: validRooms,
+                    roomates: Array.apply(null, Array(Number(validRooms.length ? validRooms[0].openSpots : 0)))
+                    //roomates: new Array(Number(res.data[0].openSpots))
+                });
+            })
+            .catch(err => console.log(err));
     };
     onChange2 = date => {
         // console.log(this.availableDate)
@@ -351,7 +360,7 @@ class RoomSearch extends Component {
                                     </div>
                                 </Row>
                                 <div className="buttons">
-                                    <FormBtn onClick={this.viewRoom}>
+                                    <FormBtn onClick={this.handleFormSubmit}>
                                         Find a room
                                     </FormBtn>
                                 </div>
