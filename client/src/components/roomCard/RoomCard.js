@@ -38,8 +38,9 @@ class RoomCard extends Component {
 
     return thisWork
   }
-  joinRoom = () => {
+  joinRoom = (e) => {
     console.log(this.props.children[0]._id);
+    console.log(e.target.value);
     // console.log(this.)
     // API.updateRooms({
     //   pending: true
@@ -193,7 +194,7 @@ class RoomCard extends Component {
               </div>
             )
           })}
-          <div value={this.props.children[0]._id} onClick={this.props.applyRoom} className="joinRoom"
+          <div value={this.props.children[0]._id} onClick={this.props.applyRoom(this.props.children[0]._id)} className="joinRoom"
             style={{
 
 

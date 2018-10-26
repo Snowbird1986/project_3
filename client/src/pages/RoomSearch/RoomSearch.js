@@ -17,35 +17,35 @@ const objectForSearch = {}
 class RoomSearch extends Component {
     constructor(props) {
         super(props)
-            this.state = {
-                room: [],
-                roomID: "",
-                userID: "",
-                name: "",
-                description: "",
-                rent: "",
-                budget: "",
-                category: "",
-                openSpots: "",
-                dateAdded: "",
-                phone: "",
-                gender: "",
-                city: "",
-                state: "",
-                zip: "",
-                img: "",
-                apply: false,
-                rooms: [],
-                roomates: [],
-                availableDate: "",
-                date: new Date(),
-                hideCalender: true,
-                hideCalender2: true,
-                on: false
-            }
-            this.applyRoom=this.applyRoom.bind(this)
-            this.resetApply=this.resetApply.bind(this)
+        this.state = {
+            room: [],
+            roomID: "",
+            userID: "",
+            name: "",
+            description: "",
+            rent: "",
+            budget: "",
+            category: "",
+            openSpots: "",
+            dateAdded: "",
+            phone: "",
+            gender: "",
+            city: "",
+            state: "",
+            zip: "",
+            img: "",
+            apply: false,
+            rooms: [],
+            roomates: [],
+            availableDate: "",
+            date: new Date(),
+            hideCalender: true,
+            hideCalender2: true,
+            on: false
         }
+        this.applyRoom = this.applyRoom.bind(this)
+        this.resetApply = this.resetApply.bind(this)
+    }
     componentDidMount = () => {
         //this.handleClick
 
@@ -78,7 +78,7 @@ class RoomSearch extends Component {
             console.log(!!this.state[k] && this.state[k].length > 0)
             if (!!this.state[k] && this.state[k].length > 0) {
                 if (k == "rent") {
-                        matchValues.push(room[k] && parseInt(room[k]) < parseInt(this.state[k]));
+                    matchValues.push(room[k] && parseInt(room[k]) < parseInt(this.state[k]));
                 }
                 else {
                     matchValues.push(room[k] && room[k] == this.state[k]);
@@ -101,12 +101,12 @@ class RoomSearch extends Component {
 
 
 
-            API.getRooms({
-                openSpots:{$gt:0}
-            })
-                .then(res => {
-                    //console.log(this.state.rent)
-                    const validRooms = res.data.filter(this.filterRoom.bind(this));
+        API.getRooms({
+            openSpots: { $gt: 0 }
+        })
+            .then(res => {
+                //console.log(this.state.rent)
+                const validRooms = res.data.filter(this.filterRoom.bind(this));
 
                 this.setState({
                     rooms: validRooms,
@@ -120,13 +120,14 @@ class RoomSearch extends Component {
 
 
     };
-    applyRoom = (e) => {
-        e.preventDefault();
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.value)
+    applyRoom = (id) => {
+        // e.preventDefault();
+        // console.log(e)
+        // console.log(e.target)
+        // console.log(e.target.value)
+        // console.log(this.props);
         this.setState({
-            roomID: e.target.value,
+            roomID: id,
             apply: true,
         })
     }
@@ -218,30 +219,30 @@ class RoomSearch extends Component {
     render() {
         let hideCalendar = this.state.hideCalender ? "react-calendarHide" : "react-calendarShow";
         let hideCalendar2 = this.state.hideCalender2 ? "react-calendarHide" : "react-calendarShow";
-        var applyRoom  =   this.applyRoom;
-        var resetApply  =   this.resetApply;
+        var applyRoom = this.applyRoom;
+        var resetApply = this.resetApply;
         return (
             <Container fluid>
                 <Row>
                     <Col size="md-12">
 
                         {!this.state.apply &&
-                        <Jumbotron>
-                            Search Rooms:
+                            <Jumbotron>
+                                Search Rooms:
                         </Jumbotron>
                         }
                         {!this.state.apply &&
-                        <div style={{ margin: "10px" }} className="col-md-8 offset-md-2" id="rooms" >
-                            {this.state.rooms.map((room, idx) =>
-                                <RoomCard
-                                    key={`img-${idx}`}
-                                    applyRoom={this.applyRoom.bind(this)}
-                                    roomID={this.state.roomID}
-                                >{room} </RoomCard>
-                            )}
+                            <div style={{ margin: "10px" }} className="col-md-8 offset-md-2" id="rooms" >
+                                {this.state.rooms.map((room, idx) =>
+                                    <RoomCard
+                                        key={`img-${idx}`}
+                                        applyRoom={this.applyRoom.bind(this)}
+                                        roomID={this.state.roomID}
+                                    >{room} </RoomCard>
+                                )}
 
-                            {/* <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div> */}
-                        </div>
+                                {/* <div style={{ width: "40px", height: "40px", backgroundColor: "black" }} onClick={this.viewRoom}></div> */}
+                            </div>
                         }
                         <div id="apply">
                             {this.state.apply &&
@@ -261,102 +262,102 @@ class RoomSearch extends Component {
                             }
                         </div>
                         {!this.state.apply &&
-                        <div className="col-md-8 offset-md-2" id="formdiv">
-                            <form>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Input
-                                            value={this.state.name}
-                                            onChange={this.handleInputChange}
-                                            name="name"
-                                            placeholder="Title"
-                                        />
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Input
-                                            value={this.state.category}
-                                            onChange={this.handleInputChange}
-                                            name="category"
-                                            placeholder="Category"
-                                        />
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Input
-                                            value={this.state.rent}
-                                            onChange={this.handleInputChange}
-                                            name="rent"
-                                            placeholder="Rent"
-                                        />
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Input
-                                            value={this.state.openSpots}
-                                            onChange={this.handleInputChange}
-                                            name="openSpots"
-                                            placeholder="Roommate spots Remaining"
-                                        />
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Input
-                                            value={this.state.availableDate}
-                                            onChange={this.handleInputChange}
-                                            name="availableDate"
-                                            placeholder={this.state.availableDate}
-                                            onClick={this.changeAvailableDate.bind(this)}
-                                        // onClick={console.log("clicked")}
-                                        ></Input>
-                                        <Calendar
-                                            className={hideCalendar}
-                                            onChange={this.onChange2}
-                                            value={this.state.date}>
-                                        </Calendar>
-                                    </div>
-                                </Row>
-                                <Row>
-                                    <div className="col-md-8 offset-md-2">
-                                        <Row>
-                                            <div className="col-md-5">
-                                                <Input
-                                                    value={this.state.city}
-                                                    onChange={this.handleInputChange}
-                                                    name="city"
-                                                    placeholder="City"
-                                                />
-                                            </div>
-                                            <div className="col-md-3">
-                                                <Input
-                                                    value={this.state.state}
-                                                    onChange={this.handleInputChange}
-                                                    name="state"
-                                                    placeholder="State"
-                                                />
-                                            </div>
-                                            <div className="col-md-4">
-                                                <Input
-                                                    value={this.state.zip}
-                                                    onChange={this.handleInputChange}
-                                                    name="zip"
-                                                    placeholder="Zip"
-                                                />
-                                            </div>
-                                        </Row>
-                                    </div>
-                                </Row>
-                                <div className="buttons">
-                                    <FormBtn onClick={this.viewRoom}>
-                                        Find a room
+                            <div className="col-md-8 offset-md-2" id="formdiv">
+                                <form>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Input
+                                                value={this.state.name}
+                                                onChange={this.handleInputChange}
+                                                name="name"
+                                                placeholder="Title"
+                                            />
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Input
+                                                value={this.state.category}
+                                                onChange={this.handleInputChange}
+                                                name="category"
+                                                placeholder="Category"
+                                            />
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Input
+                                                value={this.state.rent}
+                                                onChange={this.handleInputChange}
+                                                name="rent"
+                                                placeholder="Rent"
+                                            />
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Input
+                                                value={this.state.openSpots}
+                                                onChange={this.handleInputChange}
+                                                name="openSpots"
+                                                placeholder="Roommate spots Remaining"
+                                            />
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Input
+                                                value={this.state.availableDate}
+                                                onChange={this.handleInputChange}
+                                                name="availableDate"
+                                                placeholder={this.state.availableDate}
+                                                onClick={this.changeAvailableDate.bind(this)}
+                                            // onClick={console.log("clicked")}
+                                            ></Input>
+                                            <Calendar
+                                                className={hideCalendar}
+                                                onChange={this.onChange2}
+                                                value={this.state.date}>
+                                            </Calendar>
+                                        </div>
+                                    </Row>
+                                    <Row>
+                                        <div className="col-md-8 offset-md-2">
+                                            <Row>
+                                                <div className="col-md-5">
+                                                    <Input
+                                                        value={this.state.city}
+                                                        onChange={this.handleInputChange}
+                                                        name="city"
+                                                        placeholder="City"
+                                                    />
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <Input
+                                                        value={this.state.state}
+                                                        onChange={this.handleInputChange}
+                                                        name="state"
+                                                        placeholder="State"
+                                                    />
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <Input
+                                                        value={this.state.zip}
+                                                        onChange={this.handleInputChange}
+                                                        name="zip"
+                                                        placeholder="Zip"
+                                                    />
+                                                </div>
+                                            </Row>
+                                        </div>
+                                    </Row>
+                                    <div className="buttons">
+                                        <FormBtn onClick={this.viewRoom}>
+                                            Find a room
                                     </FormBtn>
-                                </div>
-                            </form>
-                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         }
                     </Col>
                 </Row>
