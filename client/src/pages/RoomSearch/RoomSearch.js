@@ -125,7 +125,11 @@ class RoomSearch extends Component {
         // console.log(e)
         // console.log(e.target)
         // console.log(e.target.value)
+<<<<<<< HEAD
         // console.log(this.props);
+=======
+        console.log(id)
+>>>>>>> 225f3af31a96a697c037cfe545afe45859fe23f6
         this.setState({
             roomID: id,
             apply: true,
@@ -171,16 +175,24 @@ class RoomSearch extends Component {
     };
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.title && this.state.author) {
-        //   API.saveBook({
-        //     title: this.state.title,
-        //     author: this.state.author,
-        //     synopsis: this.state.synopsis
-        //   })
-        //     .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
-        // this.setState()
+        console.log("Nothing!!")
+
+
+
+            API.getRooms({
+                openSpots:{$gt:0}
+            })
+                .then(res => {
+                    //console.log(this.state.rent)
+                    const validRooms = res.data.filter(this.filterRoom.bind(this));
+
+                this.setState({
+                    rooms: validRooms,
+                    roomates: Array.apply(null, Array(Number(validRooms.length ? validRooms[0].openSpots : 0)))
+                    //roomates: new Array(Number(res.data[0].openSpots))
+                });
+            })
+            .catch(err => console.log(err));
     };
     onChange2 = date => {
         // console.log(this.availableDate)
@@ -262,6 +274,7 @@ class RoomSearch extends Component {
                             }
                         </div>
                         {!this.state.apply &&
+<<<<<<< HEAD
                             <div className="col-md-8 offset-md-2" id="formdiv">
                                 <form>
                                     <Row>
@@ -354,6 +367,100 @@ class RoomSearch extends Component {
                                     <div className="buttons">
                                         <FormBtn onClick={this.viewRoom}>
                                             Find a room
+=======
+                        <div className="col-md-8 offset-md-2" id="formdiv">
+                            <form>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Input
+                                            value={this.state.name}
+                                            onChange={this.handleInputChange}
+                                            name="name"
+                                            placeholder="Title"
+                                        />
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Input
+                                            value={this.state.category}
+                                            onChange={this.handleInputChange}
+                                            name="category"
+                                            placeholder="Category"
+                                        />
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Input
+                                            value={this.state.rent}
+                                            onChange={this.handleInputChange}
+                                            name="rent"
+                                            placeholder="Rent"
+                                        />
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Input
+                                            value={this.state.openSpots}
+                                            onChange={this.handleInputChange}
+                                            name="openSpots"
+                                            placeholder="Roommate spots Remaining"
+                                        />
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Input
+                                            value={this.state.availableDate}
+                                            onChange={this.handleInputChange}
+                                            name="availableDate"
+                                            placeholder={this.state.availableDate}
+                                            onClick={this.changeAvailableDate.bind(this)}
+                                        // onClick={console.log("clicked")}
+                                        ></Input>
+                                        <Calendar
+                                            className={hideCalendar}
+                                            onChange={this.onChange2}
+                                            value={this.state.date}>
+                                        </Calendar>
+                                    </div>
+                                </Row>
+                                <Row>
+                                    <div className="col-md-8 offset-md-2">
+                                        <Row>
+                                            <div className="col-md-5">
+                                                <Input
+                                                    value={this.state.city}
+                                                    onChange={this.handleInputChange}
+                                                    name="city"
+                                                    placeholder="City"
+                                                />
+                                            </div>
+                                            <div className="col-md-3">
+                                                <Input
+                                                    value={this.state.state}
+                                                    onChange={this.handleInputChange}
+                                                    name="state"
+                                                    placeholder="State"
+                                                />
+                                            </div>
+                                            <div className="col-md-4">
+                                                <Input
+                                                    value={this.state.zip}
+                                                    onChange={this.handleInputChange}
+                                                    name="zip"
+                                                    placeholder="Zip"
+                                                />
+                                            </div>
+                                        </Row>
+                                    </div>
+                                </Row>
+                                <div className="buttons">
+                                    <FormBtn onClick={this.handleFormSubmit}>
+                                        Find a room
+>>>>>>> 225f3af31a96a697c037cfe545afe45859fe23f6
                                     </FormBtn>
                                     </div>
                                 </form>

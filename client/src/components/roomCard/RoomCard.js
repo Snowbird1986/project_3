@@ -194,7 +194,12 @@ class RoomCard extends Component {
               </div>
             )
           })}
+<<<<<<< HEAD
           <div value={this.props.children[0]._id} onClick={this.props.applyRoom(this.props.children[0]._id)} className="joinRoom"
+=======
+          <div className="joinRoom" 
+          value={this.props.children[0]._id} onClick={() =>{this.props.applyRoom(this.props.children[0]._id)}}
+>>>>>>> 225f3af31a96a697c037cfe545afe45859fe23f6
             style={{
 
 
@@ -228,7 +233,11 @@ class RoomCard extends Component {
             <div style={{ paddingTop: "2px", fontSize: "70%" }} className="joinButton">
               <strong>Date Available: </strong><br></br> {this.state.availableDate}
             </div>
+<<<<<<< HEAD
             {/* <button className="applybutton" style={{ backgroundColor: "lightseagreen", color: "black", marginLeft: "34%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom}>Apply!</button> */}
+=======
+            {/* <button className="applybutton" style={{ backgroundColor: "lightseagreen",color:"black", marginLeft: "34%" }} value={this.props.children[0]._id} onClick={this.props.applyRoom(this.props.children[0]._id)}>Apply!</button> */}
+>>>>>>> 225f3af31a96a697c037cfe545afe45859fe23f6
 
           </div>
 
