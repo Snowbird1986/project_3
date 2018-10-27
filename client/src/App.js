@@ -34,6 +34,20 @@ class App extends Component {
       img: null,
       id: null,
       roomID: null,
+      name: null,
+      description: null,
+      rent: null,
+      category: null,
+      openSpots: null,
+      availableDate: null,
+      city: null,
+      state: null,
+      zip: null,
+      users: [],
+      owner: null,
+      bills: [],
+      todos: [],
+      messages: [],
     }
     this.setId=this.setID.bind(this)
     this.setRoomId=this.setRoomID.bind(this)
