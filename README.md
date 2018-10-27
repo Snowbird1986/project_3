@@ -3,6 +3,8 @@
 ## Deployed App
 Check it out: https://powerful-anchorage-22222.herokuapp.com/userPortal
 
+Presentation: http://my.visme.co/projects/90yo4j7g-room-e
+
 ## Big Idea:
 Part roommate-finder, part roommate-manager; Room-E's users are able to create their own profile, browse or list rooms for rent and advertise themselves as great roommates. Once users find a compatible cohabitor, they can utilize the built-in features like financial tools, task trackers, and group messaging to make living with roommates a breeze.
 
